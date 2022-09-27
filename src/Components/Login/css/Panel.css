@@ -1,0 +1,76 @@
+#loginDiv {
+    position: absolute;
+
+    left: 35vw;
+    width: 30vw;
+
+    top: 17.5vh;
+    height: 65vh;
+}
+
+#loginDiv .background{
+    background-color: black;
+    opacity: 0.95;
+    height: 100%;
+    width: 100%;
+
+    border-radius: 1vw;
+}
+
+.calendarBg {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+.loginBtn {
+    border: none;
+    outline: none;
+
+    user-select: none;
+
+    position: absolute;
+
+    left: 15%;
+    width: 21vw;
+
+    top: 70%;
+    height: 5vh;
+
+    font-size: calc(0.6em + 1vmin);
+
+    background-color: #009dc8;
+    transition: box-shadow 250ms linear, background-color 250ms linear;
+}
+
+.loginBtn:hover {
+    background-color: rgb(0, 197, 240);
+    box-shadow: 0 0px 20px rgba(0, 197, 240, 1);
+}
+
+.forgotBtn {
+    border: none;
+    outline: none;
+
+    user-select: none;
+
+    position: absolute;
+    left: 27.5%;
+    width: 45%;
+
+    top: 80%;
+    height: 5vh;
+
+    font-size: calc(0.4em + 1vmin);
+
+    background-color: transparent;
+    color: gray;
+
+    transition: color 250ms linear;
+}
+
+.forgotBtn:hover {
+    color: white;
+}

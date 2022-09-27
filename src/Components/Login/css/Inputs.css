@@ -1,0 +1,69 @@
+.InputTypeOne {
+    position: absolute;
+
+    /*width: 21vw;  460.8px 21 | 1920*0.3*0.7/1920*100*/
+
+    /*height: 3.25vh;  35.1px */
+
+    background-color: transparent;
+    user-select: none;
+}
+
+.InputTypeOne input {
+    outline: none;
+    border: none;
+    padding: 0;
+
+    position: absolute;
+
+    width: 100%;
+    left: 0;
+
+    height: 70%;
+    top: 0;
+
+    color: white;
+    background-color: transparent;
+
+    font-size: calc(0.6em + 1vmin);
+}
+
+.InputTypeOne img {
+    position: absolute;
+    left: 2.5%;
+    bottom: 25%;
+
+    width: 1.75vw;
+
+    filter: invert(85%) sepia(100%) saturate(1%) hue-rotate(106deg) brightness(112%) contrast(101%);
+}
+
+
+
+.lowLine {
+    position: absolute;
+
+    left: 0;
+    width: 100%;
+
+    top: 85%;
+    height: 10%;
+    background-color: rgb(50, 50, 50);
+}
+
+.lowLine .effect {
+    position: absolute;
+
+    left:0;
+    top:0;
+    height: 100%;
+    width: 0%;
+
+    background-color: white;
+
+    transition: width 300ms linear;
+}
+
+.InputTypeOne input:focus + .lowLine .effect {
+    width: 100%;
+}
