@@ -12,12 +12,13 @@ const imageImports = {
 class InputPlus extends Component {
     constructor(props){
         super(props)
-
-        if(props.imageSrc == null) {
-            this.indent = "0";
+        var indent = 0
+        if(props.imageSrc === undefined) {
+            indent = "0";
         }else{
-            this.indent = "1.75";
+            indent = "3vw";
         }
+
 
         this.state = {
             left: props.left,
@@ -27,13 +28,14 @@ class InputPlus extends Component {
             type: props.type,
             placeholder: props.placeholder,
             image: props.imageSrc,
-            textIndent: this.indent,
+            textIndent: indent,
             autocomplete: this.props.autocompleteID
         }
     }
 
 
     render() { 
+
         return (
         <div className="InputTypeOne" style={{
             left: this.state.left,
@@ -43,7 +45,7 @@ class InputPlus extends Component {
         }}>
             {imageImports[this.state.image]}
             <input autoComplete={this.state.autocomplete} type={this.state.type} placeholder={this.state.placeholder} style={{
-                textIndent: "3vw",
+                textIndent: this.state.textIndent,
             }}></input>
             <div className='lowLine'>
                 <div className='effect' style={{
