@@ -6,6 +6,7 @@
 
     top: 17.5vh;
     height: 65vh;
+    min-height: 351px;
 }
 
 #loginDiv .background{
@@ -17,12 +18,13 @@
     border-radius: 1vw;
 }
 
-.calendarBg {
+html {
     position: absolute;
-    width: 100vw;
-    height: 100vh;
-    left: 0;
-    top: 0;
+    background: url(../images/background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .loginBtn {
@@ -34,12 +36,12 @@
     position: absolute;
 
     left: 15%;
-    width: 21vw;
+    width: 70%;
 
     top: 70%;
-    height: 5vh;
+    height: 7.7%;
 
-    font-size: calc(0.6em + 1vmin);
+    font-size: 1em;
 
     background-color: #009dc8;
     transition: box-shadow 250ms linear, background-color 250ms linear;
@@ -50,22 +52,35 @@
     box-shadow: 0 0px 20px rgba(0, 197, 240, 1);
 }
 
+.forgotWrapper {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+}
+
 .forgotBtn {
+    position: absolute;
     border: none;
     outline: none;
 
     user-select: none;
+    cursor: pointer;
+    display:inline;
 
-    position: absolute;
-    left: 27.5%;
-    width: 45%;
+    width: fit-content;
 
     top: 80%;
-    height: 5vh;
+    height: fit-content;
+    
 
-    font-size: calc(0.4em + 1vmin);
+    font-size: 0.75em;
 
-    background-color: transparent;
     color: gray;
 
     transition: color 250ms linear;

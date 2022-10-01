@@ -19,13 +19,16 @@
     width: 100%;
     left: 0;
 
-    height: 70%;
+    height: 100%;
     top: 0;
+
+
 
     color: white;
     background-color: transparent;
 
-    font-size: calc(0.6em + 1vmin);
+    line-height: 1em;
+    font-size: 1em;
 }
 
 .InputTypeOne img {
@@ -46,7 +49,7 @@
     left: 0;
     width: 100%;
 
-    top: 85%;
+    bottom: -5%;
     height: 10%;
     background-color: rgb(50, 50, 50);
 }

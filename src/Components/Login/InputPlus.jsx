@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import "./css/Inputs.css";
+import "./css/InputPlus.css";
 import atSolid from "./images/at-solid.svg";
 import keySolid from "./images/key-solid.svg";
 

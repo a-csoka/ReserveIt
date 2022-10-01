@@ -1,0 +1,32 @@
+.PageBtn {
+    position: absolute;
+    display: flex;
+
+    cursor: pointer;
+
+    width: fit-content;
+    height: fit-content;
+
+    color: gray;
+    background-color: transparent;
+
+    font-size: 1.1vw;
+}
+
+.PageBtn .stateResponse {
+    position: absolute;
+
+    left: 50%;
+    width: 0%;
+
+    bottom: -3%;
+    height: 3%;
+
+    background-color: gray;
+    transition: width 200ms linear, left 200ms linear;
+}
+
+.PageBtn:hover .stateResponse{
+    left: -2.5%;
+    width: 105%;
+}
