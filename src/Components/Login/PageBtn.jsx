@@ -1,13 +1,7 @@
-import React, { Component } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-
+import React, { Component} from 'react';
+import { Link } from 'react-router-dom';
 
 import "./css/PageBtn.css";
-
-function App() {
-    let location = useLocation();
-    console.log(location.pathname)
-}
 
 class PageBtn extends Component {
     state = {  } 
@@ -20,10 +14,27 @@ class PageBtn extends Component {
                 right: props.right,
                 buttonText: props.buttonText,
                 redirect: props.redirect,
+                active: props.active
             }
         }
 
     render() { 
+        var response = (
+        <React.Fragment>
+            <Link to={this.state.redirect}>{this.state.buttonText}</Link>
+            <div className='stateResponse'/>
+        </React.Fragment>)
+
+        if(this.state.active){
+            response = (
+                <React.Fragment>
+                    <Link to={this.state.redirect} style={{color:"white"}}>{this.state.buttonText}</Link>
+                    <div className='stateResponse' style={{width: "105%", backgroundColor: "white", left: "-2.5%"}}/>
+                </React.Fragment>
+            )
+        
+        }
+
         return (
             <React.Fragment>
                 <div className='PageBtn' style={{
@@ -32,8 +43,7 @@ class PageBtn extends Component {
                     left: this.state.left,
                     right: this.state.right,                    
                 }}>
-                    <Link to={this.state.redirect}>{this.state.buttonText}</Link>
-                    <div className='stateResponse'></div>
+                    {response}
                 </div>
 
             </React.Fragment>
@@ -41,5 +51,5 @@ class PageBtn extends Component {
         );
     }
 }
- 
+
 export default PageBtn;
