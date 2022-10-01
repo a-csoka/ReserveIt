@@ -12,11 +12,11 @@ class LoginForm extends Component {
                 <div className='forgotWrapper'>
                     <div className='forgotBtn'>Elfelejtette a jelszavát?</div>
                 </div>
-                <form>
-                    <InputPlus left="15%" width="70%" top="32.5%" height="5%"  type="text" placeholder="Email" imageSrc="Email"/>
-                    <InputPlus left="15%" width="70%" top="47.5%" height="5%" type="password" placeholder="Jelszó" imageSrc="Key"/>
+                <form autoComplete='on'>
+                    <InputPlus left="15%" width="70%" top="32.5%" height="5%"  type="email" placeholder="Email" imageSrc="Email" autocompleteID="email"/>
+                    <InputPlus left="15%" width="70%" top="47.5%" height="5%" type="password" placeholder="Jelszó" imageSrc="Key" autocompleteID="current-password"/>
                     
-                    <button className='loginBtn rounded-pill'>Bejelentkezés</button>
+                    <button type="submit" className='loginBtn rounded-pill'>Bejelentkezés</button>
                 </form>
             </React.Fragment>
         );

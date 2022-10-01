@@ -31,6 +31,7 @@
     font-size: 1em;
 }
 
+
 .InputTypeOne img {
     position: absolute;
     left: 2.5%;
@@ -41,8 +42,6 @@
 
     filter: invert(85%) sepia(100%) saturate(1%) hue-rotate(106deg) brightness(112%) contrast(101%);
 }
-
-
 
 .lowLine {
     position: absolute;
@@ -70,4 +69,11 @@
 
 .InputTypeOne input:focus + .lowLine .effect {
     width: 100%;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
 }

@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+
 
 import "./css/PageBtn.css";
+
+function App() {
+    let location = useLocation();
+    console.log(location.pathname)
+}
 
 class PageBtn extends Component {
     state = {  } 
@@ -11,10 +18,10 @@ class PageBtn extends Component {
                 bottom: props.bottom,
                 left: props.left,
                 right: props.right,
-                buttonText: props.buttonText
+                buttonText: props.buttonText,
+                redirect: props.redirect,
             }
         }
-
 
     render() { 
         return (
@@ -23,9 +30,9 @@ class PageBtn extends Component {
                     top: this.state.top,
                     bottom: this.state.bottom,
                     left: this.state.left,
-                    right: this.state.right,
+                    right: this.state.right,                    
                 }}>
-                    {this.state.buttonText}
+                    <Link to={this.state.redirect}>{this.state.buttonText}</Link>
                     <div className='stateResponse'></div>
                 </div>
 
