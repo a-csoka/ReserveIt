@@ -34,9 +34,10 @@
 .InputTypeOne img {
     position: absolute;
     left: 2.5%;
-    bottom: 25%;
-
+    top: 45%;
     width: 1.75vw;
+
+    transform: translate(0,-50%);
 
     filter: invert(85%) sepia(100%) saturate(1%) hue-rotate(106deg) brightness(112%) contrast(101%);
 }
@@ -49,7 +50,7 @@
     left: 0;
     width: 100%;
 
-    bottom: -5%;
+    bottom: -20%;
     height: 10%;
     background-color: rgb(50, 50, 50);
 }

@@ -1,0 +1,62 @@
+.loginBtn {
+    border: none;
+    outline: none;
+
+    user-select: none;
+
+    position: absolute;
+
+    left: 15%;
+    width: 70%;
+
+    top: 70%;
+    height: 7.7%;
+
+    font-size: 1em;
+
+    background-color: #009dc8;
+    transition: box-shadow 250ms linear, background-color 250ms linear;
+}
+
+.loginBtn:hover {
+    background-color: rgb(0, 197, 240);
+    box-shadow: 0 0px 20px rgba(0, 197, 240, 1);
+}
+
+.forgotWrapper {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+}
+
+.forgotBtn {
+    position: absolute;
+    border: none;
+    outline: none;
+
+    user-select: none;
+    cursor: pointer;
+    display:inline;
+
+    width: fit-content;
+
+    top: 84%;
+    height: fit-content;
+    
+
+    font-size: 0.75em;
+
+    color: gray;
+
+    transition: color 250ms linear;
+}
+
+.forgotBtn:hover {
+    color: white;
+}
