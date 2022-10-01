@@ -4,31 +4,36 @@ import { Link } from 'react-router-dom';
 import "./css/PageBtn.css";
 
 class PageBtn extends Component {
-    state = {  } 
-        constructor(props){
-            super(props)
-            this.state = {
-                top: props.top,
-                bottom: props.bottom,
-                left: props.left,
-                right: props.right,
-                buttonText: props.buttonText,
-                redirect: props.redirect,
-                active: props.active
-            }
-        }
+    state = {
+        update: false,
+    }
+
+
+    componentDidMount(){
+        this.setState({
+            top: this.props.top,
+            bottom: this.props.bottom,
+            left: this.props.left,
+            right: this.props.right,
+            buttonText: this.props.buttonText,
+            redirect: this.props.redirect,
+            refresher: this.props.refresher,
+        })
+    }
+
+
 
     render() { 
         var response = (
         <React.Fragment>
-            <Link to={this.state.redirect}>{this.state.buttonText}</Link>
+            <Link to={this.state.redirect} onClick={() => this.state.refresher()}>{this.state.buttonText}</Link>
             <div className='stateResponse'/>
         </React.Fragment>)
 
-        if(this.state.active){
+        if(window.location.pathname === this.state.redirect){
             response = (
                 <React.Fragment>
-                    <Link to={this.state.redirect} style={{color:"white"}}>{this.state.buttonText}</Link>
+                    <Link to={this.state.redirect} style={{color:"white"}} onClick={() => this.state.refresher()}>{this.state.buttonText}</Link>
                     <div className='stateResponse' style={{width: "105%", backgroundColor: "white", left: "-2.5%"}}/>
                 </React.Fragment>
             )

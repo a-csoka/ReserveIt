@@ -42,7 +42,7 @@ class InputPlus extends Component {
             height: this.state.height,
         }}>
             {imageImports[this.state.image]}
-            <input name={this.state.placeholder} autoComplete={this.state.autocomplete} type={this.state.type} placeholder={this.state.placeholder} style={{
+            <input autoComplete={this.state.autocomplete} type={this.state.type} placeholder={this.state.placeholder} style={{
                 textIndent: "3vw",
             }}></input>
             <div className='lowLine'>
