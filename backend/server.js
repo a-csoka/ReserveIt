@@ -18,7 +18,9 @@ sequelize.authenticate().then(() => {
     console.error('[Adatbázis]: ', error);
  });
 
-
+ app.post("/registerUser", async (req, res) => {
+    
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
