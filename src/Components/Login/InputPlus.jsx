@@ -21,15 +21,7 @@ class InputPlus extends Component {
 
 
         this.state = {
-            left: props.left,
-            width: props.width,
-            top: props.top,
-            height: props.height,
-            type: props.type,
-            placeholder: props.placeholder,
-            image: props.imageSrc,
             textIndent: indent,
-            autocomplete: this.props.autocompleteID
         }
     }
 
@@ -38,15 +30,15 @@ class InputPlus extends Component {
 
         return (
         <div className="InputTypeOne" style={{
-            left: this.state.left,
-            width: this.state.width,
-            top: this.state.top,
-            height: this.state.height,
+            left: this.props.left,
+            width: this.props.width,
+            top: this.props.top,
+            height: this.props.height,
         }}>
-            {imageImports[this.state.image]}
-            <input autoComplete={this.state.autocomplete} type={this.state.type} placeholder={this.state.placeholder} style={{
+            {imageImports[this.props.imageSrc]}
+            <input autoComplete={this.props.autocompleteID} type={this.props.type} placeholder={this.props.placeholder} style={{
                 textIndent: this.state.textIndent,
-            }}></input>
+            }} onChange={event => {this.props.dataSet(event.target.value)}}></input>
             <div className='lowLine'>
                 <div className='effect' style={{
                     width: this.state.effect,
