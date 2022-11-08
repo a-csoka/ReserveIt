@@ -67,6 +67,20 @@
     transition: width 300ms linear;
 }
 
+.errorMsg {
+    position: absolute;
+
+    left: 0;
+    top: 125%;
+    height: 100%;
+    width: 100%;
+
+    background-color: transparent;
+    color: red;
+
+    font-size: 0.7em;
+}
+
 .InputTypeOne input:focus + .lowLine .effect {
     width: 100%;
 }
