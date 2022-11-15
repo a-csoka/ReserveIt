@@ -18,6 +18,29 @@
     border-radius: 1vw;
 }
 
+.ReserveIt_Icon{
+    position: absolute;
+    width: 100%;
+    height: 50%;
+
+    top: 0%;
+    left: 0%;
+
+    background-color: transparent;
+
+    display: flex;
+    justify-content: center;
+}
+
+.ReserveIt_Icon img{
+    position: absolute;
+
+    width: 70vw;
+    height: 90vh;
+
+    top: -130%;
+}
+
 html {
     position: absolute;
     background: url(../images/ReserveIt_NoText.png) no-repeat center center fixed; 
