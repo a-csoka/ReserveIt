@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState} from 'react';
+import React, {useState} from 'react';
 
 import "./css/RegisterForm.css";
 
@@ -100,7 +99,15 @@ export default function RegisterForm(){
 
     return (
         <React.Fragment>               
-            <form autocomplete="on">
+            <form autocomplete="on" onSubmit={(event) => {
+                    event.preventDefault()
+                    FieldCheck({
+                        firstName: FirstName,
+                        lastName: LastName,
+                        email: Email,
+                        password: Password,
+                        rePassword: RePassword
+                })}}>
                 <InputPlus left="15%" width="32.5%" top="25.5%" height="5%"  type="text" placeholder="Vezetéknév" autocompleteID="family-name" dataSet={(txt) => {setFirstName(txt); clearError("FirstName")}} ErrorMsg={Errors["FirstName"]}/>
                 <InputPlus left="52.5%" width="32.5%" top="25.5%" height="5%"  type="text" placeholder="Keresztnév" autocompleteID="given-name" dataSet={(txt) => {setLastName(txt); clearError("LastName")}} ErrorMsg={Errors["LastName"]}/>
 
@@ -109,19 +116,7 @@ export default function RegisterForm(){
                 <InputPlus left="15%" width="70%" top="55.5%" height="5%" type="password" placeholder="Jelszó" imageSrc="Key" autocompleteID="new-password" dataSet={(txt) => {setPassword(txt); clearError("Password");}} ErrorMsg={Errors["Password"]}/>  
                 <InputPlus left="15%" width="70%" top="70.5%" height="5%" type="password" placeholder="Jelszó megerősítés" imageSrc="Key" autocompleteID="new-password" dataSet={(txt) => {setRePassword(txt); clearError("RePassword");}} ErrorMsg={Errors["RePassword"]}/>
 
-                <button type="submit" className='registerBtn rounded-pill' onClick={(event) => {
-                    event.preventDefault()
-                    const createdUser = FieldCheck({
-                        firstName: FirstName,
-                        lastName: LastName,
-                        email: Email,
-                        password: Password,
-                        rePassword: RePassword
-                    })
-                    if(createdUser){
-
-                    }
-                }}>Regisztráció</button> 
+                <button type="submit" className='registerBtn rounded-pill'>Regisztráció</button> 
             </form>
 
         </React.Fragment>

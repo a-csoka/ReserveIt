@@ -47,6 +47,20 @@ function isFieldEmpty(text){
     return true
 }
 
+app.get("/verify/:id", async(req, res) => {
+    await sql_con.query("SELECT * FROM ReserveIt_VerificationData WHERE VerificationID=? LIMIT 1", [req.params.id], function (err, result) {
+        if (err) throw err;
+        if(result.length > 0){
+            res.send("Az email címed sikeresen megerősítésre került!")
+            sql_con.query("DELETE FROM ReserveIt_VerificationData WHERE AccountID=?", [result[0].AccountID])
+            sql_con.query("UPDATE ReserveIt_Accounts SET isEmailValidated=1 WHERE AccountID=?", [result[0].AccountID])
+            return true
+        }else{
+            res.send("Nem felismerhető megerősítő link!")
+            return false
+        }
+    })
+})
 
 app.post("/registerUser", async (req, res) => {
     var tempErr = {
@@ -110,24 +124,45 @@ app.post("/registerUser", async (req, res) => {
     async function createUser(){
         const pass = await bcrypt.hash(req.body.password, await bcrypt.genSalt(10))
         await sql_con.query("INSERT INTO ReserveIt_Accounts(Email, Password, FirstName, LastName) VALUES(?, ?, ?, ?)", [req.body.email, pass, req.body.firstName, req.body.lastName], function(err) {
+            sendVerificationEmail()
+        })
+    }
+
+    async function sendVerificationEmail(){
+        
+        await sql_con.query("SELECT AccountID from ReserveIt_Accounts WHERE Email=? LIMIT 1", [req.body.email], function(err,result) {
             if (err) throw err;
             tempErr["Email"] = "Erősítsd meg az email címedet az arra küldött levélben!"
             res.send(tempErr)
 
-            mail_con.sendMail({
-                from: "Team ReserveIt <helpdesk.reserveit@gmail.com>",
-                to: req.body.email,
-                subject: "ReserveIt - Megerősítés",
-                text: "Teszt email amiben a megerősítés fog szerepelni!",
-            }, function(erR, info){
-                if (err) throw err
-                if(!err){
-                    console.log("[ReserveIt - Mail]: Megerősítő email elküldve! [Cím: "+req.body.email+"]")
-                }
+            require('crypto').randomBytes(22, function(err, buffer) {
+                var token = result[0].AccountID+buffer.toString('hex');
+                mail_con.sendMail({
+                    from: "Team ReserveIt <helpdesk.reserveit@gmail.com>",
+                    to: req.body.email,
+                    subject: "ReserveIt - Megerősítés",
+                    html: `Tisztelt felhasználó!
+                    <br>
+                    Az email címével regisztráció történt az oldalunkon! Amennyiben ön volt kattintson a következő linkre: <b><a href='http://`+req.get("host")+`/verify/`+token+`'>Megerősítés</a></b>
+                    <br><br>
+                    Amennyiben nem ön volt, kérjük ne tegyen semmit.
+                    <br>
+                    <br>
+                    Tisztelettel,<br>
+                    Team ReserveIt
+                    `,
+                }, function(erR, info){
+                    if (err) throw err
+                    if(!err){
+                        console.log(token)
+                        sql_con.query("INSERT INTO ReserveIt_VerificationData(AccountID,VerificationID) VALUES (?,?)", [result[0].AccountID, token])
+                        console.log("[ReserveIt - Mail]: Megerősítő email elküldve! [Cím: "+req.body.email+"]")
+                    }
+                });
             });
-
-            return true
         })
+
+        return true
     }
 
 })
