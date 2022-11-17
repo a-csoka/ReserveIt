@@ -19,7 +19,7 @@
     left: 50%;
     width: 0%;
 
-    bottom: -3%;
+    bottom: 30%;
     height: 3%;
 
     background-color: gray;
@@ -31,11 +31,11 @@
     width: 105%;
 }
 
-a {
+p {
     color: inherit;
     text-decoration: inherit;
 }
 
-a:hover {
+p:hover {
     color: inherit;
 }

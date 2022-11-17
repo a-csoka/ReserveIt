@@ -8,6 +8,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css"
 import Panel from "./Components/Login/Panel";
 import LoginForm from "./Components/Login/LoginForm"
 import RegisterForm from "./Components/Login/RegisterForm"
+import ForgottenPasswordForm from "./Components/Login/ForgottenPasswordForm"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +18,7 @@ root.render(
         <Route path="/" element={<Panel />}>
           <Route path="login" element={<LoginForm />} />
           <Route path="register" element={<RegisterForm />} />
+          <Route path="forgottenPassword" element={<ForgottenPasswordForm />} />
           <Route path="*" element={<Navigate to="/login"/>} />
         </Route>
       </Routes>

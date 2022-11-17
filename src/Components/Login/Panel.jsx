@@ -27,8 +27,8 @@ class Panel extends Component {
                     <img src={ReserveIt_Text} alt="Hiba a betöltés során!"></img>
                 </div>
                 <Outlet />
-                <PageBtn buttonText="Bejelentkezés" left="25%" top="15%" redirect="/login" refresher={this.refresher}/>
-                <PageBtn buttonText="Regisztráció"  right="25%" top="15%" redirect="/register" refresher={this.refresher}/>
+                <PageBtn buttonText="Bejelentkezés" left="25%" top="15%" redirect="/login" />
+                <PageBtn buttonText="Regisztráció"  right="25%" top="15%" redirect="/register" />
             </div>
         </React.Fragment>);
     }
