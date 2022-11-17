@@ -6,8 +6,11 @@ const port = process.env.PORT || 5000;
 const emailValidator = require("email-validator");
 const bcrypt = require("bcrypt");
 const nodemailer = require('nodemailer');
+const fetch = require('isomorphic-fetch');
+var cors = require('cors')
 
 require('dotenv').config();
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -113,7 +116,7 @@ app.post("/registerUser", async (req, res) => {
             if (err) throw err;
             if(result.length > 0){
                 tempErr["Email"] = "Ez az email cím már foglalt!"
-                res.send(tempErr)
+                res.json(tempErr)
                 return false
             }
             createUser()
@@ -133,7 +136,7 @@ app.post("/registerUser", async (req, res) => {
         await sql_con.query("SELECT AccountID from ReserveIt_Accounts WHERE Email=? LIMIT 1", [req.body.email], function(err,result) {
             if (err) throw err;
             tempErr["Email"] = "Erősítsd meg az email címedet az arra küldött levélben!"
-            res.send(tempErr)
+            res.json(tempErr)
 
             require('crypto').randomBytes(22, function(err, buffer) {
                 var token = result[0].AccountID+buffer.toString('hex');
@@ -154,7 +157,6 @@ app.post("/registerUser", async (req, res) => {
                 }, function(erR, info){
                     if (err) throw err
                     if(!err){
-                        console.log(token)
                         sql_con.query("INSERT INTO ReserveIt_VerificationData(AccountID,VerificationID) VALUES (?,?)", [result[0].AccountID, token])
                         console.log("[ReserveIt - Mail]: Megerősítő email elküldve! [Cím: "+req.body.email+"]")
                     }
@@ -190,20 +192,20 @@ app.post("/loginUser", async (req, res) => {
             if(result.length === 0){
                 tempErr["Email"] = "Hibás email vagy jelszó!"
                 tempErr["Password"] = "Hibás email vagy jelszó!"
-                res.send(tempErr)
+                res.json(tempErr)
                 return false
             }
 
             if(!await bcrypt.compare(req.body.password, result[0].Password)){
                 tempErr["Email"] = "Hibás email vagy jelszó!"
                 tempErr["Password"] = "Hibás email vagy jelszó!"
-                res.send(tempErr)
+                res.json(tempErr)
                 return false
             }
 
             if(result[0].isEmailValidated === 0){
                 tempErr["Email"] = "Ez az email cím még nincs megerősítve!"
-                res.send(tempErr)
+                res.json(tempErr)
                 return false
             }
 
@@ -216,6 +218,18 @@ app.post("/loginUser", async (req, res) => {
     }
     await doesUserExist()
 })
+
+app.post("/recaptcha", async (req,res) => {
+    await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_KEY}&response=${req.body.token}`, {
+        method: 'post'
+    })
+        .then(async response => await response.json())
+        .then(async google_response => {
+            if(google_response.success === true){
+                await res.json({response: true})
+            }
+        });
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 

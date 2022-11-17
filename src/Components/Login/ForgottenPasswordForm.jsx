@@ -20,7 +20,8 @@ export default function ForgottenPasswordForm() {
 
     return (  
         <React.Fragment>
-            <InputPlus left="15%" width="70%" top="32.5%" height="5%"  type="email" placeholder="Email" imageSrc="Email" autocompleteID="email" dataSet={(txt) => {setEmail(txt); clearError("Email")}} ErrorMsg={Errors["Email"]}/>
+            <InputPlus left="15%" width="70%" top="47.5%" height="5%"  type="email" placeholder="Email" imageSrc="Email" autocompleteID="email" dataSet={(txt) => {setEmail(txt); clearError("Email")}} ErrorMsg={Errors["Email"]}/>
+
         </React.Fragment>    
     );
 }

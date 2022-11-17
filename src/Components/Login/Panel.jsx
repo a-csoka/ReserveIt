@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {useEffect} from 'react';
 import { Outlet } from 'react-router';
 
 import PageBtn from "./PageBtn"
@@ -10,16 +10,15 @@ import "./css/Panel.css";
 
 
 
-class Panel extends Component {
-    state = {
-    }
+export default function Panel(){
+    useEffect(() => {
+        // Add reCaptcha
+        const script = document.createElement("script")
+        script.src = "https://www.google.com/recaptcha/api.js?render=6Lek6BMjAAAAAJJWkTr68AMv6jzYsLk1gi7UVFZm"
+        document.body.appendChild(script)
+      }, [])
 
-    refresher = () => {
-        this.setState(() => ({}))
-    }
-
-    render() { 
-        return (
+    return (
         <React.Fragment>           
             <div id="loginDiv">
                 <div className="background"></div>
@@ -31,7 +30,4 @@ class Panel extends Component {
                 <PageBtn buttonText="Regisztráció"  right="25%" top="15%" redirect="/register" />
             </div>
         </React.Fragment>);
-    }
 }
- 
-export default Panel;

@@ -24,7 +24,7 @@ export default function LoginForm(){
             tempErr["Password"] = "Üres mező!"
         }
 
-        if(!deepEqual({...tempErr}, {...Errors})){ //Ha volt hiba, akkor beállítja a hibákat és nem engedi tovább
+        if(isThereError(tempErr)){ //Ha volt hiba, akkor beállítja a hibákat és nem engedi tovább
             setErrors(tempErr)
             return false
         }
@@ -35,13 +35,31 @@ export default function LoginForm(){
             return false
         }
 
-        fetch('http://localhost:5000/loginUser', {
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(dict)
-        }).then((response) => response.json()).then((data) => setErrors({...data}))
+        window.grecaptcha.ready(_ => {
+            window.grecaptcha
+              .execute("6Lek6BMjAAAAAJJWkTr68AMv6jzYsLk1gi7UVFZm", { action: "login" })
+              .then(token => {
+                fetch("http://127.0.0.1:5000/recaptcha", {
+                    method: "POST",
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify({token: token})
+                }).then((response) => response.json()).then((data) => {
+                    if(data.response){
+                        fetch('http://localhost:5000/loginUser', {
+                            method: "POST",
+                            headers: {
+                                'Content-type': 'application/json'
+                            },
+                            body: JSON.stringify(dict)
+                        }).then((response) => response.json()).then((data) => setErrors({...data}))
+                    }
+                })
+              })
+        })
+
+
         return true
     }
 
@@ -53,10 +71,10 @@ export default function LoginForm(){
 
     return (
         <React.Fragment>
-            <div className='forgotWrapper' onClick={() => {
+            <div className='forgotWrapper'>
+                <div className='forgotBtn'  onClick={() => {
                 navigate("/forgottenPassword")
-            }}>
-                <div className='forgotBtn'>Elfelejtette a jelszavát?</div>
+            }}>Elfelejtette a jelszavát?</div>
             </div>
             <form autoComplete='on' onSubmit={(event) => {
                     event.preventDefault()
@@ -82,10 +100,11 @@ function isFieldEmpty(text){
     return true
 }
 
-function deepEqual(x, y) {
-    const ok = Object.keys, tx = typeof x, ty = typeof y;
-    return x && y && tx === 'object' && tx === ty ? (
-      ok(x).length === ok(y).length &&
-        ok(x).every(key => deepEqual(x[key], y[key]))
-    ) : (x === y);
+function isThereError(list){
+    for (const data of Object.entries(list)) {
+        if(data[1] !== ""){
+            return true
+        }
+    }
+    return false
 }

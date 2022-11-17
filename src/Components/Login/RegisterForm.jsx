@@ -32,7 +32,13 @@ export default function RegisterForm(){
     }
 
     function FieldCheck(dict){
-        var tempErr = {...Errors}
+        var tempErr = {
+            "FirstName": "",
+            "LastName": "",
+            "Email": "",
+            "Password": "",
+            "RePassword": "",
+        }
         if(isFieldEmpty(dict.firstName)){
             tempErr["FirstName"] = "Üres mező!"
         }
@@ -49,7 +55,7 @@ export default function RegisterForm(){
             tempErr["RePassword"] = "Üres mező!"
         }
 
-        if(!deepEqual({...tempErr}, {...Errors})){ //Ha volt hiba, akkor beállítja a hibákat és nem engedi tovább
+        if(isThereError(tempErr)){ //Ha volt hiba, akkor beállítja a hibákat és nem engedi tovább
             setErrors(tempErr)
             return false
         }
@@ -86,20 +92,34 @@ export default function RegisterForm(){
             return false
         }
 
-        fetch('http://localhost:5000/registerUser', {
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(dict)
-        }).then((response) => response.json()).then((data) => setErrors({...data}))
-        return true
+        window.grecaptcha.ready(_ => {
+            window.grecaptcha
+              .execute("6Lek6BMjAAAAAJJWkTr68AMv6jzYsLk1gi7UVFZm", { action: "login" })
+              .then(token => {
+                fetch("http://127.0.0.1:5000/recaptcha", {
+                    method: "POST",
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify({token: token})
+                }).then((response) => response.json()).then((data) => {
+                    if(data.response){            
+                        fetch('http://127.0.0.1:5000/registerUser', {
+                            method: "POST",
+                            headers: {
+                                'Content-type': 'application/json'
+                            },
+                            body: JSON.stringify(dict)
+                        }).then((response) => response.json()).then((data) => setErrors({...data}))
+                    }
+                })
+              })
+        })
     }
-
 
     return (
         <React.Fragment>               
-            <form autocomplete="on" onSubmit={(event) => {
+            <form autoComplete="on" onSubmit={(event) => {
                     event.preventDefault()
                     FieldCheck({
                         firstName: FirstName,
@@ -133,6 +153,15 @@ function isFieldEmpty(text){
     return true
 }
 
+function isThereError(list){
+    for (const data of Object.entries(list)) {
+        if(data[1] !== ""){
+            return true
+        }
+    }
+    return false
+}
+/*
 function deepEqual(x, y) {
     const ok = Object.keys, tx = typeof x, ty = typeof y;
     return x && y && tx === 'object' && tx === ty ? (
@@ -140,3 +169,4 @@ function deepEqual(x, y) {
         ok(x).every(key => deepEqual(x[key], y[key]))
     ) : (x === y);
   }
+  */
