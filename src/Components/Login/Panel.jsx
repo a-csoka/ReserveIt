@@ -16,7 +16,7 @@ export default function Panel(){
         const script = document.createElement("script")
         script.src = "https://www.google.com/recaptcha/api.js?render=6Lek6BMjAAAAAJJWkTr68AMv6jzYsLk1gi7UVFZm"
         document.body.appendChild(script)
-      }, [])
+    }, [])
 
     return (
         <React.Fragment>           

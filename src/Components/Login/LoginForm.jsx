@@ -16,7 +16,10 @@ export default function LoginForm(){
     })
 
     function FieldCheck(dict){
-        var tempErr = {...Errors}
+        var tempErr = {
+            "Email": "",
+            "Password": "",
+        }
         if(isFieldEmpty(dict.email)){
             tempErr["Email"] = "Üres mező!"
         }
