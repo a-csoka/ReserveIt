@@ -23,7 +23,7 @@ export default function Panel(){
             <div id="loginDiv">
                 <div className="background"></div>
                 <div className='ReserveIt_Icon'>
-                    <img src={ReserveIt_Text} alt="Hiba a betöltés során!"></img>
+                    <img draggable="false" src={ReserveIt_Text} alt="Hiba a betöltés során!"></img>
                 </div>
                 <Outlet />
                 <PageBtn buttonText="Bejelentkezés" left="25%" top="15%" redirect="/login" />

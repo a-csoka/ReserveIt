@@ -39,6 +39,8 @@
     height: 90vh;
 
     top: -130%;
+    
+    user-select: none;
 }
 
 html {
