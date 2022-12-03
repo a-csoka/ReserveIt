@@ -9,6 +9,7 @@ import Panel from "./Components/Login/Panel";
 import LoginForm from "./Components/Login/LoginForm"
 import RegisterForm from "./Components/Login/RegisterForm"
 import ForgottenPasswordForm from "./Components/Login/ForgottenPasswordForm"
+import NewPasswordForm from "./Components/Login/NewPasswordForm"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,9 @@ root.render(
           <Route path="login" element={<LoginForm />} />
           <Route path="register" element={<RegisterForm />} />
           <Route path="forgottenPassword" element={<ForgottenPasswordForm />} />
+          <Route path="newpassword" element={<NewPasswordForm />} > 
+            <Route path="*" />
+          </Route>
           <Route path="*" element={<Navigate to="/login"/>} />
         </Route>
       </Routes>
