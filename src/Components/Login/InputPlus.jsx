@@ -5,8 +5,8 @@ import atSolid from "./images/at-solid.svg";
 import keySolid from "./images/key-solid.svg";
 
 const imageImports = {
-    ["Email"]: <img src={atSolid} alt="Hiba a betöltés során!"></img>,
-    ["Key"]: <img src={keySolid} alt="Hiba a betöltés során!"></img>,
+    "Email": <img src={atSolid} alt="Hiba a betöltés során!"></img>,
+    "Key": <img src={keySolid} alt="Hiba a betöltés során!"></img>,
 }
 
 class InputPlus extends Component {
