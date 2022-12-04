@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import "../node_modules/bootstrap/dist/css/bootstrap.css"
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
 
 import Panel from "./Components/Login/Panel";
@@ -20,7 +21,7 @@ root.render(
           <Route path="login" element={<LoginForm />} />
           <Route path="register" element={<RegisterForm />} />
           <Route path="forgottenPassword" element={<ForgottenPasswordForm />} />
-          <Route path="newpassword" element={<NewPasswordForm />} > 
+          <Route path="newpassword/:Key" element={<NewPasswordForm />} > 
             <Route path="*" />
           </Route>
           <Route path="*" element={<Navigate to="/login"/>} />

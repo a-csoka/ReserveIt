@@ -1,18 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom'
 
 import "./css/ForgottenPasswordForm.css";
 
 import InputPlus from "./InputPlus"
 
 
+
 export default function ForgottenPasswordForm() {
+    const {Key} = useParams()
+    const [ValidKey, setValidKey] = useState(false)
     const [Password, setPassword] = useState("")
     const [RePassword, setRePassword] = useState("")
     const [Errors, setErrors] = useState({
         "Password": "",
         "RePassword": ""
     })
-    var page = 
 
     function clearError(ID) {
         var tempErr = {...Errors}
@@ -20,6 +23,17 @@ export default function ForgottenPasswordForm() {
         setErrors(tempErr)
     }
 
+    useEffect(() => {
+        fetch("http://127.0.0.1:5000/checkNewPasswordKey", {
+            method: "POST",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({EditKey: Key})
+        }).then((response) => response.json()).then((data) => {
+            console.log(data)
+        })
+    })
     
 
     return (
