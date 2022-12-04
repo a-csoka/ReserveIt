@@ -14,6 +14,8 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+console.log(process.env.DUMMY_TEXT)
+
 const sql_con = mysql.createConnection({
     host: process.env.SQL_HOST,
     user: process.env.SQL_USER,
@@ -27,7 +29,6 @@ sql_con.connect(function(err) {
     if (err) {
       return console.error('[Adatbázis]: ' + err.message);
     }
-  
     console.log('[Adatbázis]: A kapcsolat sikeresen létrejött!');
 })
 
