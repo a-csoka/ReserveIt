@@ -1,3 +1,4 @@
+import { calculateNewValue } from '@testing-library/user-event/dist/utils';
 import React, { Component } from 'react';
 
 import "./css/InputPlus.css";
@@ -16,9 +17,9 @@ class InputPlus extends Component {
     componentDidMount(){
         var indent = 0
         if(this.props.imageSrc === undefined) {
-            indent = "0";
+            indent = "0%";
         }else{
-            indent = "3vw";
+            indent = "calc(3.25vh + 7%)";
         }
 
 
@@ -64,7 +65,8 @@ class InputPlus extends Component {
         }}>
             {imageImports[this.props.imageSrc]}
             <input autoComplete={this.props.autocompleteID} type={this.props.type} placeholder={this.props.placeholder} style={{
-                textIndent: this.state.textIndent,
+                left: this.state.textIndent,
+                width: "calc(100% - ("+this.state.textIndent+"))"
             }} onChange={event => {this.props.dataSet(event.target.value); this.setState({effect: null, bgColor: null}); this.activateError()}}></input>
             <div className='lowLine'>
                 <div className='effect' style={{
