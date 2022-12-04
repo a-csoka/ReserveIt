@@ -9,6 +9,20 @@
         height: 65vh;
         min-height: 351px;
     }
+
+    .ReserveIt_Icon img{
+        position: absolute;
+    
+        top: 50%;
+        left: 50%;
+      
+        margin: -45vh 0 0 -35vw;
+    
+        width: 70vw;
+        height: 90vh;
+        
+        user-select: none;
+    }
 }
   
   @media (orientation: portrait) {
@@ -21,6 +35,20 @@
         top: 17.5vh;
         height: 65vh;
         min-height: 351px;
+    }
+
+    .ReserveIt_Icon img{
+        position: absolute;
+    
+        top: 50%;
+        left: 50%;
+      
+        margin: -45vh 0 0 -90vw;
+    
+        width: 180vw;
+        height: 90vh;
+        
+        user-select: none;
     }
 }
 
@@ -45,20 +73,6 @@
     left: 0%;
 
     background-color: transparent;
-}
-
-.ReserveIt_Icon img{
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-  
-    margin: -45vh 0 0 -35vw;
-
-    width: 70vw;
-    height: 90vh;
-    
-    user-select: none;
 }
 
 html {
