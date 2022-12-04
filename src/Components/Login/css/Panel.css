@@ -31,11 +31,11 @@
         position: fixed;
         
     /*Ezért pokolra jutok*/
-        left: calc(10%);
-        width: calc(80%);
+        left: 10%;
+        width: 80%;
     
-        top: calc(17.5%); 
-        height: calc(65%);
+        top: 17.5%; 
+        height: 65%;
         min-height: 351px;
 
 
