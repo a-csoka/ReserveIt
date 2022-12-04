@@ -20,7 +20,7 @@ export default function Panel(){
 
     return (
         <React.Fragment>           
-            <div id="loginDiv">
+            <div className="loginDiv">
                 <div className="background"></div>
                 <div className='ReserveIt_Icon'>
                     <img draggable="false" src={ReserveIt_Text} alt="Hiba a betöltés során!"></img>
