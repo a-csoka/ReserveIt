@@ -26,15 +26,19 @@
 }
   
   @media (orientation: portrait) {
+
     .loginDiv {
-        position: absolute;
+        position: fixed;
+        
+    /*Ezért pokolra jutok*/
+        left: calc(10%);
+        width: calc(80%);
     
-        left: 10vw;
-        width: 80vw;
-    
-        top: 17.5vh;
-        height: 65vh;
+        top: calc(17.5%); 
+        height: calc(65%);
         min-height: 351px;
+
+
     }
 
     .ReserveIt_Icon img{

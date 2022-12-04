@@ -19,7 +19,8 @@ export default function Panel(){
     }, [])
 
     return (
-        <React.Fragment>           
+        <React.Fragment>
+            <div className="teszt"></div>   
             <div className="loginDiv">
                 <div className="background"></div>
                 <div className='ReserveIt_Icon'>
