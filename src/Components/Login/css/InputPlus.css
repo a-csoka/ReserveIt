@@ -44,7 +44,7 @@
 .InputTypeOne img {
     position: absolute;
     left: 2.5%;
-    top: 45%;
+    top: 50%;
     height: 1.75vw;
 
     transform: translate(0,-50%);

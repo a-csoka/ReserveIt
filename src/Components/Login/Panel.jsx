@@ -19,16 +19,17 @@ export default function Panel(){
     }, [])
 
     return (
-        <React.Fragment>
-            <div className="teszt"></div>   
+        <React.Fragment> 
             <div className="loginDiv">
                 <div className="background"></div>
                 <div className='ReserveIt_Icon'>
                     <img draggable="false" src={ReserveIt_Text} alt="Hiba a betöltés során!"></img>
                 </div>
                 <Outlet />
-                <PageBtn buttonText="Bejelentkezés" left="25%" top="15%" redirect="/login" />
-                <PageBtn buttonText="Regisztráció"  right="25%" top="15%" redirect="/register" />
+                <div className='pageBtnContainer'>
+                    <PageBtn buttonText="Bejelentkezés" pos="left" redirect="/login" />
+                    <PageBtn buttonText="Regisztráció"  pos="right"redirect="/register" />
+                </div>
             </div>
         </React.Fragment>);
 }

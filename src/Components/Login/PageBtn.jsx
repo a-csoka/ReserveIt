@@ -22,16 +22,11 @@ export default function PageBtn(props){
 
     return (
          <React.Fragment>
-            <div className='PageBtn' style={{
-                top: props.top,
-                bottom: props.bottom,
-                left: props.left,
-                right: props.right,                    
-            }}
+            <div className={'PageBtn '+props.pos}
             onClick={() => {
                 navigate(props.redirect)
             }}>    
-               {response}
+            {response}
             </div>
         </React.Fragment>
     );

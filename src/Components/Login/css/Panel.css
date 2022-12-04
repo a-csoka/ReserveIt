@@ -79,6 +79,22 @@
     background-color: transparent;
 }
 
+.pageBtnContainer{
+    position: absolute;
+
+    text-align: center;
+
+    top: 12.5%;
+
+
+    left: 15%;
+    height: 10%;
+    width: 70%;
+
+    column-count: 2;
+    column-gap: 5%;
+}
+
 html {
     position: absolute;
     background: url(../images/ReserveIt_NoText.png) no-repeat center center fixed; 
