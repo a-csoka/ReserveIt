@@ -1,42 +1,72 @@
-@media (orientation: landscape) {
-    .loginDiv {
-        position: absolute;
+.limiter{
+    display: block;
+
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container{
+    width: 100%;
+    min-height: 100vh;
+}
+
+.loginDiv {
+    position: absolute;
+
+    top: 50vh;
+    left: 50vw;
+
+    transform: translate(-50%, -50%);
+
+
+    width: 30vw;
+
+    height: 65vh;
+
+}
+
+.ReserveIt_Icon img{
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 70vw;
+    height: 90vh;
     
-        left: 35vw;
-        width: 30vw;
-    
-        top: 17.5vh;
-        height: 65vh;
-        min-height: 351px;
+    user-select: none;
+}
+
+@media screen and (max-width: 980px) {
+    .loginDiv{
+        min-width: 90vw;
+
+        height: 85vh;
+        min-height: 450px;
+
+        
     }
 
     .ReserveIt_Icon img{
-        position: absolute;
-    
-        top: 50%;
-        left: 50%;
-      
-        margin: -45vh 0 0 -35vw;
-    
-        width: 70vw;
-        height: 90vh;
-        
-        user-select: none;
+        width: 200vw;
+        min-height: 630px;
     }
+
 }
   
+/*
   @media (orientation: portrait) {
 
     .loginDiv {
+
         position: fixed;
         
-    /*Ezért pokolra jutok*/
         left: 10%;
         width: 80%;
     
         top: 11.5%; 
         height: 77%;
-        min-height: 351px;
 
 
     }
@@ -55,7 +85,7 @@
         user-select: none;
     }
 }
-
+*/
 
 
 
@@ -74,7 +104,8 @@
     height: 50%;
 
     bottom: 72.5%;
-    left: 0%;
+    left: 50%;
+    transform: translateX(-50%);
 
     background-color: transparent;
 }
@@ -95,11 +126,7 @@
     column-gap: 5%;
 }
 
-html {
-    position: absolute;
-    background: url(../images/ReserveIt_NoText.png) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+body{
+    background-image: url("../images/ReserveIt_NoText.png");
+    background-position: center center;
 }

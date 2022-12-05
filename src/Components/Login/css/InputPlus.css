@@ -1,11 +1,3 @@
-@media (orientation: landscape) {
-
-}
-  
-  @media (orientation: portrait) {
-
-}
-
 .InputTypeOne {
     position: absolute;
 
@@ -25,6 +17,7 @@
     position: absolute;
 
     height: 100%;
+    width: 100%;
     top: 0;
 
 
