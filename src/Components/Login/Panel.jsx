@@ -19,10 +19,20 @@ export default function Panel(){
     }, [])
 
     return (
-        <React.Fragment> 
-                <div className='container' style={{
-                    width: window.innerWidth,
-                }}>
+        <div className='loginContainer'>
+            <div className='formContainer'>
+                <div className='background'></div>
+                <Outlet />
+            </div>
+            <div className='iconContainer'>
+                <img draggable="false" src={ReserveIt_Text} alt="Hiba a betöltés során!"></img>
+            </div>
+        </div>    
+    );
+}
+
+/*
+                <div className='container'>
                     <div className="loginDiv">
                         <div className="background"></div>
                         <div className='ReserveIt_Icon'>
@@ -35,5 +45,4 @@ export default function Panel(){
                         </div>
                     </div>
                 </div>
-        </React.Fragment>);
-}
+                */

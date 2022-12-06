@@ -1,22 +1,104 @@
-.limiter{
-    display: block;
+.loginContainer{
+    position: absolute;
 
-    width: 100%;
-    margin: 0 auto;
+    left: 50%;
+    width: 30vw;
+
+
+    top: 50%;
+    height: 68vh;
+
+    transform: translate(-50%, -50%);
 }
 
-.container{
+.iconContainer img{
+    position: absolute;
+
+    left: 50%;
+    width: 70vw;
+    height: 90vh;
+
+    top: 50%;
+    
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+}
+
+@media screen and (max-width: 980px) {
+    .loginContainer{    
+        width: 90vw;
+        height: 65vh;
+
+        top: 0%;
+        transform: translate(-50%, 0);
+    
+        min-height: 630px;
+    }
+
+    .iconContainer img{
+        width: 200vw;
+        min-height: 630px;
+    }
+}
+
+
+
+.formContainer{
+    position: absolute;
+
+    left: 0;
     width: 100%;
-    min-height: 100vh;
+
+    top: 10%;
+    height: 90%;
+}
+
+.background{
+    background-color: black;
+    opacity: 0.95;
+    height: 100%;
+    width: 100%;
+
+    border-radius: 1vw;
+}
+
+.iconContainer{
+    position: absolute;
+
+    left: 0%;
+    width: 100%;
+
+    top: 12%;
+    height: 0%;
+}
+
+
+
+body{
+    background-image: url("../images/ReserveIt_NoText.png");
+    background-position: center center;
+}
+
+
+
+
+
+/*
+.container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    height: calc(65vh + 65vh * 0.5 * 0.275);
 }
 
 .loginDiv {
     position: absolute;
 
-    top: 50vh;
-    left: 50vw;
-
-    transform: translate(-50%, -50%);
+    bottom: 0;
+    left: 0;
 
 
     width: 30vw;
@@ -39,6 +121,16 @@
 }
 
 @media screen and (max-width: 980px) {
+    
+    .container{
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vw;
+        height: calc(85vh + 65vh * 0.5 * 0.275);
+        min-height: 450px;
+    }
+
     .loginDiv{
         min-width: 90vw;
 
@@ -52,42 +144,8 @@
         width: 200vw;
         min-height: 630px;
     }
-
 }
   
-/*
-  @media (orientation: portrait) {
-
-    .loginDiv {
-
-        position: fixed;
-        
-        left: 10%;
-        width: 80%;
-    
-        top: 11.5%; 
-        height: 77%;
-
-
-    }
-
-    .ReserveIt_Icon img{
-        position: absolute;
-    
-        top: 50%;
-        left: 50%;
-      
-        margin: -31.622vh 0 0 -90vw;
-    
-        width: 180vw;
-        height: 63.244vh;
-        
-        user-select: none;
-    }
-}
-*/
-
-
 
 .loginDiv .background{
     background-color: black;
@@ -126,7 +184,5 @@
     column-gap: 5%;
 }
 
-body{
-    background-image: url("../images/ReserveIt_NoText.png");
-    background-position: center center;
-}
+
+*/
