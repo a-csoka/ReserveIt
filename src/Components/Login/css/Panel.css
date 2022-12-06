@@ -77,7 +77,10 @@
 
 body{
     background-image: url("../images/ReserveIt_NoText.png");
-    background-position: center center;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 
