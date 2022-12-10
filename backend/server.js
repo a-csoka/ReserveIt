@@ -53,7 +53,7 @@ const mail_con = nodemailer.createTransport({
 mail_con.verify().then(console.log("[Mail]: A kapcsolat sikeresen létrejött!")).catch(console.error);
 
 require("./paths/loginUser.js")(app, isFieldEmpty, sql_con, bcrypt, emailValidator);
-require("./paths/registerUser.js")(app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto);
+require("./paths/registerUser.js")(app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto, mail_con);
 require("./paths/verifyAccount.js")(app, sql_con);
 require("./paths/recaptcha.js")(app, sql_con, crypto, mail_con);
 require("./paths/checkNewPasswordKey.js")(app, sql_con);

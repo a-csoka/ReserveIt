@@ -56,7 +56,7 @@ class InputPlus extends Component {
         }
 
         return (
-        <div className="InputTypeOne" style={{
+        <div className={"InputTypeOne "+this.props.pos} style={{
             left: this.props.left,
             width: this.props.width,
             top: this.props.top,

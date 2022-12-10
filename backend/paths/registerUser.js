@@ -1,4 +1,4 @@
-module.exports = (app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto) => {
+module.exports = (app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto, mail_con) => {
     app.post("/registerUser", async (req, res) => {
         var tempErr = {
             "FirstName": "",

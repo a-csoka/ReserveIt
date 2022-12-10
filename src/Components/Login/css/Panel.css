@@ -34,6 +34,7 @@
         transform: translate(-50%, 0);
     
         min-height: 630px;
+        min-width: 260px;
     }
 
     .iconContainer img{
@@ -83,7 +84,23 @@ body{
     background-repeat: no-repeat;
 }
 
+.PageBtnContainer{
+    position: absolute;
 
+    top: 12.5%;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 80%;
+    height: 10% !important;
+
+    background-color: transparent;
+
+    column-count: 2;
+    column-gap: 0%;
+    overflow: visible;
+}
 
 
 
