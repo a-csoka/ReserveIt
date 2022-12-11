@@ -1,7 +1,6 @@
 module.exports = (app, sql_con) => {
     app.post("/verifyAccount", async (req, res) => {
         sql_con.query("SELECT * FROM ReserveIt_VerificationData WHERE VerificationID=? LIMIT 1", [req.body.EditKey], function (err, result){
-            console.log(result.length)
             if(result.length == 0){
                 res.send({State: "Ez a link nem megfelelő!"})
                 return false
