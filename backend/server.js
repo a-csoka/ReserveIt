@@ -58,6 +58,7 @@ require("./paths/verifyAccount.js")(app, sql_con);
 require("./paths/recaptcha.js")(app, sql_con, crypto, mail_con);
 require("./paths/forgottenpassword.js")(app, sql_con, crypto, mail_con);
 require("./paths/checkNewPasswordKey.js")(app, sql_con);
+require("./paths/changePassword.js")(app, isFieldEmpty, sql_con, bcrypt, mail_con);
 
 
 app.listen(port, () => console.log(`[Backend]: A backend elérhető! [Port: ${port}]`));
