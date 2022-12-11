@@ -9,7 +9,11 @@ import InputPlus from "./InputPlus"
 
 export default function ForgottenPasswordForm() {
     const {Key} = useParams()
-    const [ValidKey, setValidKey] = useState(false)
+    const [Display, setDisplay] = useState(
+        <React.Fragment>
+            <div className='noLink'>Nem felismerhető vagy lejárt a link!</div>
+        </React.Fragment>
+    )
     const [Password, setPassword] = useState("")
     const [RePassword, setRePassword] = useState("")
     const [Errors, setErrors] = useState({
@@ -31,26 +35,28 @@ export default function ForgottenPasswordForm() {
             },
             body: JSON.stringify({EditKey: Key})
         }).then((response) => response.json()).then((data) => {
-            console.log(data)
+            if(data.State){
+                setDisplay(        
+                <React.Fragment>
+                    <form onSubmit={(event) => {
+                        event.preventDefault()
+                        }}>
+                        <div className='forgotExplain'>Add meg az új jelszavadat!</div>
+                        <InputPlus left="15%" width="70%" top="45%" height="5%"  type="password" placeholder="Jelszó" imageSrc="Key" autocompleteID="new-password" dataSet={(txt) => {setPassword(txt); clearError("Password")}} ErrorMsg={Errors["Password"]}/>
+                        <InputPlus left="15%" width="70%" top="60%" height="5%"  type="password" placeholder="Jelszó megerősítés" imageSrc="Key" autocompleteID="new-password" dataSet={(txt) => {setRePassword(txt); clearError("RePassword")}} ErrorMsg={Errors["RePassword"]}/>
+                        <button type="submit" className='loginBtn rounded-pill' style={{
+                            top: "80%"
+                        }}>Megváltoztatás</button>
+                    </form>
+                </React.Fragment>
+                )
+            }
         })
     })
     
 
     return (
-
-        <React.Fragment>
-            <form onSubmit={(event) => {
-                event.preventDefault()
-                }}>
-                <div className='forgotExplain'>Add meg az új jelszavadat!</div>
-                <InputPlus left="15%" width="70%" top="45%" height="5%"  type="password" placeholder="Jelszó" imageSrc="Key" autocompleteID="new-password" dataSet={(txt) => {setPassword(txt); clearError("Password")}} ErrorMsg={Errors["Password"]}/>
-                <InputPlus left="15%" width="70%" top="60%" height="5%"  type="password" placeholder="Jelszó megerősítés" imageSrc="Key" autocompleteID="new-password" dataSet={(txt) => {setRePassword(txt); clearError("RePassword")}} ErrorMsg={Errors["RePassword"]}/>
-                <button type="submit" className='loginBtn rounded-pill' style={{
-                    top: "80%"
-                }}>Megváltoztatás</button>
-            </form>
-
-        </React.Fragment>    
+        Display
     );
 }
 
