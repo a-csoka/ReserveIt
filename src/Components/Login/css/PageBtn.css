@@ -10,10 +10,12 @@
     color: gray;
     background-color: transparent;
 
-    top: 50%;
+    bottom: 0%;
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    border:1px solid transparent !important;
+
+    transform: translate(-50%);
 }
 
 .PageBtn .stateResponse {
@@ -22,7 +24,7 @@
     left: 50%;
     width: 0%;
 
-    bottom: 0%;
+    bottom: 37.5%;
     height: 3%;
 
     background-color: gray;

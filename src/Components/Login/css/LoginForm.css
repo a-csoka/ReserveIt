@@ -27,8 +27,8 @@
     position: absolute;
 
     width: 100%;
-    height: 100%;
-    top: 0;
+    height: 22.3%;
+    bottom: 0;
     left: 0;
 
     display: flex;
@@ -46,7 +46,8 @@
 
     width: fit-content;
 
-    top: 84%;
+    top: 50%;
+    transform: translateY(-50%);
     height: fit-content;
     
 

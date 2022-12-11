@@ -38,7 +38,7 @@
     }
 
     .iconContainer img{
-        width: 200vw;
+        width: 250%;
         min-height: 630px;
     }
 }
@@ -93,13 +93,13 @@ body{
     transform: translateX(-50%);
 
     width: 80%;
-    height: 10% !important;
+    height: 30%;
 
     background-color: transparent;
 
     column-count: 2;
     column-gap: 0%;
-    overflow: visible;
+    overflow: hidden;
 }
 
 

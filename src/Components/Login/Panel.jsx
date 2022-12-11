@@ -22,11 +22,11 @@ export default function Panel(){
         <div className='loginContainer'>
             <div className='formContainer'>
                 <div className='background'></div>
-                <Outlet />
                 <div className="PageBtnContainer">
                      <PageBtn buttonText="Bejelentkezés" pos="lefter" redirect="/login" />
                      <PageBtn buttonText="Regisztráció" pos="righter" redirect="/register" />
                 </div>
+                <Outlet />
             </div>
             <div className='iconContainer'>
                 <img draggable="false" src={ReserveIt_Text} alt="Hiba a betöltés során!"></img>
