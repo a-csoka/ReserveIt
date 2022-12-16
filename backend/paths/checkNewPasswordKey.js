@@ -6,8 +6,6 @@ module.exports = (app, sql_con) => {
                 res.send({State: "Nem felismerhető link!"})
                 return false
             }
-
-            sql_con.query("DELETE FROM ReserveIt_ForgottenPasswordData WHERE AccountID=?", [result[0].AccountID])
             
             var recordTime = JSON.parse(JSON.stringify(result[0].Time));
             var nowTime = Date.now();
