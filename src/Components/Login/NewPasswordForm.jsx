@@ -120,6 +120,7 @@ export default function ForgottenPasswordForm() {
                             body: JSON.stringify(dict)
                         }).then((response) => response.json()).then((data) => {
                             setErrors({...data.Errors})
+                            //Írj ide IF-et, mert mindig átdobja.
                             setTimeout(function() {
                                 navigate("/login");
                               }, 3000);
