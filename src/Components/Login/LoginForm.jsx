@@ -50,10 +50,11 @@ export default function LoginForm(){
                     body: JSON.stringify({token: token})
                 }).then((response) => response.json()).then((data) => {
                     if(data.response){
-                        fetch('http://localhost:5000/loginUser', {
+                        fetch('http://127.0.0.1:5000/loginUser', {
                             method: "POST",
+                            credentials: 'include',
                             headers: {
-                                'Content-type': 'application/json'
+                                'Content-type': 'application/json',
                             },
                             body: JSON.stringify(dict)
                         }).then((response) => response.json()).then((data) => setErrors({...data}))

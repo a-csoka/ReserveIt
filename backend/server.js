@@ -8,10 +8,12 @@ const fetch = require('isomorphic-fetch')
 const cors = require('cors')
 const crypto = require('crypto')
 const app = express()
+const cookieParser = require('cookie-parser');
 
 require('dotenv').config();
 
-app.use(cors())
+app.use(cookieParser());
+app.use(cors({credentials: true, origin: 'http://127.0.0.1:3000'}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -52,7 +54,7 @@ const mail_con = nodemailer.createTransport({
 })
 mail_con.verify().then(console.log("[Mail]: A kapcsolat sikeresen létrejött!")).catch(console.error);
 
-require("./paths/loginUser.js")(app, isFieldEmpty, sql_con, bcrypt, emailValidator);
+require("./paths/loginUser.js")(app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto);
 require("./paths/registerUser.js")(app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto, mail_con);
 require("./paths/verifyAccount.js")(app, sql_con);
 require("./paths/recaptcha.js")(app, sql_con, crypto, mail_con);
