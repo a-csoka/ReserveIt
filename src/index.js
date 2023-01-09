@@ -10,7 +10,7 @@ import LoginForm from "./Components/Login/LoginForm"
 import RegisterForm from "./Components/Login/RegisterForm"
 import ForgottenPasswordForm from "./Components/Login/ForgottenPasswordForm"
 import NewPasswordForm from "./Components/Login/NewPasswordForm"
-import ConfirmReg from "./Components/Login/confirmReg"
+import ConfirmReg from "./Components/Login/ConfirmReg"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
