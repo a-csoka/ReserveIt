@@ -9,6 +9,7 @@ const cors = require('cors')
 const crypto = require('crypto')
 const app = express()
 const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
 
@@ -54,7 +55,7 @@ const mail_con = nodemailer.createTransport({
 })
 mail_con.verify().then(console.log("[Mail]: A kapcsolat sikeresen létrejött!")).catch(console.error);
 
-require("./paths/loginUser.js")(app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto);
+require("./paths/loginUser.js")(app, isFieldEmpty, sql_con, bcrypt, emailValidator, jwt);
 require("./paths/registerUser.js")(app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto, mail_con);
 require("./paths/verifyAccount.js")(app, sql_con);
 require("./paths/recaptcha.js")(app, sql_con, crypto, mail_con);

@@ -12,12 +12,14 @@ import ForgottenPasswordForm from "./Components/Login/ForgottenPasswordForm"
 import NewPasswordForm from "./Components/Login/NewPasswordForm"
 import ConfirmReg from "./Components/Login/ConfirmReg"
 
+import MenuBar from "./Components/Dashboard/MenuBar"
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
       <Routes>
-      <Route path="" element={<Navigate to="/login"/>} />
-        <Route path="/" element={<Panel />}>
+      <Route path="" element={<Navigate to="loginPage/login"/>} />
+        <Route path="loginPage" element={<Panel />}>
           <Route path="login" element={<LoginForm />} />
           <Route path="register" element={<RegisterForm />} />
           <Route path="forgottenPassword" element={<ForgottenPasswordForm />} />
@@ -28,4 +30,7 @@ root.render(
       </Routes>
     </BrowserRouter>
 );
+
+//          <Route path='dashboard' element={<MenuBar />} />
+
 
