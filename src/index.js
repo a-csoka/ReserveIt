@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.css"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
+import Redirect from "./Components/Redirect"
 
 import Panel from "./Components/Login/Panel";
 import LoginForm from "./Components/Login/LoginForm"
@@ -18,15 +19,19 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
       <Routes>
-      <Route path="" element={<Navigate to="loginPage/login"/>} />
-        <Route path="loginPage" element={<Panel />}>
+      <Route path="" element={<Redirect/>} />
+        <Route path="loginPage" element={<React.Fragment><Redirect onlyCheckLoggedIn={true}/><Panel /></React.Fragment>}>
           <Route path="login" element={<LoginForm />} />
           <Route path="register" element={<RegisterForm />} />
           <Route path="forgottenPassword" element={<ForgottenPasswordForm />} />
           <Route path="newpassword/:Key" element={<NewPasswordForm />} />
           <Route path="verifyAccount/:Key" element={<ConfirmReg />} /> 
-          <Route path="*" element={<Navigate to="/login"/>} />
+          <Route path="*" element={<Redirect/>} />
         </Route>
+        <Route path="dashboard" element={<MenuBar/>}>
+
+        </Route>
+        <Route path="*" element={<Redirect/>} />
       </Routes>
     </BrowserRouter>
 );

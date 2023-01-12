@@ -1,5 +1,5 @@
 const express = require('express')
-const mysql = require('mysql')
+const mysql = require('mysql2')
 const port = process.env.PORT || 5000
 const emailValidator = require("email-validator")
 const bcrypt = require("bcrypt")
@@ -62,7 +62,7 @@ require("./paths/recaptcha.js")(app, sql_con, crypto, mail_con);
 require("./paths/forgottenpassword.js")(app, sql_con, crypto, mail_con);
 require("./paths/checkNewPasswordKey.js")(app, sql_con);
 require("./paths/changePassword.js")(app, isFieldEmpty, sql_con, bcrypt, mail_con);
-
+require("./paths/verifyToken.js")(app, jwt, sql_con);
 
 app.listen(port, () => console.log(`[Backend]: A backend elérhető! [Port: ${port}]`));
 

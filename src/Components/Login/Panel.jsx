@@ -23,8 +23,8 @@ export default function Panel(){
             <div className='formContainer'>
                 <div className='background'></div>
                 <div className="PageBtnContainer">
-                     <PageBtn buttonText="Bejelentkezés" pos="lefter" redirect="/login" />
-                     <PageBtn buttonText="Regisztráció" pos="righter" redirect="/register" />
+                     <PageBtn buttonText="Bejelentkezés" pos="lefter" redirect="/loginPage/login" />
+                     <PageBtn buttonText="Regisztráció" pos="righter" redirect="/loginPage/register" />
                 </div>
                 <Outlet />
             </div>
