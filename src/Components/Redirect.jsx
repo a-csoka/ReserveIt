@@ -14,14 +14,17 @@ function Redirect(props) {
                 'Content-type': 'application/json',
             },
         }).then((response) => response.json()).then((data) => {
-            
+            setRedirect()
+            var link = document.location.href.split('/');
             if(data.tokenState === true){
-                if(props.onlyCheckLoggedIn === true){
+                if(link[3] !== "dashboard"){
                     setRedirect("/dashboard")
-                }
-            }else{       
-                if(!props.onlyCheckLoggedIn === true){
-                    setRedirect("/loginPage/login")
+                }  
+            }else{
+                if(link[3] !== "loginPage"){  
+                    if(!props.onlyCheckLoggedIn === true){
+                        setRedirect("/loginPage/login")
+                    }
                 }
             }
         })
