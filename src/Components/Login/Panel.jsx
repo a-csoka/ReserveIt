@@ -6,7 +6,7 @@ import ReserveIt_Text from "./images/ReserveIt_OnlyText.png"
 
 import "./css/Panel.css";
 
-
+import ReserveIt_NoText from "./images/ReserveIt_NoText.png"
 
 
 
@@ -19,6 +19,8 @@ export default function Panel(){
     }, [])
 
     return (
+        <React.Fragment>
+        <img src={ReserveIt_NoText} alt="Hiba a betöltés során!" className='bgImage'></img>
         <div className='loginContainer'>
             <div className='formContainer'>
                 <div className='background'></div>
@@ -31,7 +33,8 @@ export default function Panel(){
             <div className='iconContainer'>
                 <img draggable="false" src={ReserveIt_Text} alt="Hiba a betöltés során!"></img>
             </div>
-        </div>    
+        </div>   
+        </React.Fragment> 
     );
 }
 

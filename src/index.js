@@ -28,7 +28,7 @@ root.render(
           <Route path="verifyAccount/:Key" element={<ConfirmReg />} /> 
           <Route path="*" element={<Redirect/>} />
         </Route>
-        <Route path="dashboard" element={<MenuBar/>}>
+        <Route path="dashboard" element={<React.Fragment><Redirect/><MenuBar/></React.Fragment>}>
 
         </Route>
         <Route path="*" element={<Redirect/>} />

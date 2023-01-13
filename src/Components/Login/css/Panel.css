@@ -75,14 +75,12 @@
 }
 
 
-
-body{
-    background-image: url("../images/ReserveIt_NoText.png");
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
+.bgImage{
+    position: fixed;
+    width: 100%;
+    height: 100%;
 }
+
 
 .PageBtnContainer{
     position: absolute;

@@ -7,7 +7,6 @@ function Redirect(props) {
     const [redirectLink, setRedirect] = useState()
 
     useEffect(() => {
-        console.log(props)
         fetch("http://127.0.0.1:5000/verifyToken", {
             method: "GET",
             credentials: 'include',
@@ -17,10 +16,10 @@ function Redirect(props) {
         }).then((response) => response.json()).then((data) => {
             
             if(data.tokenState === true){
-                setRedirect("/dashboard")
-                
-            }else{
-                
+                if(props.onlyCheckLoggedIn === true){
+                    setRedirect("/dashboard")
+                }
+            }else{       
                 if(!props.onlyCheckLoggedIn === true){
                     setRedirect("/loginPage/login")
                 }
