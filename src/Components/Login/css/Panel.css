@@ -15,8 +15,8 @@
     position: absolute;
 
     left: 50%;
-    width: 70vw;
-    height: 90vh;
+    width: 21vw;
+    height: 10vh;
 
     top: 50%;
     
@@ -38,8 +38,8 @@
     }
 
     .iconContainer img{
-        width: 250%;
-        min-height: 630px;
+        width: 80%;
+        min-height: 110px;
     }
 }
 
@@ -55,7 +55,7 @@
     height: 90%;
 }
 
-.background{
+.loginContainer .background{
     background-color: black;
     opacity: 0.95;
     height: 100%;

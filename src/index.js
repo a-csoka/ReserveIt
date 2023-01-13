@@ -13,7 +13,7 @@ import ForgottenPasswordForm from "./Components/Login/ForgottenPasswordForm"
 import NewPasswordForm from "./Components/Login/NewPasswordForm"
 import ConfirmReg from "./Components/Login/ConfirmReg"
 
-import MenuBar from "./Components/Dashboard/MenuBar"
+import Dashboard from "./Components/Dashboard/Dashboard"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,7 +28,7 @@ root.render(
           <Route path="verifyAccount/:Key" element={<ConfirmReg />} /> 
           <Route path="*" element={<Redirect/>} />
         </Route>
-        <Route path="dashboard" element={<React.Fragment><Redirect/><MenuBar/></React.Fragment>}>
+        <Route path="dashboard" element={<React.Fragment><Redirect/><Dashboard/></React.Fragment>}>
 
         </Route>
         <Route path="*" element={<Redirect/>} />
