@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import "./css/LoginForm.css";
-
+import Cookies from 'js-cookie';
 import InputPlus from "./InputPlus"
 
 const emailValidator = require("email-validator");
@@ -52,12 +52,18 @@ export default function LoginForm(){
                     if(data.response){
                         fetch('http://127.0.0.1:5000/loginUser', {
                             method: "POST",
-                            credentials: 'include',
+                            credentials: 'include',                           
                             headers: {
                                 'Content-type': 'application/json',
                             },
                             body: JSON.stringify(dict)
-                        }).then((response) => response.json()).then((data) => setErrors({...data}))
+                        }).then((response) => response.json()).then((data) => {
+                            if(Cookies.get('userToken') != null){
+                                navigate("../dashboard")
+                            }else{
+                                setErrors({...data})
+                            }                           
+                        })
                     }
                 })
               })

@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom'
 
 import "./css/ForgottenPasswordForm.css";
 
-export default function confirmReg(){
+export default function ConfirmReg(){
     const {Key} = useParams()
     const [Display, setDisplay] = useState("Hiba a szerverre való kapcsolódás során!")
 
