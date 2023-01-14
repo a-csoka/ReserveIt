@@ -4,7 +4,7 @@ import "./css/MenuBar.css"
 
 import ReserveIt_OnlyText from "../Login/images/ReserveIt_OnlyText.png"
 
-import User from "./images/user-solid.svg"
+import MenuBarOption from './MenuBarOption';
 
 function MenuBar() {
     return ( 
@@ -14,7 +14,10 @@ function MenuBar() {
             <img src={ReserveIt_OnlyText} alt="Hiba a betöltés során!" className='ReserveItMenu'></img>
             
             <div className='optionsContainer'>
-
+                <MenuBarOption Text="Időpontjaim" Icon="Calendar" To="./mycalendar"/>
+                <MenuBarOption Text="Vállalkozások" Icon="Store" To="./businesses"/>
+                <MenuBarOption Text="Saját vállalkozásaim" Icon="Building" To="./mybusinesses"/>
+                <MenuBarOption Text="Beállítások" Icon="Gear" To="./settings"/>
             </div>
         </div>
     </React.Fragment>

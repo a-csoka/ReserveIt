@@ -19,7 +19,7 @@ function Redirect(props) {
             setRedirect(false)
             var link = document.location.href.split('/');
             if(data.tokenState === true){
-                if(link[3] !== "dashboard"){
+                if(link[3] !== "dashboard" || props.onlyCheckWrongLink){
                     setRedirect(true)
                     toRedirect = "/dashboard"
                 }  

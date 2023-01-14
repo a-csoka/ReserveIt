@@ -14,6 +14,7 @@ import NewPasswordForm from "./Components/Login/NewPasswordForm"
 import ConfirmReg from "./Components/Login/ConfirmReg"
 
 import Dashboard from "./Components/Dashboard/Dashboard"
+import MyBusinesses from "./Components/Dashboard/MyBusinesses"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,8 +29,12 @@ root.render(
           <Route path="verifyAccount/:Key" element={<ConfirmReg />} /> 
           <Route path="*" element={<Redirect/>} />
         </Route>
-        <Route path="dashboard" element={<React.Fragment><Redirect/><Dashboard/></React.Fragment>}>
-
+        <Route path="dashboard" element={<React.Fragment><Redirect onlyCheckWrongLink={false}/><Dashboard/></React.Fragment>}>
+          <Route path="mycalendar" />
+          <Route path="businesses" />
+          <Route path="mybusinesses" element={<MyBusinesses />} />
+          <Route path="settings" />
+          <Route path="*" element={<Redirect onlyCheckWrongLink={true}/>}/>
         </Route>
         <Route path="*" element={<Redirect/>} />
       </Routes>

@@ -1,0 +1,70 @@
+@font-face {
+    font-family: LEMONMILK-Regular;
+    src: url(../fonts/LEMONMILK-Regular.otf);
+}
+
+.OneOptionContainer{
+    position: relative;
+
+    width: 100%;
+    height: 3vh;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    margin-bottom: 8%;
+
+    cursor: pointer;
+
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+
+.OneOptionContainer img{
+    position: absolute;
+    left: 0%;
+
+    height: 100%;
+    aspect-ratio: 1/1;
+
+    pointer-events: none;
+}
+
+.OneOptionContainer .iconEffect{
+    opacity: 0;
+    filter: invert(54%) sepia(77%) saturate(869%) hue-rotate(147deg) brightness(97%) contrast(101%);
+    transition: opacity 0.2s ease-in-out;
+}
+
+.OneOptionContainer:hover .iconEffect{
+    opacity: 1;
+}
+
+
+.OneOptionContainer .text{
+    position: absolute;
+
+    font-size: 1.25vw;
+
+    left: 15%;
+
+    font-family: LEMONMILK-Regular; 
+
+    transition: left 0.2s ease-in-out, color 0.2s ease-in-out;
+
+    height: fit-content;
+
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.OneOptionContainer:hover .text{
+    left: 18%;
+    color: #00c5f0;
+}
