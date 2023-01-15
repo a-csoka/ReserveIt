@@ -1,0 +1,92 @@
+.contentBackground{
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: darkgray;
+}
+
+.subOptionsMenu{
+    position: relative;
+
+    top: 5%;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 95%;
+    height: 7.5%;
+}
+
+.subOptionsMenu .option{
+    position: relative;
+
+    width: calc(100% / 3);
+    height: 100%;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    float: left;
+    text-align: center;
+
+    cursor: pointer;
+
+}
+
+.subOptionsMenu .option .text{
+    position: absolute;
+
+    font-family: LEMONMILK-Regular;
+
+    width: fit-content;
+    height: fit-content;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    transition: top 0.2s ease-in-out;
+
+    font-size: 2vh;
+}
+
+.subOptionsMenu .option .line{
+    position: absolute;
+
+    width: 100%;
+    bottom: 0;
+
+    background-color: rgb(100, 100, 100);
+
+    height: 8%;
+
+    transition: background-color 0.2s ease-in-out;
+}
+
+.subOptionsMenu .option:hover .text{
+    top: 35%;
+}
+
+.subOptionsMenu .option:hover .line{
+    background-color: #00c5f0;
+}
+
+
+
+.subOptionsMenu .option .left{
+    border-top-left-radius: 5vw;
+    border-bottom-left-radius: 5vw;
+}
+
+.subOptionsMenu .option .right{
+    border-top-right-radius: 5vw;
+    border-bottom-right-radius: 5vw;
+}
+
+
+

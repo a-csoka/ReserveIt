@@ -1,7 +1,7 @@
 .menuContainer{
-    position: fixed;
+    position: absolute;
 
-    width: 25%;
+    width: 100%;
     height: 100%;
 }
 
