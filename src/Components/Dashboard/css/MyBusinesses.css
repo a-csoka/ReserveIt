@@ -18,6 +18,8 @@
 
     width: 95%;
     height: 7.5%;
+
+    line-height: 120%;
 }
 
 .subOptionsMenu .option{
@@ -46,20 +48,22 @@
     height: fit-content;
 
     left: 50%;
-    top: 50%;
+    bottom: 30%;
 
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
 
-    transition: top 0.2s ease-in-out;
+    transition: bottom 0.2s ease-in-out;
 
-    font-size: 2vh;
+    font-size: 1vw;
+
+    white-space:nowrap;
 }
 
 .subOptionsMenu .option .line{
     position: absolute;
 
     width: 100%;
-    bottom: 0;
+    top: 92%;
 
     background-color: rgb(100, 100, 100);
 
@@ -69,7 +73,7 @@
 }
 
 .subOptionsMenu .option:hover .text{
-    top: 35%;
+    bottom: 50%;
 }
 
 .subOptionsMenu .option:hover .line{
