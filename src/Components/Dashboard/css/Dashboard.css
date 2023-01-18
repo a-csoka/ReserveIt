@@ -25,4 +25,6 @@
     height: 100%;
     width: 75%;
 
+    overflow-x: auto;
+
 }

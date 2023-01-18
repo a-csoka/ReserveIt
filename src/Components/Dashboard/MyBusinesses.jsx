@@ -8,8 +8,6 @@ function MyBusinesses() {
 
     return (
         <React.Fragment>
-            <div className='contentBackground'></div>
-
             <div className='subOptionsMenu'>               
                 <div className='option' onClick={() => {
                     navigate("./list")
