@@ -23,17 +23,22 @@
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
+    
 }
 
 
 .OneOptionContainer img{
     position: absolute;
     left: 0%;
+    top: 50%;
+    transform: translateY(-50%);
 
     height: 100%;
     width: 15%;
 
     pointer-events: none;
+
+    filter: invert(100%) sepia(0%) saturate(2699%) hue-rotate(15deg) brightness(85%) contrast(82%);
 }
 
 .OneOptionContainer .iconEffect{
@@ -62,6 +67,8 @@
 
     top: 50%;
     transform: translateY(-50%);
+
+    color: #C8C8C8;
 }
 
 .OneOptionContainer:hover .text{
