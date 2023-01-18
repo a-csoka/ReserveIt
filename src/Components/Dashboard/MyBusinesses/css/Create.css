@@ -70,7 +70,9 @@
 .myBusinessContent .space{
     position: relative;
 
-    margin-top: 3%;
+    margin-top: 5%;
 
-    height: 5%;
+    height: 1%;
+
+    background-color: transparent;
 }
