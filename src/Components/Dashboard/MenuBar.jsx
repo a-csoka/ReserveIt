@@ -16,7 +16,7 @@ function MenuBar() {
             <div className='optionsContainer'>
                 <MenuBarOption Text="Időpontjaim" Icon="Calendar" To="./mycalendar"/>
                 <MenuBarOption Text="Vállalkozások" Icon="Store" To="./businesses"/>
-                <MenuBarOption Text="Saját vállalkozásaim" Icon="Building" To="./mybusinesses"/>
+                <MenuBarOption Text="Saját vállalkozásaim" Icon="Building" To="./mybusinesses/list"/>
                 <MenuBarOption Text="Beállítások" Icon="Gear" To="./settings"/>
             </div>
         </div>

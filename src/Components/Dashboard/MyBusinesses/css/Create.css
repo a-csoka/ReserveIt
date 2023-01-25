@@ -27,7 +27,7 @@
 
     border-radius: 0.9vh;
 
-    margin-bottom: 2%;
+    margin-bottom: 0.5%;
 
     left: 50%;
     transform: translateX(-50%);
@@ -38,23 +38,24 @@
 }
 
 .myBusinessContent .createBtn{
-    position: absolute;
+    position: relative;
 
     border: none;
     padding: 0;
     outline: none;
 
+    min-width: fit-content;
     width: 30%;
+
     height: 7.5%;
 
     left: 50%;
     transform: translateX(-50%);
 
-    margin-top: 5%;
+    margin-top: 2.5%;
 
     border-radius: 1.5vw;
 
-    font-size: 90%;
     font-family: LEMONMILK-Regular;
 
     background-color: #00c5f0;
@@ -70,9 +71,27 @@
 .myBusinessContent .space{
     position: relative;
 
-    margin-top: 5%;
+    margin-top: 1%;
 
-    height: 1%;
+    height: 0.5%;
 
     background-color: transparent;
+}
+
+.myBusinessContent .errorMsg2{
+    position: relative;
+
+    width: 80%;
+    height: fit-content;
+
+    color: red;
+    font-family: LEMONMILK-Regular;
+
+    font-size: 1.5vh;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    margin-bottom: 2%;
+    text-align: center;
 }

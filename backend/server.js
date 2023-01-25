@@ -63,6 +63,7 @@ require("./paths/forgottenpassword.js")(app, sql_con, crypto, mail_con);
 require("./paths/checkNewPasswordKey.js")(app, sql_con);
 require("./paths/changePassword.js")(app, isFieldEmpty, sql_con, bcrypt, mail_con);
 require("./paths/verifyToken.js")(app, jwt, sql_con);
+require("./paths/createOrganization.js")(app, isFieldEmpty, sql_con, emailValidator, jwt);
 
 app.listen(port, () => console.log(`[Backend]: A backend elérhető! [Port: ${port}]`));
 

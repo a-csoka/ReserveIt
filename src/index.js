@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.css"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
@@ -22,7 +22,7 @@ import MyBusinessesCreate from './Components/Dashboard/MyBusinesses/Create';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-      <Routes>
+      <Routes>errorMsg
       <Route path="" element={<Redirect/>} />
         <Route path="loginPage" element={<React.Fragment><Redirect onlyCheckLoggedIn={true}/><Panel /></React.Fragment>}>
           <Route path="login" element={<LoginForm />} />
@@ -39,6 +39,7 @@ root.render(
             <Route path="list" />
             <Route path="create" element={<MyBusinessesCreate />}/>
             <Route path="invites"/>
+            <Route path="*" element={<Navigate to="./list"/>}/>
           </Route>
           <Route path="settings" />
           <Route path="*" element={<Redirect onlyCheckWrongLink={true}/>}/>
