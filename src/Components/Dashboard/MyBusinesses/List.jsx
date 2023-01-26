@@ -15,7 +15,6 @@ function List() {
             }
         }).then((response) => response.json()).then(data => {
             setCorps(data.payload)
-            console.log(data.payload)
         })
     }, [setCorps])
 

@@ -21,11 +21,11 @@
     background-color: #969696;
 }
 
-.myBusinessContent .corpContainer:hover span{
+.myBusinessContent .corpContainer:hover .dataContainer span{
     color: #00c5f0;
 }
 
-.corpContainer .dataContainer{
+.myBusinessContent .corpContainer .dataContainer{
     position: absolute;
 
     width: 45%;
@@ -38,14 +38,15 @@
     font-size: 2.5vh;
 }
 
-.corpContainer .dataContainer .makeBeauty{
+.myBusinessContent .corpContainer .dataContainer .makeBeauty{
     color: #006b82;
     transition: color 0.2s ease-in-out;
 }
 
-.corpContainer .left{
+.myBusinessContent .corpContainer .left{
     left: 5%;
 }
-.corpContainer .right{
+
+.myBusinessContent .corpContainer .right{
     right: 5%;
 }
