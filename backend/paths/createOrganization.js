@@ -49,7 +49,8 @@ module.exports = (app, isFieldEmpty, sql_con, emailValidator, jwt) => {
                 res.send({errors: tempErr})
                 return false
             }
-            const createOrg = sql_con.promise().query("INSERT INTO ReserveIt_Businesses(Name, Address, BusinessEmail, BusinessPhone, OwnerName, OwnerEmail, OwnerPhone) VALUES(?, ?, ?, ?, ?, ?, ?)", [req.body.OrgName, req.body.OrgLocation, req.body.OrgEmail, req.body.OrgPhone, req.body.OwnerName, req.body.OwnerMail, req.body.OwnerPhone])
+            const createOrg = await sql_con.promise().query("INSERT INTO ReserveIt_Businesses(Name, Address, BusinessEmail, BusinessPhone, OwnerName, OwnerEmail, OwnerPhone) VALUES(?, ?, ?, ?, ?, ?, ?)", [req.body.OrgName, req.body.OrgLocation, req.body.OrgEmail, req.body.OrgPhone, req.body.OwnerName, req.body.OwnerMail, req.body.OwnerPhone])
+            const addOwner = await sql_con.promise().query("INSERT INTO ReserveIt_BusinessEmployees(AccountID, BusinessID, isOwner) VALUES(?, ?, 1)", [data.AccountID, createOrg[0].insertId])
             res.send({redirect: true})
         }
     })

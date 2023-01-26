@@ -1,0 +1,51 @@
+.myBusinessContent .corpContainer{
+    position: relative;
+
+    width: 100%;
+    height: 20%;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    border-radius: 5vh;
+
+    background-color: #C8C8C8;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+
+    margin-bottom: 1%;
+}
+
+.myBusinessContent .corpContainer:hover{
+    background-color: #969696;
+}
+
+.myBusinessContent .corpContainer:hover span{
+    color: #00c5f0;
+}
+
+.corpContainer .dataContainer{
+    position: absolute;
+
+    width: 45%;
+    height: fit-content;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    font-family: LEMONMILK-Regular;
+    font-size: 2.5vh;
+}
+
+.corpContainer .dataContainer .makeBeauty{
+    color: #006b82;
+    transition: color 0.2s ease-in-out;
+}
+
+.corpContainer .left{
+    left: 5%;
+}
+.corpContainer .right{
+    right: 5%;
+}

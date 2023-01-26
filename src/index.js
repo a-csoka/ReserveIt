@@ -17,6 +17,7 @@ import Dashboard from "./Components/Dashboard/Dashboard"
 
 import MyBusinesses from "./Components/Dashboard/MyBusinesses"
 import MyBusinessesCreate from './Components/Dashboard/MyBusinesses/Create';
+import MyBusinessesList from './Components/Dashboard/MyBusinesses/List';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -36,7 +37,7 @@ root.render(
           <Route path="mycalendar" />
           <Route path="businesses" />
           <Route path="mybusinesses" element={<MyBusinesses />} > 
-            <Route path="list" />
+            <Route path="list" element={<MyBusinessesList />}/>
             <Route path="create" element={<MyBusinessesCreate />}/>
             <Route path="invites"/>
             <Route path="*" element={<Navigate to="./list"/>}/>
