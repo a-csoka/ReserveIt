@@ -1,0 +1,30 @@
+.businessManageContainer{
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+}
+
+.businessManageContainer .menuDashContainer{
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 25%;
+    height: 100%;
+    
+}
+
+.businessManageContainer .contentContainer{
+    position: absolute;
+
+    left: 25%;
+    top: 0%;
+
+    height: 100%;
+    width: 75%;
+
+    overflow-x: auto;
+
+}

@@ -65,6 +65,7 @@ require("./paths/changePassword.js")(app, isFieldEmpty, sql_con, bcrypt, mail_co
 require("./paths/verifyToken.js")(app, jwt, sql_con);
 require("./paths/createOrganization.js")(app, isFieldEmpty, sql_con, emailValidator, jwt);
 require("./paths/getOrganizations.js")(app, sql_con, jwt);
+require("./paths/getAllOrganizations.js")(app, sql_con, jwt);
 
 app.listen(port, () => console.log(`[Backend]: A backend elérhető! [Port: ${port}]`));
 

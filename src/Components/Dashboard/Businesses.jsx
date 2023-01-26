@@ -1,15 +1,13 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
+import React,{useState, useEffect} from 'react';
 
-import "./css/List.css"
+import "./css/Businesses.css"
 
-function List() {
-    const navigate = useNavigate()
+function Businesses() {
     const [corps, setCorps] = useState([])
+    const [showCorps, setShowCorps] = useState([])
 
     useEffect(() => {
-        fetch("http://127.0.0.1:5000/getOrganizations", {
+        fetch("http://127.0.0.1:5000/getAllOrganizations", {
             method: "GET",
             credentials: 'include',
             headers: {
@@ -17,16 +15,26 @@ function List() {
             }
         }).then((response) => response.json()).then(data => {
             setCorps(data.payload)
+            setShowCorps(data.payload)
         })
-    }, [setCorps])
+    }, [setCorps, setShowCorps])
 
     return ( 
-        <React.Fragment>
-            {corps.map(function(corp, index){
+        <div className='businessesDiv'>
+            <div className='searchFieldText'>Kereső</div>
+            <input type="text" placeholder='Kereső' className='searchInput' onChange={(event) => {
+                var temp = []
+                for(var i in corps){
+                    if(corps[i].Name.toLowerCase().includes(event.target.value.toLowerCase())){
+                        temp.push(corps[i])
+                    }
+                }
+                setShowCorps(temp)
+            }}></input>
+
+            {showCorps.map(function(corp, index){
                 return(
-                <div className='corpContainer' key={corp.BusinessID} onClick={() => {
-                    navigate("../../../BusinessManage/"+corp.BusinessID+"/calendar")
-                }}>
+                <div className='corpContainer' key={corp.BusinessID}>
                     <div className='dataContainer left'>      
                         <div><span className='makeBeauty'>Név: </span>{corp.Name}</div>
                         <div><span className='makeBeauty'>Cím: </span>{corp.Address}</div>
@@ -38,8 +46,8 @@ function List() {
                     </div>
                 </div>)
             })}
-        </React.Fragment>
-     );
+        </div>
+    );
 }
 
-export default List;
+export default Businesses;

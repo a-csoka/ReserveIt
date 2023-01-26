@@ -19,9 +19,9 @@ function Redirect(props) {
             setRedirect(false)
             var link = document.location.href.split('/');
             if(data.tokenState === true){
-                if(link[3] !== "dashboard" || props.onlyCheckWrongLink){
+                if((link[3] !== "dashboard" && link[3] !== "BusinessManage") || props.onlyCheckWrongLink){
                     setRedirect(true)
-                    toRedirect = "/dashboard"
+                    toRedirect = "/dashboard/mycalendar"
                 }  
             }else{
                 if(link[3] !== "loginPage"){  

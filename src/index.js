@@ -15,9 +15,13 @@ import ConfirmReg from "./Components/Login/ConfirmReg"
 
 import Dashboard from "./Components/Dashboard/Dashboard"
 
+import Businesses from "./Components/Dashboard/Businesses"
+
 import MyBusinesses from "./Components/Dashboard/MyBusinesses"
 import MyBusinessesCreate from './Components/Dashboard/MyBusinesses/Create';
 import MyBusinessesList from './Components/Dashboard/MyBusinesses/List';
+
+import BusinessManage from './Components/BusinessManage/BusinessManage';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -35,7 +39,7 @@ root.render(
         </Route>
         <Route path="dashboard" element={<React.Fragment><Redirect onlyCheckWrongLink={false}/><Dashboard/></React.Fragment>}>
           <Route path="mycalendar" />
-          <Route path="businesses" />
+          <Route path="businesses" element={<Businesses />}/>
           <Route path="mybusinesses" element={<MyBusinesses />} > 
             <Route path="list" element={<MyBusinessesList />}/>
             <Route path="create" element={<MyBusinessesCreate />}/>
@@ -43,7 +47,14 @@ root.render(
             <Route path="*" element={<Navigate to="./list"/>}/>
           </Route>
           <Route path="settings" />
-          <Route path="*" element={<Redirect onlyCheckWrongLink={true}/>}/>
+          <Route path="*" element={<Navigate to="./mycalendar"/>}/>
+        </Route>
+        <Route path="BusinessManage/:BusinessID" element={<React.Fragment><Redirect onlyCheckWrongLink={false}/><BusinessManage /></React.Fragment>}> 
+          <Route path="calendar" />
+          <Route path="workers" />
+          <Route path="settings" />
+          <Route path="exit" element={<Navigate to="../../dashboard/mycalendar"/>}/>
+          <Route path="*" element={<Navigate to="./calendar"/>}/>
         </Route>
         <Route path="*" element={<Redirect/>} />
       </Routes>
