@@ -20,8 +20,10 @@ import Businesses from "./Components/Dashboard/Businesses"
 import MyBusinesses from "./Components/Dashboard/MyBusinesses"
 import MyBusinessesCreate from './Components/Dashboard/MyBusinesses/Create';
 import MyBusinessesList from './Components/Dashboard/MyBusinesses/List';
+import MyBusinessesInvites from './Components/Dashboard/MyBusinesses/Invites';
 
 import BusinessManage from './Components/BusinessManage/BusinessManage';
+import BusinessWorkers from './Components/BusinessManage/Workers';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -43,15 +45,16 @@ root.render(
           <Route path="mybusinesses" element={<MyBusinesses />} > 
             <Route path="list" element={<MyBusinessesList />}/>
             <Route path="create" element={<MyBusinessesCreate />}/>
-            <Route path="invites"/>
+            <Route path="invites" element={<MyBusinessesInvites/>}/>
             <Route path="*" element={<Navigate to="./list"/>}/>
           </Route>
           <Route path="settings" />
           <Route path="*" element={<Navigate to="./mycalendar"/>}/>
         </Route>
         <Route path="BusinessManage/:BusinessID" element={<React.Fragment><Redirect onlyCheckWrongLink={false}/><BusinessManage /></React.Fragment>}> 
+          <Route path="statistics" />
           <Route path="calendar" />
-          <Route path="workers" />
+          <Route path="workers" element={<BusinessWorkers/>}/>
           <Route path="settings" />
           <Route path="exit" element={<Navigate to="../../dashboard/mycalendar"/>}/>
           <Route path="*" element={<Navigate to="./calendar"/>}/>
@@ -60,7 +63,5 @@ root.render(
       </Routes>
     </BrowserRouter>
 );
-
-//          <Route path='dashboard' element={<MenuBar />} />
 
 
