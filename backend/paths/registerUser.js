@@ -61,7 +61,7 @@ module.exports = (app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto, ma
                 subject: "ReserveIt - Megerősítés",
                 html: `Tisztelt felhasználó!
                 <br>
-                Az email címével regisztráció történt az oldalunkon! Amennyiben ön volt kattintson a következő linkre: <b><a href='http://`+req.hostname+`:3000/verifyAccount/`+token+`'>Megerősítés</a></b>
+                Az email címével regisztráció történt az oldalunkon! Amennyiben ön volt kattintson a következő linkre: <b><a href='http://`+req.hostname+`:3000/loginPage/verifyAccount/`+token+`'>Megerősítés</a></b>
                 <br><br>
                 Amennyiben nem ön volt, kérjük ne tegyen semmit.
                 <br>
