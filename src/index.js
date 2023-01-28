@@ -27,7 +27,7 @@ import BusinessManage from './Components/BusinessManage/BusinessManage';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-      <Routes>errorMsg
+      <Routes>
       <Route path="" element={<Redirect/>} />
         <Route path="loginPage" element={<React.Fragment><Redirect onlyCheckLoggedIn={true}/><Panel /></React.Fragment>}>
           <Route path="login" element={<LoginForm />} />
