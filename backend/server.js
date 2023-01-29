@@ -61,7 +61,7 @@ require("./paths/verifyAccount.js")(app, sql_con);
 require("./paths/recaptcha.js")(app, sql_con, crypto, mail_con);
 require("./paths/forgottenpassword.js")(app, sql_con, crypto, mail_con);
 require("./paths/checkNewPasswordKey.js")(app, sql_con);
-require("./paths/changePassword.js")(app, isFieldEmpty, sql_con, bcrypt, mail_con);
+require("./paths/changePassword.js")(app, isFieldEmpty, sql_con, bcrypt, jwt);
 require("./paths/verifyToken.js")(app, jwt, sql_con);
 require("./paths/createOrganization.js")(app, isFieldEmpty, sql_con, emailValidator, jwt);
 require("./paths/getOrganizations.js")(app, sql_con, jwt);

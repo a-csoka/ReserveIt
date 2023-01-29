@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import {useNavigate, useParams} from 'react-router';
+import {useParams} from 'react-router';
 
 import "./css/Workers.css"
 import { useEffect } from 'react';
 
 function Workers() {
     const {BusinessID} = useParams()
-    const navigate = useNavigate()
     const [showInvite, setShowInvite] = useState(false)
     const [inviteEmail, setInviteEmail] = useState("")
     const [inviteError, setInviteError] = useState("")
@@ -66,9 +65,9 @@ function Workers() {
                     return(
                         <div className='workerContainer' key={worker.AccountID}>
                             <div className='workerName'>{worker.FirstName+" "+worker.LastName}</div>
-                            <div className='workerTitle'>{(worker.isOwner == 1 ? "Tulajdonos" : "Dolgozó")}</div>
+                            <div className='workerTitle'>{(worker.isOwner === 1 ? "Tulajdonos" : "Dolgozó")}</div>
                             <button className='kickBtn' style={{
-                                display: (worker.isOwner == 0 ? "" : "none")
+                                display: (worker.isOwner === 0 ? "" : "none")
                             }} onClick={() => {
                                 fetch("http://127.0.0.1:5000/removeWorker",{                
                                     method: "DELETE",
@@ -102,7 +101,7 @@ function Workers() {
                 return(
                     <div className='workerContainer' key={worker.AccountID}>
                         <div className='workerName'>{worker.FirstName+" "+worker.LastName}</div>
-                        <div className='workerTitle'>{(worker.isOwner == 1 ? "Tulajdonos" : "Dolgozó")}</div>
+                        <div className='workerTitle'>{(worker.isOwner === 1 ? "Tulajdonos" : "Dolgozó")}</div>
                     </div>
                 )
             })}

@@ -16,11 +16,11 @@ import ConfirmReg from "./Components/Login/ConfirmReg"
 import Dashboard from "./Components/Dashboard/Dashboard"
 
 import Businesses from "./Components/Dashboard/Businesses"
-
 import MyBusinesses from "./Components/Dashboard/MyBusinesses"
 import MyBusinessesCreate from './Components/Dashboard/MyBusinesses/Create';
 import MyBusinessesList from './Components/Dashboard/MyBusinesses/List';
 import MyBusinessesInvites from './Components/Dashboard/MyBusinesses/Invites';
+import Settings from "./Components/Dashboard/Settings"
 
 import BusinessManage from './Components/BusinessManage/BusinessManage';
 import BusinessWorkers from './Components/BusinessManage/Workers';
@@ -48,7 +48,7 @@ root.render(
             <Route path="invites" element={<MyBusinessesInvites/>}/>
             <Route path="*" element={<Navigate to="./list"/>}/>
           </Route>
-          <Route path="settings" />
+          <Route path="settings" element={<Settings />}/>
           <Route path="*" element={<Navigate to="./mycalendar"/>}/>
         </Route>
         <Route path="BusinessManage/:BusinessID" element={<React.Fragment><Redirect onlyCheckWrongLink={false}/><BusinessManage /></React.Fragment>}> 
