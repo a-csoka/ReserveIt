@@ -56,7 +56,7 @@ root.render(
           <Route path="calendar" />
           <Route path="workers" element={<BusinessWorkers/>}/>
           <Route path="settings" />
-          <Route path="exit" element={<Navigate to="../../dashboard/mycalendar"/>}/>
+          <Route path="exit" element={<Navigate to="../../dashboard/mybusinesses/list"/>}/>
           <Route path="*" element={<Navigate to="./calendar"/>}/>
         </Route>
         <Route path="*" element={<Redirect/>} />
