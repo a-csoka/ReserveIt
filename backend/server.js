@@ -72,6 +72,7 @@ require("./paths/getBusinessInvites.js")(app, sql_con, jwt);
 require("./paths/respondToInvite.js")(app, sql_con, jwt);
 require("./paths/getWorkers.js")(app, sql_con, jwt);
 require("./paths/removeWorker.js")(app, sql_con, jwt);
+require("./paths/logout.js")(app, jwt);
 
 app.listen(port, () => console.log(`[Backend]: A backend elérhető! [Port: ${port}]`));
 

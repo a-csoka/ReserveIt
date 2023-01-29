@@ -73,6 +73,8 @@
 
     background-color: #00c5f0;
 
+    margin-bottom: 3%;
+
     transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
@@ -98,4 +100,39 @@
 
     margin-bottom: 2%;
     text-align: center;
+}
+
+.SettingsDiv .logoutBtn{
+    position: relative;
+    display: block;
+
+    min-width: fit-content;
+    width: 15%;
+
+    min-height: fit-content !important;
+    height: 4%;
+
+    text-align: center;
+  
+    border: none;
+    padding: 0;
+    outline: none;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    border-radius: 1.5vw;
+
+    font-family: LEMONMILK-Regular;
+
+    background-color: #8b2722;
+
+    margin-bottom: 3%;
+
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.SettingsDiv .logoutBtn:hover{
+    background-color: #bd5954;
+    box-shadow: 0 0px 20px #bd5954;
 }

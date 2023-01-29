@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import "./css/Settings.css"
-import { useState } from 'react';
 
 function Settings() {
+    const navigate = useNavigate()
     const [oldPw, setOldPw] = useState("")
     const [newPw, setNewPw] = useState("")
     const [rePw, setRePw] = useState("")
@@ -36,6 +37,20 @@ function Settings() {
             <button className='changeBtn' onClick={() => {
                 changePwFunction()
             }}>Megváltoztatás</button>
+
+
+            <div className='BigTitle'>Kijelentkezés</div>
+            <button className='logoutBtn' onClick={() => {             
+                fetch('http://127.0.0.1:5000/logout', {
+                    method: "POST",
+                    credentials: 'include',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                }).then(() => {
+                    navigate("../../loginPage/login")
+                })
+            }}>Kijelentkezés</button>
         </div>
     );
 
