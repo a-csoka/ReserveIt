@@ -53,12 +53,14 @@
     min-width: fit-content;
     width: 15%;
 
+    min-height: fit-content;
     height: 5%;
 
     left: 50%;
     transform: translateX(-50%);
 
     margin-top: 1%;
+    margin-bottom: 2%;
 
     border-radius: 1.5vw;
 
@@ -81,4 +83,82 @@
 
     font-family: LEMONMILK-Regular;
     color: #8b0000;
+}
+
+
+
+
+
+
+
+.WorkersDiv .workerContainer{
+    position: relative;
+
+    top: 1%;
+    margin-bottom: 1%;
+
+    min-height: fit-content;
+    min-width: fit-content;
+    width: 90%;
+    height: 15%;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    border-radius: 5vh;
+
+    background-color: #C8C8C8;
+}
+
+
+.WorkersDiv .workerContainer .workerName{
+    position: relative;
+
+    text-align: center;
+
+    top: 1%;
+
+    color: black;
+
+    font-family: LEMONMILK-Regular;
+    font-size: 2.5vh;
+}
+
+.WorkersDiv .workerContainer .workerTitle{
+    position: relative;
+
+    text-align: center;
+
+    top: 1%;
+
+    color: black;
+
+    font-family: LEMONMILK-Regular;
+    font-size: 1.5vh;
+}
+
+.WorkersDiv .workerContainer .kickBtn{
+    position: absolute;
+
+    outline: none;
+    border: 0;
+    padding: 0;
+
+    min-width: fit-content;
+    width: 10%;
+
+    min-height: fit-content;
+    height: 20%;
+
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 5%;
+
+    background-color: #8b2722;
+    color: black;
+
+    font-family: LEMONMILK-Regular;
+    font-size: 1.5vh;
+
+    border-radius: 1vh;
 }
