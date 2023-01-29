@@ -1,6 +1,8 @@
 .myBusinessContent .corpContainer{
     position: relative;
 
+    min-height: fit-content;
+    min-width: fit-content;
     width: 100%;
     height: 20%;
 

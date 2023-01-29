@@ -1,0 +1,94 @@
+.myBusinessContent .noInvText{
+    position: absolute;
+
+    color: #C8C8C8;
+    font-family: LEMONMILK-Regular;
+
+    left: 50%;
+    top: 50%;
+
+    width: fit-content;
+    height: fit-content;
+
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+}
+
+.myBusinessContent .corpContainer .inviterBusinessName{
+    position: relative;
+
+    margin-top: 1%;
+
+    text-align: center;
+
+    font-family: LEMONMILK-Regular;
+    color: #006b82;
+    transition: color 0.2s ease-in-out;
+
+    font-size: 3vh;
+}
+
+.myBusinessContent .corpContainer .inviterName{
+    position: relative;
+
+    margin-top: 0.25%;
+
+    font-family: LEMONMILK-Regular;
+    font-size: 1.5vh;
+    color: black;
+
+    text-align: center;
+}
+
+.myBusinessContent .corpContainer .colorful{
+    position: relative;
+
+    font-family: LEMONMILK-Regular;
+    color: #006b82;
+    transition: color 0.2s ease-in-out;
+}
+
+.myBusinessContent .corpContainer .choiceBtn{
+    position: absolute;
+
+    bottom: 0%;
+
+    width: 50%;
+    height: 30%;
+
+    font-family: LEMONMILK-Regular;
+    font-size: 1.8vh;
+
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.myBusinessContent .corpContainer .choiceBtn:hover{
+    box-shadow: inset 0 0 0.75vw #000000;
+}
+
+.myBusinessContent .corpContainer .choiceBtn .center{
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.myBusinessContent .corpContainer .acceptDiv{
+    left: 0%;
+
+    background-color: #228B22;
+
+    border-bottom-left-radius: 5vh;
+}
+
+.myBusinessContent .corpContainer .refuseDiv{
+    right: 0%;
+
+    background-color: #8b2722;
+
+    border-bottom-right-radius: 5vh;
+}

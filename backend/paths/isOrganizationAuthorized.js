@@ -9,7 +9,7 @@ module.exports = (app, sql_con, jwt) => {
                         res.send({authorized: false})
                         return false
                     }
-                    res.send({authorized: true})
+                    res.send({authorized: true, isOwner: isAuthorized[0][0].isOwner})
                     return true
                 }
             }
