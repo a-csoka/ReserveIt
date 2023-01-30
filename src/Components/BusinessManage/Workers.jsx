@@ -42,7 +42,7 @@ function Workers() {
             <div className='WorkersDiv'>
                 <div className='inviteFieldText'>Meghívás</div>
                 <input placeholder='Email' type="email" className='inviteInput' onChange={(event) => {setInviteEmail(event.target.value)}}/>
-                <div className='inviteError'>{inviteError}</div>
+                <div className='inviteError' style={{color: (inviteError === "A meghívót elküldtük!"? "#228B22" : "#8b2722")}}>{inviteError}</div>
                 <button className='inviteButton' onClick={() => {
                     if(isFieldEmpty(inviteEmail)){
                         setInviteError("Üres mező!")
