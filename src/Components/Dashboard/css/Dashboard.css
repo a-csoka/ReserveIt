@@ -28,3 +28,27 @@
     overflow-x: auto;
 
 }
+
+@media screen and (max-width: 980px) {
+    .dashboardContainer .menuDashContainer{
+        position: absolute;
+    
+        left: 0;
+        top: 0;
+    
+        width: 100%;
+        min-height: fit-content;
+        height: 50%;
+        
+    }
+    
+    .dashboardContainer .contentContainer{
+        position: absolute;
+    
+        left: 0%;
+        top: 50%;
+    
+        height: 72%;
+        width: 100%;
+    }
+}

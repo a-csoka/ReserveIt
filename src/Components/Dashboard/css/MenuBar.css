@@ -38,3 +38,33 @@
 
     transform: translate(-50%, -50%);
 }
+
+@media screen and (max-width: 980px) {
+    .menuContainer .ReserveItMenu{
+        position: relative;
+    
+        top: 4%;
+        left: 50%;
+    
+        transform: translateX(-50%);
+    
+        width: auto;
+        height: 20%;
+    
+        user-select: none; 
+        -webkit-user-drag: none;
+    }
+
+    .menuContainer .optionsContainer{
+        position: relative;
+
+        margin-top: 10%;
+    
+        height: fit-content;
+        width: 80%;
+    
+        left: 50%;
+    
+        transform: translateX(-50%);
+    }
+}
