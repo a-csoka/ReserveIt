@@ -95,7 +95,7 @@ module.exports = (app, isFieldEmpty, sql_con, bcrypt, jwt) => {
                 }
 
                 const pass = await bcrypt.hash(req.body.password, await bcrypt.genSalt(10))
-                const changePw = await sql_con.query("UPDATE ReserveIt_Accounts SET Password=?", [pass])
+                const changePw = await sql_con.promise().query("UPDATE ReserveIt_Accounts SET Password=?", [pass])
                 tempErr["Password"] = "A jelszavad sikeresen megváltoztattuk!"
                 tempErr["RePassword"] = "A jelszavad sikeresen megváltoztattuk!"
                 res.send({Errors: tempErr, Code: "REDIRECT-LOGIN"})

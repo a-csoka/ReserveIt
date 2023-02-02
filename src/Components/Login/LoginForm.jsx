@@ -83,7 +83,7 @@ export default function LoginForm(){
         <React.Fragment>
             <div className='forgotWrapper'>
                 <div className='forgotBtn'  onClick={() => {
-                navigate("/forgottenPassword")
+                navigate("/loginPage/forgottenPassword")
             }}>Elfelejtette a jelszavát?</div>
             </div>
             <form autoComplete='on' onSubmit={(event) => {

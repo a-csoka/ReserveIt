@@ -121,10 +121,13 @@ export default function ForgottenPasswordForm() {
                         }).then((response) => response.json()).then((data) => {
                             setErrors({...data.Errors})
                             //Írj ide IF-et, mert mindig átdobja.
-                            setTimeout(function() {
-                                navigate("/login");
-                              }, 3000);
-                            })
+                            if(data.Errors["Password"] === "A jelszavad sikeresen megváltoztattuk!"){
+                                setTimeout(function() {
+                                    navigate("../../login");
+                                  }, 3000);
+
+                            }
+                        })
                     }
                 })
               })

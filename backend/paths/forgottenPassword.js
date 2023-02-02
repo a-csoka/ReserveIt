@@ -31,7 +31,7 @@ module.exports = (app, sql_con, crypto, mail_con) => {
                         subject: "ReserveIt - Elfelejtett jelszó",
                         html: `Tisztelt felhasználó!
                         <br>
-                        Erre a címre elfelejtett jelszó kérelem érkezett! A jelszava megváltoztatásához kattintson ide: <b><a href='http://`+req.hostname+`:3000/newpassword/`+token+`'>Új jelszó</a></b>
+                        Erre a címre elfelejtett jelszó kérelem érkezett! A jelszava megváltoztatásához kattintson ide: <b><a href='http://`+req.hostname+`:3000/loginPage/newpassword/`+token+`'>Új jelszó</a></b>
                         <br><br>
                         Amennyiben nem ön volt, kérjük ne tegyen semmit.
                         <br>
