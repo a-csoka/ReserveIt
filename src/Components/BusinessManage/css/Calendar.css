@@ -1,0 +1,222 @@
+.calendarContainer {
+    position: relative;
+
+    width: 100%;
+
+    top: 15%;
+    height: 85%;
+
+    overflow-x: visible;
+}
+
+.calendarContainer .worker{
+    position: relative;
+    display: inline-block;
+
+    left: 5%;
+
+    width: 20%;
+    height: 10%;
+
+    border-top-left-radius: 5vh;
+    border-top-right-radius: 5vh;
+
+    background-color: #C8C8C8;
+
+    color: black;
+
+    font-size: 1.5em;
+
+    text-align: center;
+}
+
+.calendarContainer .worker span{
+    position: absolute;
+
+    width: 100%;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    bottom: 0%;
+}
+
+.calendarContainer .calendar{
+    position: absolute;
+
+    background-color: rgb(33, 33, 33);
+
+    top: 10%;
+    left: 0;
+
+    height: fit-content;
+    width: 100%;
+}
+
+.calendarContainer .hourLiner{
+    position: relative;
+
+    width: 100%;
+    height: 15vh;
+
+    color: red;
+
+    text-align: right;
+
+    top: 1.5vh;
+}
+
+.calendarContainer .hourLiner .hour{
+    position: absolute;
+
+    width: 5%;
+    height: 100%;
+}
+.calendarContainer .hourLiner span{
+    position: absolute;
+
+    right: 15%;
+
+    width: fit-content;
+    height: fit-content;
+
+    transform: translateY(-50%);
+
+    font-family: LEMONMILK-Regular;
+
+    font-size: 1vw;
+
+    color: #C8C8C8;
+
+}
+
+
+.calendarContainer .hourLiner .line{
+    position: absolute;
+
+    left: 5%;
+
+    transform: translateY(-50%);
+
+    height: 3%;
+    width: 95%;
+
+    background-color: #C8C8C8;
+
+    border-radius: 5vh;
+}
+
+.calendarContainer .hourLiner .halfLine{
+    position: absolute;
+
+    left: 5%;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    height: 1%;
+    width: 95%;
+
+    background-color: #C8C8C8;
+
+    border-radius: 5vh;
+}
+
+.calendarContainer .calendar .reservationContainer{
+    position: absolute;
+
+
+    width: 20%;
+
+    background-color: cyan;
+
+    border-radius: 1.5vh;
+}
+
+.calendarContainer .calendar .reservationContainer .name{
+    position: relative;
+
+    top: 2.5%;
+
+    width: 100%;
+    height: fit-content;
+
+    text-align: center;
+
+    font-family: LEMONMILK-Regular;
+    font-size: 0.9em;
+}
+
+.calendarContainer .calendar .reservationContainer .time{
+    position: relative;
+
+    top: 2.5%;
+
+    width: 100%;
+    height: fit-content;
+
+    text-align: center;
+
+    font-family: LEMONMILK-Regular;
+    font-size: 0.75em;
+}
+
+.dateSelector{
+    position: absolute;
+
+    top: 1%;
+
+    height: 13%;
+    width: 100%;
+
+    background-color: #C8C8C8;
+}
+
+.dateSelector .dateContainer{
+    position: relative;
+    display: inline-block;
+
+    width: 20%;
+    height: 100%;
+
+    text-align: center;
+    border: 1px solid black;
+
+    cursor: pointer;
+
+    user-select: none;
+}
+
+.dateSelector .effect{
+    transition: background-color 0.3s ease-in-out;
+}
+
+.dateSelector .effect:hover{
+    background-color: #00c5f0;
+}
+
+.dateContainer .date{
+    position: absolute;
+    
+    font-family: LEMONMILK-Regular;
+    font-size: 0.95em;
+
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+}
+
+.dateContainer .dayText{
+    position: absolute;
+    display: block;
+    
+    font-family: LEMONMILK-Regular;
+    font-size: 1.5em;
+
+    text-align: center;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
