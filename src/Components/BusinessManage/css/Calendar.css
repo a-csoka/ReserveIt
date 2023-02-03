@@ -220,3 +220,53 @@
     transform: translate(-50%, -50%);
 }
 
+.reservationCreator{
+    position: fixed;
+
+    top: 0;
+
+    background-color: #1D2124;
+
+    width: 25%;
+    height: 100%;
+
+    transition: right 0.5s ease-in-out;
+}
+
+.reservationCreator .close{
+    position: absolute;
+
+    top: 2%;
+    right: 2%;
+
+    color: white;
+
+    background-color: #8b2722;
+
+    border-left: 0.5vw solid #8b2722;
+    border-right: 0.5vw solid #8b2722;
+    border-radius: 5vh;
+
+    font-family: LEMONMILK-Regular;
+    font-size: 0.95em;
+
+    cursor: pointer;
+
+    transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+}
+
+.reservationCreator .close span{
+    position: relative;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+}
+
+.reservationCreator .close:hover{
+    border-color: #bd5954;
+    background-color: #bd5954;
+    box-shadow: 0 0px 0.5vh #bd5954;
+}
+
+

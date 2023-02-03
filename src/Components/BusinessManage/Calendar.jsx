@@ -15,6 +15,7 @@ function Calendar() {
     const {BusinessID} = useParams()
     const [workers, setWorkers] = useState([])
     const [reservations, setReservations] = useState([])
+    const [creatorRight, setCreatorRight] = useState("-25%")
 
     function updateDate(date){
         console.log(moment(selDate).format('YYYY-MM-DD'))
@@ -42,35 +43,35 @@ function Calendar() {
                         setSelDate(new Date(selDate.getTime()-(2*24*60*60*1000)))
                         updateDate(new Date(selDate.getTime()-(2*24*60*60*1000)))
                     }}>
-                        <span className='date'>{new Date(selDate.getTime()-(2*24*60*60*1000)).getFullYear()+". "+(new Date(selDate.getTime()-(2*24*60*60*1000)).getMonth()+1)+". "+new Date(selDate.getTime()-(2*24*60*60*1000)).getUTCDate()+"."}</span>
+                        <span className='date'>{moment(new Date(selDate.getTime()-(2*24*60*60*1000))).format('YYYY. MM. DD.')}</span>
                         <span className='dayText'>{getDayName(new Date(selDate.getTime()-(2*24*60*60*1000)), "hu-HU")}</span>
                     </div>
                     <div className='dateContainer effect' onClick={() => {
                         setSelDate(new Date(selDate.getTime()-(1*24*60*60*1000)))
                         updateDate(new Date(selDate.getTime()-(1*24*60*60*1000)))
                     }}>
-                        <span className='date'>{new Date(selDate.getTime()-(1*24*60*60*1000)).getFullYear()+". "+(new Date(selDate.getTime()-(1*24*60*60*1000)).getMonth()+1)+". "+new Date(selDate.getTime()-(1*24*60*60*1000)).getUTCDate()+"."}</span>
+                        <span className='date'>{moment(new Date(selDate.getTime()-(1*24*60*60*1000))).format('YYYY. MM. DD.')}</span>
                         <span className='dayText'>{getDayName(new Date(selDate.getTime()-(1*24*60*60*1000)), "hu-HU")}</span>
                     </div>
                     <div className='dateContainer' style={{
                         backgroundColor: "#006b82",
                         cursor: "default",
                     }}>
-                        <span className='date'>{selDate.getFullYear()+". "+(selDate.getMonth()+1)+". "+selDate.getDate()+"."}</span>
+                        <span className='date'>{moment(selDate).format('YYYY. MM. DD.')}</span>
                         <span className='dayText'>{getDayName(selDate, "hu-HU")}</span>
                     </div>
                     <div className='dateContainer effect' onClick={() => {
                         setSelDate(new Date(selDate.getTime()+(1*24*60*60*1000)))
                         updateDate(new Date(selDate.getTime()+(1*24*60*60*1000)))
                     }}>
-                        <span className='date'>{new Date(selDate.getTime()+(1*24*60*60*1000)).getFullYear()+". "+(new Date(selDate.getTime()+(1*24*60*60*1000)).getMonth()+1)+". "+new Date(selDate.getTime()+(1*24*60*60*1000)).getDate()+"."}</span>
+                        <span className='date'>{moment(new Date(selDate.getTime()+(1*24*60*60*1000))).format('YYYY. MM. DD.')}</span>
                         <span className='dayText'>{getDayName(new Date(selDate.getTime()+(1*24*60*60*1000)), "hu-HU")}</span>
                     </div>
                     <div className='dateContainer effect' onClick={() => {
                         setSelDate(new Date(selDate.getTime()+(2*24*60*60*1000)))
                         updateDate(new Date(selDate.getTime()+(2*24*60*60*1000)))
                     }}>
-                        <span className='date'>{new Date(selDate.getTime()+(2*24*60*60*1000)).getFullYear()+". "+(new Date(selDate.getTime()+(2*24*60*60*1000)).getMonth()+1)+". "+new Date(selDate.getTime()+(2*24*60*60*1000)).getDate()+"."}</span>
+                        <span className='date'>{moment(new Date(selDate.getTime()+(2*24*60*60*1000))).format('YYYY. MM. DD.')}</span>
                         <span className='dayText'>{getDayName(new Date(selDate.getTime()+(2*24*60*60*1000)), "hu-HU")}</span>
                     </div>
             </div>
@@ -80,7 +81,9 @@ function Calendar() {
                         <div className='worker' key={worker.AccountID}><span>{worker.FirstName+" "+worker.LastName}</span></div>
                     )})
                 }
-                <div className='calendar'>
+                <div className='calendar' onClick={() => {
+                    setCreatorRight("0%")
+                }}>
                     {hours.map(function(hour, index){
                         return(
                         <div className='hourLiner' key={index}>
@@ -110,6 +113,12 @@ function Calendar() {
                         })
                     }
                 </div>
+            </div>
+
+            <div className='reservationCreator' style={{
+                right: creatorRight
+            }}>
+                <div className='close' onClick={() => setCreatorRight("-25%")}><span>Bezárás</span></div>
             </div>
         </React.Fragment>
     );
