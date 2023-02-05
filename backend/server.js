@@ -10,6 +10,7 @@ const crypto = require('crypto')
 const app = express()
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+const moment = require('moment')
 
 require('dotenv').config();
 
@@ -74,6 +75,8 @@ require("./paths/getWorkers.js")(app, sql_con, jwt);
 require("./paths/removeWorker.js")(app, sql_con, jwt);
 require("./paths/logout.js")(app, jwt);
 require("./paths/getReservations.js")(app, sql_con, jwt);
+require("./paths/getUserFromEmail.js")(app, sql_con, jwt);
+require("./paths/addReservation.js")(app, sql_con, jwt, isFieldEmpty, moment);
 
 
 app.listen(port, () => console.log(`[Backend]: A backend elérhető! [Port: ${port}]`));

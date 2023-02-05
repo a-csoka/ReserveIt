@@ -10,15 +10,30 @@ const hours = [
     "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"
 ]
 
+var endWriteTimer
+
 function Calendar() {
     const [selDate, setSelDate] = useState(new Date())
     const {BusinessID} = useParams()
     const [workers, setWorkers] = useState([])
     const [reservations, setReservations] = useState([])
-    const [creatorRight, setCreatorRight] = useState("-25%")
+    const [creatorLeft, setCreatorLeft] = useState("100%")
+
+    const [reservationError, setReservationError] = useState("")
+    const [reservationName, setReservationName] = useState("")
+    const [reservationWorkerID, setReservationWorkerID] = useState()
+    const [reservationState, setReservationState] = useState("Pending")
+    const [reservationDate, setReservationDate] = useState(moment(selDate).format('YYYY-MM-DD'))
+    const [reservationStart, setReservationStart] = useState(moment(new Date()).format('HH:mm'))
+    const [reservationEnd, setReservationEnd] = useState("23:59")
+    const [reservationPrice, setReservationPrice] = useState(0)
+    const [reservationEmail, setReservationEmail] = useState("")
+    const [reservationFirstName, setReservationFirstName] = useState("")
+    const [reservationLastName, setReservationLastName] = useState("")
+    const [reservationPhone, setReservationPhone] = useState("")
+
 
     function updateDate(date){
-        console.log(moment(selDate).format('YYYY-MM-DD'))
         fetch("http://127.0.0.1:5000/getReservations",{
             method: "POST",
             credentials: 'include',
@@ -29,6 +44,7 @@ function Calendar() {
         }).then((response) => response.json()).then(data => {
             setWorkers(data.workerData)
             setReservations(data.reservationData)
+            setReservationWorkerID(""+data.workerData[0].AccountID)
         })
     }
 
@@ -82,7 +98,7 @@ function Calendar() {
                     )})
                 }
                 <div className='calendar' onClick={() => {
-                    setCreatorRight("0%")
+                    setCreatorLeft("-100%")
                 }}>
                     {hours.map(function(hour, index){
                         return(
@@ -100,7 +116,7 @@ function Calendar() {
                                     const minutes = parseInt(reservation.Start.split(":")[0]*60)+parseInt(reservation.Start.split(":")[1])
                                     return (
                                         <div className='reservationContainer' style={{
-                                            left: "calc(5% + "+index*20+"%",
+                                            left: "calc(5% + "+i*20+"%",
                                             top: "calc(1.5vh + "+minutes/60*15+"vh)",
                                             height: (reservation.Length/0.6/24)+"%",
                                         }} key={reservation.ReservationID}>
@@ -110,15 +126,140 @@ function Calendar() {
                                     )
                                 }
                             }
+                            return false
                         })
                     }
                 </div>
             </div>
 
             <div className='reservationCreator' style={{
-                right: creatorRight
+                transform: "translateX("+creatorLeft+")"
             }}>
-                <div className='close' onClick={() => setCreatorRight("-25%")}><span>Bezárás</span></div>
+                <div className='close' onClick={() => setCreatorLeft("0%")}><span>Bezárás</span></div>
+
+                <div className='bigAsstTitle'>Foglalás</div>
+                <div className='title centered'>Foglalás neve</div>
+                <input className='full' type="text" value={reservationName} onChange={(event) => {setReservationName(event.target.value)}}></input>
+
+                <div className='title halfTitle'>Dolgozó</div>
+                <div className='title halfTitle right'>Állapot</div>
+                <select list="statuslist" className='half' value={reservationWorkerID} onChange={(event) => setReservationWorkerID(event.target.value)}>
+                    {workers.map(function(worker, index){
+                        return(
+                            <option key={worker.AccountID} value={worker.AccountID}>{worker.FirstName+" "+worker.LastName}</option>
+                        )})
+                    }
+                </select>
+
+                <select list="statuslist" className='half' value={reservationState} onChange={(event) => setReservationState(event.target.value)} disabled>
+                    <option value="Pending">Válaszra vár</option>
+                    <option value="Accepted">Elfogadva</option>
+                    <option value="Arrived">Megjelent</option>
+                    <option value="Not arrived">Nem jelent meg</option>
+                    <option value="Cancelled">Lemondva</option>
+                </select>
+
+                <div className='title centered'>Dátum</div>
+                <input className='full' type="date" min={moment(new Date()).format('YYYY-MM-DD')} value={reservationDate} onChange={(event) => {setReservationDate(event.target.value)}}/>
+
+                <div className='title halfTitle'>Kezdés</div>
+                <div className='title halfTitle right'>Vége</div>
+                <input type="time" className='half' value={reservationStart} onChange={(event) => setReservationStart(event.target.value)}/>
+                <input type="time" className='half' value={reservationEnd} onChange={(event) => setReservationEnd(event.target.value)}/>
+
+                <div className='title centered'>Ár</div>
+                <input className='full' type="number" min="0" value={reservationPrice} onChange={(event) => setReservationPrice(event.target.value)}/>
+
+                <div className='bigAsstTitle'>Vendég</div>
+
+                <div className='title centered'>Email</div>
+                <input className='full' type="email" value={reservationEmail} onChange={(event) => {
+                    setReservationEmail(event.target.value)
+                    clearTimeout(endWriteTimer);
+                    endWriteTimer = setTimeout(() => {
+                        fetch("http://127.0.0.1:5000/getUserFromEmail",{
+                            method: "POST",
+                            credentials: 'include',
+                            headers: {
+                                'Content-type': 'application/json',
+                            },
+                            body: JSON.stringify({Email: event.target.value})
+                        }).then((response) => response.json()).then(data => {
+                            setReservationFirstName(data.FirstName)
+                            setReservationLastName(data.LastName)
+                        })
+                    }, 250)
+                }}></input>
+
+                <div className='title halfTitle'>Vezetéknév</div>
+                <div className='title halfTitle right'>Keresztnév</div>
+                <input type="text" className='half' placeholder='Keresés...' value={reservationFirstName} readOnly/>
+                <input type="text" className='half right' placeholder='Keresés...' value={reservationLastName} readOnly/>
+
+                <div className='title centered'>Elérhetőség - Telefonszám</div>
+                <input className='full' type="tel" value={reservationPhone} onChange={(event) => setReservationPhone(event.target.value)}></input>
+
+                <div className='errorMessage' style={{color: (reservationError === "Időpont létrehozva!"? "#228B22" : "#8b2722")}}>{reservationError}</div>
+                <button className='acceptButton' onClick={() => {
+                    if(isFieldEmpty(reservationName)){
+                        setReservationError("Add meg a foglalás nevét!")
+                        return false
+                    }
+                    if(isFieldEmpty(reservationWorkerID)){
+                        setReservationError("Add meg a foglalást végző dolgozót!")
+                        return false
+                    }
+                    if(isFieldEmpty(reservationState)){
+                        setReservationError("Add meg a foglalás állapotát!")
+                        return false
+                    }
+                    if(isFieldEmpty(reservationStart)){
+                        setReservationError("Add meg a foglalás kezdetét!")
+                        return false
+                    }
+                    if(isFieldEmpty(reservationEnd)){
+                        setReservationError("Add meg a foglalás végét!")
+                        return false
+                    }
+                    if(typeof(parseInt(reservationPrice)) !== "number"){
+                        setReservationError("Add meg a foglalás árát!")
+                        return false
+                    }
+                    if(isFieldEmpty(reservationEmail)){
+                        setReservationError("Add meg a vendég emal címét!")
+                        return false
+                    }
+                    if(isFieldEmpty(reservationFirstName) || isFieldEmpty(reservationLastName)){
+                        setReservationError("Ehhez az email címhez nincs társítva fiók!")
+                        return false
+                    }
+                    if(moment(reservationDate+" "+reservationStart).isSameOrBefore(new Date())){
+                        setReservationError("A foglalás ideje nem lehet kisebb mint a jelenlegi!")
+                        return false
+                    }
+                    setReservationError("")
+                    fetch("http://127.0.0.1:5000/addReservation",{
+                        method: "POST",
+                        credentials: 'include',
+                        headers: {
+                            'Content-type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            BusinessID: BusinessID,
+                            Name: reservationName,
+                            WorkerID: reservationWorkerID,
+                            Date: reservationDate,
+                            Start: reservationStart,
+                            End: reservationEnd,
+                            Price: reservationPrice,
+                            Email: reservationEmail,
+                            Phone: reservationPhone
+                        })
+                    }).then((response) => response.json()).then(data => {
+                        setReservationError(data.errorMsg)
+                    })
+
+                }}>Hozzáadás</button>
             </div>
         </React.Fragment>
     );
@@ -128,4 +269,13 @@ export default Calendar;
 function getDayName(dateStr)
 {
     return dateStr.toLocaleDateString(dateStr, { weekday: 'long' });        
+}
+
+function isFieldEmpty(text){
+    if(typeof(text) !== "undefined"){
+        if(text.replace(" ", "") !== ""){
+            return false
+        }
+    }
+    return true
 }

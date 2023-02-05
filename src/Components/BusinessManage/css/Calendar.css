@@ -39,6 +39,9 @@
     transform: translateX(-50%);
 
     bottom: 0%;
+
+    font-family: LEMONMILK-Regular;
+    font-size: 1.25vw;
 }
 
 .calendarContainer .calendar{
@@ -125,12 +128,12 @@
 .calendarContainer .calendar .reservationContainer{
     position: absolute;
 
-
     width: 20%;
 
     background-color: cyan;
 
     border-radius: 1.5vh;
+    font-size: 1.5vw;
 }
 
 .calendarContainer .calendar .reservationContainer .name{
@@ -170,12 +173,15 @@
     width: 100%;
 
     background-color: #C8C8C8;
+
+    font-size: calc(1vw);
 }
 
 .dateSelector .dateContainer{
     position: relative;
     display: inline-block;
 
+    min-width: 1.5em;
     width: 20%;
     height: 100%;
 
@@ -185,6 +191,7 @@
     cursor: pointer;
 
     user-select: none;
+    white-space: nowrap;
 }
 
 .dateSelector .effect{
@@ -224,13 +231,17 @@
     position: fixed;
 
     top: 0;
+    left: 100%;
 
     background-color: #1D2124;
 
     width: 25%;
     height: 100%;
 
-    transition: right 0.5s ease-in-out;
+    font-size: 2vh;
+
+    transition: transform 0.5s ease-in-out;
+    min-width: 400px;
 }
 
 .reservationCreator .close{
@@ -243,8 +254,11 @@
 
     background-color: #8b2722;
 
-    border-left: 0.5vw solid #8b2722;
-    border-right: 0.5vw solid #8b2722;
+    width: fit-content;
+    height: fit-content;
+
+    border-left: 0.75em solid #8b2722;
+    border-right: 0.75em solid #8b2722;
     border-radius: 5vh;
 
     font-family: LEMONMILK-Regular;
@@ -267,6 +281,160 @@
     border-color: #bd5954;
     background-color: #bd5954;
     box-shadow: 0 0px 0.5vh #bd5954;
+}
+
+.reservationCreator .title{
+    position: relative;
+
+    height: fit-content;
+
+    font-family: LEMONMILK-Regular;
+    font-size: 0.95em;
+
+    top: 8%;
+
+    color: #C8C8C8;
+}
+
+.reservationCreator .centered{
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 90%;
+    text-align: center;
+}
+
+.reservationCreator input{
+    position: relative;
+
+    outline: none;
+    border: 0;
+    padding: 0;
+
+    height: 3.5%;
+
+    top: 8%;
+
+    border-radius: 0.5vh;
+
+    margin-bottom: 3%;
+}
+
+.reservationCreator .full{
+    position: relative;
+
+    text-indent: 2%;
+
+    width: 90%;
+
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.reservationCreator .half{
+    position: relative;
+
+    text-indent: 2%;
+
+    width: 40%;
+
+    margin-right: 10%;
+
+    left: 25%;
+    transform: translateX(-50%);
+}
+
+.reservationCreator .halfTitle{
+    position: relative;
+    display: inline-block;
+
+    width: 40%;
+
+    margin-right: 10%;
+
+    left: 25%;
+    transform: translateX(-50%);
+}
+
+.reservationCreator select{
+    position: relative;
+
+    outline: none;
+    border: 0;
+    padding: 0;
+
+    height: 3.5%;
+
+    top: 8%;
+
+    border-radius: 0.5vh;
+
+    margin-bottom: 5%;
+}
+
+.reservationCreator .bigAsstTitle{
+    position: relative;
+
+    position: relative;
+
+    height: fit-content;
+
+    font-family: LEMONMILK-Regular;
+    font-size: 1.5em;
+
+    top: 8%;
+
+    color: #C8C8C8;
+
+    text-align: center;
+}
+
+.reservationCreator .acceptButton{
+    position: relative;
+
+    top: 8%;
+
+    border: none;
+    padding: 0;
+    outline: none;
+
+    min-width: fit-content;
+    width: 50%;
+
+    min-height: fit-content;
+    height: 5%;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    border-radius: 1.5vw;
+
+    font-family: LEMONMILK-Regular;
+
+    background-color: #00c5f0;
+
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.reservationCreator .acceptButton:hover{
+    background-color: rgb(0, 197, 240);
+    box-shadow: 0 0px 20px rgba(0, 197, 240, 1);
+}
+
+.reservationCreator .errorMessage{
+    position: relative;
+
+    top: 8%;
+
+    font-family: LEMONMILK-Regular;
+    font-size: 0.8em;
+
+    height: fit-content;
+    width: fit-content;
+
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 1%;
 }
 
 
