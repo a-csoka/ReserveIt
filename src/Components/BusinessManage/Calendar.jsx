@@ -20,6 +20,7 @@ function Calendar() {
     const [creatorLeft, setCreatorLeft] = useState("100%")
 
     const [reservationError, setReservationError] = useState("")
+    const [reservationEditID, setReservationEditID] = useState(false)
     const [reservationName, setReservationName] = useState("")
     const [reservationWorkerID, setReservationWorkerID] = useState()
     const [reservationState, setReservationState] = useState("Pending")
@@ -119,7 +120,30 @@ function Calendar() {
                                             left: "calc(5% + "+i*20+"%",
                                             top: "calc(1.5vh + "+minutes/60*15+"vh)",
                                             height: (reservation.Length/0.6/24)+"%",
-                                        }} key={reservation.ReservationID}>
+                                        }} key={reservation.ReservationID} onClick={() => {
+                                            setReservationEditID(reservation.ReservationID)
+                                            setReservationName(reservation.Name)
+                                            setReservationWorkerID(reservation.WorkerID)
+                                            setReservationState(reservation.Status)
+                                            setReservationDate(reservation.Date)
+                                            setReservationStart(reservation.Start)
+                                            setReservationEnd(reservation.End)
+                                            setReservationPrice(reservation.Price)
+                                            setReservationEmail(reservation.Email)
+                                            setReservationPhone(reservation.Phone)
+                                            fetch("http://127.0.0.1:5000/getUserFromEmail",{
+                                                method: "POST",
+                                                credentials: 'include',
+                                                headers: {
+                                                    'Content-type': 'application/json',
+                                                },
+                                                body: JSON.stringify({Email: reservation.Email})
+                                            }).then((response) => response.json()).then(data => {
+                                                setReservationFirstName(data.FirstName)
+                                                setReservationLastName(data.LastName)
+                                            })
+                                            setCreatorLeft("-100%")
+                                        }}>
                                             <div className='name'>{reservation.Name}</div>
                                             <div className='time'>{reservation.Start+" - "+reservation.End}</div>
                                         </div>
@@ -135,9 +159,24 @@ function Calendar() {
             <div className='reservationCreator' style={{
                 transform: "translateX("+creatorLeft+")"
             }}>
-                <div className='close' onClick={() => setCreatorLeft("0%")}><span>Bezárás</span></div>
+                <div className='close' onClick={() => {
+                    setCreatorLeft("0")
+                    setReservationEditID(false)
+                    setReservationName("")
+                    setReservationWorkerID(workers[0].AccountID)
+                    setReservationState("Pending")
+                    setReservationDate(moment(selDate).format('YYYY-MM-DD'))
+                    setReservationStart(moment(selDate).format('HH:mm'))
+                    setReservationEnd("23:59")
+                    setReservationPrice(0)
+                    setReservationEmail("")
+                    setReservationPhone("")
+                    setReservationFirstName("")
+                    setReservationLastName("")
 
-                <div className='bigAsstTitle'>Foglalás</div>
+                    }}><span>Bezárás</span></div>
+
+                <div className='bigAsstTitle'>Foglalás{(reservationEditID !== false ? " - Szerkesztés" : "")}</div>
                 <div className='title centered'>Foglalás neve</div>
                 <input className='full' type="text" value={reservationName} onChange={(event) => {setReservationName(event.target.value)}}></input>
 
@@ -151,9 +190,8 @@ function Calendar() {
                     }
                 </select>
 
-                <select list="statuslist" className='half' value={reservationState} onChange={(event) => setReservationState(event.target.value)} disabled>
-                    <option value="Pending">Válaszra vár</option>
-                    <option value="Accepted">Elfogadva</option>
+                <select list="statuslist" className='half' value={reservationState} onChange={(event) => setReservationState(event.target.value)}>
+                    <option value="Pending">Feljegyezve</option>
                     <option value="Arrived">Megjelent</option>
                     <option value="Not arrived">Nem jelent meg</option>
                     <option value="Cancelled">Lemondva</option>
@@ -189,7 +227,7 @@ function Calendar() {
                             setReservationLastName(data.LastName)
                         })
                     }, 250)
-                }}></input>
+                }} readOnly={(reservationEditID === false ? false : true)}></input>
 
                 <div className='title halfTitle'>Vezetéknév</div>
                 <div className='title halfTitle right'>Keresztnév</div>
@@ -205,7 +243,7 @@ function Calendar() {
                         setReservationError("Add meg a foglalás nevét!")
                         return false
                     }
-                    if(isFieldEmpty(reservationWorkerID)){
+                    if(isFieldEmpty(""+reservationWorkerID)){
                         setReservationError("Add meg a foglalást végző dolgozót!")
                         return false
                     }
@@ -242,29 +280,55 @@ function Calendar() {
                         return false
                     }
                     setReservationError("")
-                    fetch("http://127.0.0.1:5000/addReservation",{
-                        method: "POST",
-                        credentials: 'include',
-                        headers: {
-                            'Content-type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            BusinessID: BusinessID,
-                            Name: reservationName,
-                            WorkerID: reservationWorkerID,
-                            Date: reservationDate,
-                            Start: reservationStart,
-                            End: reservationEnd,
-                            Price: reservationPrice,
-                            Email: reservationEmail,
-                            Phone: reservationPhone
+                    if(reservationEditID === false){
+                        fetch("http://127.0.0.1:5000/addReservation",{
+                            method: "POST",
+                            credentials: 'include',
+                            headers: {
+                                'Content-type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                BusinessID: BusinessID,
+                                Name: reservationName,
+                                WorkerID: ""+reservationWorkerID,
+                                Date: reservationDate,
+                                Start: reservationStart,
+                                End: reservationEnd,
+                                Price: reservationPrice,
+                                Email: reservationEmail,
+                                Phone: reservationPhone
+                            })
+                        }).then((response) => response.json()).then(data => {
+                            setReservationError(data.errorMsg)
+                            updateDate(new Date(selDate))
                         })
-                    }).then((response) => response.json()).then(data => {
-                        setReservationError(data.errorMsg)
-                        updateDate(new Date(selDate))
-                    })
+                    }else{
+                        fetch("http://127.0.0.1:5000/editReservation",{
+                            method: "POST",
+                            credentials: 'include',
+                            headers: {
+                                'Content-type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                ReservationID: reservationEditID,
+                                BusinessID: BusinessID,
+                                Name: reservationName,
+                                WorkerID: ""+reservationWorkerID,
+                                Date: reservationDate,
+                                Start: reservationStart,
+                                End: reservationEnd,
+                                Price: reservationPrice,
+                                Phone: reservationPhone,
+                                State: reservationState
+                            })
+                        }).then((response) => response.json()).then(data => {
+                            setReservationError(data.errorMsg)
+                            updateDate(new Date(selDate))
+                        })
+                    }
+                    
 
-                }}>Hozzáadás</button>
+                }}>{(reservationEditID !== false ?  "szerkesztés" : "Hozzáadás")}</button>
             </div>
         </React.Fragment>
     );
