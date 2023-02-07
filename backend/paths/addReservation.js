@@ -22,6 +22,9 @@ module.exports = (app, sql_con, jwt, isFieldEmpty, moment) => {
                     if(isFieldEmpty(req.body.Email)){
                         return false
                     }
+                    if((new Date(req.body.Date+" "+req.body.Start)).getTime() >= (new Date(req.body.Date+" "+req.body.End)).getTime()){
+                        return false
+                    }
                     if(moment(req.body.Date+" "+req.body.Start).isSameOrBefore(new Date())){
                         return false
                     }

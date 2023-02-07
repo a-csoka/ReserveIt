@@ -233,6 +233,10 @@ function Calendar() {
                         setReservationError("Ehhez az email címhez nincs társítva fiók!")
                         return false
                     }
+                    if((new Date(reservationDate+" "+reservationStart)).getTime() >= (new Date(reservationDate+" "+reservationEnd)).getTime()){
+                        setReservationError("A foglalás vége nem lehet korábban, mint a kezdete!")
+                        return false
+                    }
                     if(moment(reservationDate+" "+reservationStart).isSameOrBefore(new Date())){
                         setReservationError("A foglalás ideje nem lehet kisebb mint a jelenlegi!")
                         return false
@@ -257,6 +261,7 @@ function Calendar() {
                         })
                     }).then((response) => response.json()).then(data => {
                         setReservationError(data.errorMsg)
+                        updateDate(new Date(selDate))
                     })
 
                 }}>Hozzáadás</button>
