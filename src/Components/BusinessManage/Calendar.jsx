@@ -237,7 +237,7 @@ function Calendar() {
                 <div className='title centered'>Elérhetőség - Telefonszám</div>
                 <input className='full' type="tel" value={reservationPhone} onChange={(event) => setReservationPhone(event.target.value)}></input>
 
-                <div className='errorMessage' style={{color: (reservationError === "Időpont létrehozva!"? "#228B22" : "#8b2722")}}>{reservationError}</div>
+                <div className='errorMessage' style={{color: (reservationError === "Foglalás létrehozva!" || reservationError === "Foglalás szerkeszve!" ? "#228B22" : "#8b2722")}}>{reservationError}</div>
                 <button className='acceptButton' onClick={() => {
                     if(isFieldEmpty(reservationName)){
                         setReservationError("Add meg a foglalás nevét!")

@@ -46,7 +46,7 @@ module.exports = (app, sql_con, jwt, isFieldEmpty, moment) => {
                         return false
                     }
                     const createReservation =  await sql_con.promise().query("INSERT INTO ReserveIt_Reservations(Name, ReserverID, WorkerID, BusinessID, Start, End, Price, Phone, Status) VALUES(?, ?, ?, ?, ?, ?, ?, ?, 'Pending')", [req.body.Name, doesExist[0][0].AccountID, req.body.WorkerID, req.body.BusinessID, req.body.Date+" "+req.body.Start, req.body.Date+" "+req.body.End, req.body.Price, req.body.Phone])
-                    res.send({errorMsg: "Időpont létrehozva!"})
+                    res.send({errorMsg: "Foglalás létrehozva!"})
                 }
             }
         }

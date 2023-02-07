@@ -37,13 +37,13 @@ module.exports = (app, sql_con, jwt, isFieldEmpty, moment) => {
                     if(doesWorkerExist[0].length === 0){
                         return false
                     } 
-                    const doesOverlap = await sql_con.promise().query("SELECT * FROM ReserveIt_Reservations WHERE ? < End AND ? > Start AND BusinessID=? AND WorkerID=? LIMIT 1", [req.body.Date+" "+req.body.Start, req.body.Date+" "+req.body.End, req.body.BusinessID,req.body.WorkerID])
+                    const doesOverlap = await sql_con.promise().query("SELECT * FROM ReserveIt_Reservations WHERE ? < End AND ? > Start AND BusinessID=? AND WorkerID=? AND ReservationID != ? LIMIT 1", [req.body.Date+" "+req.body.Start, req.body.Date+" "+req.body.End, req.body.BusinessID,req.body.WorkerID, req.body.ReservationID])
                     if(doesOverlap[0].length > 0){
                         res.send({errorMsg: "Ebben az intervallumban már van egy időpont!"})
                         return false
                     }
                     const editReservation =  await sql_con.promise().query("UPDATE ReserveIt_Reservations SET Name=?, WorkerID=?, BusinessID=?, Start=?, End=?, Price=?, Phone=?, Status=? WHERE ReservationID=?", [req.body.Name, req.body.WorkerID, req.body.BusinessID, req.body.Date+" "+req.body.Start, req.body.Date+" "+req.body.End, req.body.Price, req.body.Phone, req.body.State, req.body.ReservationID])
-                    res.send({errorMsg: "Időpont szerkesztve!"})
+                    res.send({errorMsg: "Foglalás szerkesztve!"})
                 }
             }
         }
