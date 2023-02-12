@@ -437,6 +437,8 @@
     left: 50%;
     transform: translateX(-50%);
     margin-bottom: 1%;
+
+    text-align: center;
 }
 
 
