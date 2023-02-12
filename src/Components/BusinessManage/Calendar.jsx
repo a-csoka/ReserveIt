@@ -120,6 +120,7 @@ function Calendar() {
                                             left: "calc(5% + "+i*20+"%",
                                             top: "calc(1.5vh + "+minutes/60*15+"vh)",
                                             height: (reservation.Length/0.6/24)+"%",
+                                            backgroundColor: (getColorFromStatus(reservation.Status, reservation.Date, reservation.End))
                                         }} key={reservation.ReservationID} onClick={() => {
                                             setReservationEditID(reservation.ReservationID)
                                             setReservationName(reservation.Name)
@@ -347,4 +348,19 @@ function isFieldEmpty(text){
         }
     }
     return true
+}
+
+function getColorFromStatus(status, date, end){
+    switch(status){
+        case "Pending":{
+            if(moment(new Date()).isAfter(new Date(date+" "+end))){
+                return "orange"
+            }
+            return "#00c5f0"
+        }
+        case "Arrived": return "#006b82"
+        case "Not arrived": return "#8b2722"
+        case "Cancelled": return "gray"
+        default: return "#00c5f0"
+    }    
 }
