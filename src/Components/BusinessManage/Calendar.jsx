@@ -237,7 +237,7 @@ function Calendar() {
                 <div className='title centered'>Elérhetőség - Telefonszám</div>
                 <input className='full' type="tel" value={reservationPhone} onChange={(event) => setReservationPhone(event.target.value)}></input>
 
-                <div className='errorMessage' style={{color: (reservationError === "Foglalás létrehozva!" || reservationError === "Foglalás szerkeszve!" ? "#228B22" : "#8b2722")}}>{reservationError}</div>
+                <div className='errorMessage' style={{color: ((reservationError === "Foglalás létrehozva!" || reservationError === "Foglalás szerkesztve!") ? "#228B22" : "#8b2722")}}>{reservationError}</div>
                 <button className='acceptButton' onClick={() => {
                     if(isFieldEmpty(reservationName)){
                         setReservationError("Add meg a foglalás nevét!")
@@ -275,12 +275,12 @@ function Calendar() {
                         setReservationError("A foglalás vége nem lehet korábban, mint a kezdete!")
                         return false
                     }
-                    if(moment(reservationDate+" "+reservationStart).isSameOrBefore(new Date())){
-                        setReservationError("A foglalás ideje nem lehet kisebb mint a jelenlegi!")
-                        return false
-                    }
                     setReservationError("")
                     if(reservationEditID === false){
+                        if(moment(reservationDate+" "+reservationStart).isSameOrBefore(new Date())){
+                            setReservationError("A foglalás ideje nem lehet kisebb mint a jelenlegi!")
+                            return false
+                        }
                         fetch("http://127.0.0.1:5000/addReservation",{
                             method: "POST",
                             credentials: 'include',
