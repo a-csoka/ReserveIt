@@ -99,6 +99,7 @@ function Calendar() {
                 }
                 <div className='calendar' onClick={() => {
                     setCreatorLeft("-100%")
+                    setReservationDate(moment(selDate).format('YYYY-MM-DD'))
                 }}>
                     {hours.map(function(hour, index){
                         return(
