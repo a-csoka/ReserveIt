@@ -45,13 +45,12 @@ function Calendar() {
         }).then((response) => response.json()).then(data => {
             setWorkers(data.workerData)
             setReservations(data.reservationData)
-            setReservationWorkerID(""+data.workerData[0].AccountID)
         })
     }
 
     useEffect(() => {
         updateDate(selDate)
-    }, [setWorkers, setReservations])
+    }, [setWorkers, setReservations, setReservationWorkerID])
 
     return (  
         <React.Fragment>
