@@ -46,6 +46,9 @@ function Calendar() {
             body: JSON.stringify({BusinessID: BusinessID, Time: moment(date).format('YYYY-MM-DD')})
         }).then((response) => response.json()).then(data => {
             setWorkers(data.workerData)
+            if(reservationWorkerID === null){
+                setReservationWorkerID(data.workerData[0].AccountID)
+            }     
             setReservations(data.reservationData)
         })
     }
@@ -172,6 +175,20 @@ function Calendar() {
                         body: JSON.stringify({ReservationID: reservationEditID})
                     }).then((response) => response.json()).then(data => {
                         setCreatorLeft("0")
+                        setReservationEditID(false)
+                        setReservationName("")
+                        setReservationWorkerID(workers[0].AccountID)
+                        setReservationState("Pending")
+                        setReservationDate(moment(selDate).format('YYYY-MM-DD'))
+                        setReservationStart(moment(selDate).format('HH:mm'))
+                        setReservationEnd("23:59")
+                        setReservationPrice(0)
+                        setReservationEmail("")
+                        setReservationPhone("")
+                        setReservationFirstName("")
+                        setReservationLastName("")
+                        setReservationError("")
+
                         updateDate(new Date(selDate))
                     })
                 }}><img class="under" src={trash}/><img class="effect" src={trash}/></div>
@@ -189,6 +206,7 @@ function Calendar() {
                     setReservationPhone("")
                     setReservationFirstName("")
                     setReservationLastName("")
+                    setReservationError("")
 
                     }}><span>Bezárás</span></div>
 
