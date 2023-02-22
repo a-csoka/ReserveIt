@@ -1,4 +1,4 @@
-module.exports = (app, jwt) => {
+module.exports = (app, sql_con, jwt) => {
     app.delete("/removeReservation", async (req, res) => {
         if(req.cookies.userToken != null){
             var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)

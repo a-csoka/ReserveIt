@@ -5,6 +5,8 @@ import moment from 'moment'
 import "./css/Calendar.css"
 import { useState } from 'react';
 
+import trash from "../Dashboard/images/trash-solid.svg"
+
 const hours = [
     "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00",
     "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"
@@ -160,6 +162,19 @@ function Calendar() {
             <div className='reservationCreator' style={{
                 transform: "translateX("+creatorLeft+")"
             }}>
+                <div className='moreOptions' style={{display: (reservationEditID !== false ? "" : "none")}} onClick={() => {
+                    fetch("http://127.0.0.1:5000/removeReservation",{
+                        method: "DELETE",
+                        credentials: 'include',
+                        headers: {
+                            'Content-type': 'application/json',
+                        },
+                        body: JSON.stringify({ReservationID: reservationEditID})
+                    }).then((response) => response.json()).then(data => {
+                        setCreatorLeft("0")
+                        updateDate(new Date(selDate))
+                    })
+                }}><img class="under" src={trash}/><img class="effect" src={trash}/></div>
                 <div className='close' onClick={() => {
                     setCreatorLeft("0")
                     setReservationEditID(false)

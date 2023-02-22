@@ -439,4 +439,34 @@
     text-align: center;
 }
 
+.moreOptions{
+    position: relative;
 
+    width: 5%;
+    height: 3%;
+
+    top: 2%;
+    left: 4%;
+
+    cursor: pointer;
+}
+
+.moreOptions img{
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    filter: invert(99%) sepia(0%) saturate(4%) hue-rotate(131deg) brightness(102%) contrast(102%);
+}
+
+.moreOptions .effect{
+    opacity: 0;
+
+    filter: invert(31%) sepia(99%) saturate(7109%) hue-rotate(357deg) brightness(96%) contrast(123%);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.moreOptions .effect:hover{
+    opacity: 1;
+}
