@@ -79,6 +79,8 @@ require("./paths/getUserFromEmail.js")(app, sql_con, jwt);
 require("./paths/addReservation.js")(app, sql_con, jwt, isFieldEmpty, moment);
 require("./paths/editReservation.js")(app, sql_con, jwt, isFieldEmpty, moment)
 require("./paths/removeReservation.js")(app, sql_con, jwt);
+require("./paths/updateOrganizationName.js")(app, sql_con, jwt, isFieldEmpty, bcrypt);
+require("./paths/deleteOrganization.js")(app, sql_con, jwt, isFieldEmpty, bcrypt);
 
 
 app.listen(port, () => console.log(`[Backend]: A backend elérhető! [Port: ${port}]`));
