@@ -191,7 +191,7 @@ function Calendar() {
 
                         updateDate(new Date(selDate))
                     })
-                }}><img class="under" src={trash}/><img class="effect" src={trash}/></div>
+                }}><img className="under" src={trash}/><img className="effect" src={trash}/></div>
                 <div className='close' onClick={() => {
                     setCreatorLeft("0")
                     setReservationEditID(false)
