@@ -14,7 +14,7 @@ function MenuBar() {
             <img src={ReserveIt_OnlyText} alt="Hiba a betöltés során!" className='ReserveItMenu'></img>
             
             <div className='optionsContainer'>
-                <MenuBarOption Text="Időpontjaim" Icon="Calendar" To="./mycalendar"/>
+                <MenuBarOption Text="Időpontjaim" Icon="Calendar" To="./mycalendar/calendar"/>
                 <MenuBarOption Text="Vállalkozások" Icon="Store" To="./businesses"/>
                 <MenuBarOption Text="Saját vállalkozásaim" Icon="Building" To="./mybusinesses/list"/>
                 <MenuBarOption Text="Beállítások" Icon="Gear" To="./settings"/>

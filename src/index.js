@@ -15,6 +15,10 @@ import ConfirmReg from "./Components/Login/ConfirmReg"
 
 import Dashboard from "./Components/Dashboard/Dashboard"
 
+import CalendarMain from "./Components/Dashboard/Calendar/Main"
+import CalendarCalendar from "./Components/Dashboard/Calendar/Calendar"
+import CalendarNotifications from "./Components/Dashboard/Calendar/Notifications"
+
 import Businesses from "./Components/Dashboard/Businesses"
 import MyBusinesses from "./Components/Dashboard/MyBusinesses"
 import MyBusinessesCreate from './Components/Dashboard/MyBusinesses/Create';
@@ -42,7 +46,11 @@ root.render(
           <Route path="*" element={<Redirect/>} />
         </Route>
         <Route path="dashboard" element={<React.Fragment><Redirect onlyCheckWrongLink={false}/><Dashboard/></React.Fragment>}>
-          <Route path="mycalendar" />
+          <Route path="mycalendar" element={<CalendarMain />}>
+            <Route path="calendar" element={<CalendarCalendar/>}/>
+            <Route path="notifications" element={<CalendarNotifications />}/>
+            <Route path="*" element={<Navigate to="./calendar"/>}/>
+          </Route>
           <Route path="businesses" element={<Businesses />}/>
           <Route path="mybusinesses" element={<MyBusinesses />} > 
             <Route path="list" element={<MyBusinessesList />}/>

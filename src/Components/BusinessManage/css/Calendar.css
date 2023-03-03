@@ -7,11 +7,16 @@
     height: 85%;
 
     overflow-x: visible;
+    overflow-y: scroll;
 }
 
 .calendarContainer .worker{
-    position: relative;
+    position: sticky;
     display: inline-block;
+
+    top: 0;
+
+    z-index: 1;
 
     left: 5%;
 
