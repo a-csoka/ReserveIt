@@ -42,7 +42,12 @@ module.exports = (app, sql_con, jwt, isFieldEmpty, moment) => {
                     } 
                     const doesOverlap = await sql_con.promise().query("SELECT * FROM ReserveIt_Reservations WHERE ? < End AND ? > Start AND BusinessID=? AND WorkerID=? LIMIT 1", [req.body.Date+" "+req.body.Start, req.body.Date+" "+req.body.End, req.body.BusinessID,req.body.WorkerID])
                     if(doesOverlap[0].length > 0){
-                        res.send({errorMsg: "Ebben az intervallumban már van egy időpont!"})
+                        res.send({errorMsg: "Ebben az intervallumban már van egy időpontja a dolgozónak!"})
+                        return false
+                    }
+                    const doesOverlap2 = await sql_con.promise().query("SELECT * FROM ReserveIt_Reservations WHERE ? < End AND ? > StartAND ReserverID=? LIMIT 1", [req.body.Date+" "+req.body.Start, req.body.Date+" "+req.body.End, doesExist[0][0].AccountID])
+                    if(doesOverlap2[0].length > 0){
+                        res.send({errorMsg: "Ebben az intervallumban már van egy időpontja az ügyfélnek!"})
                         return false
                     }
                     const createReservation =  await sql_con.promise().query("INSERT INTO ReserveIt_Reservations(Name, ReserverID, WorkerID, BusinessID, Start, End, Price, Phone, Status) VALUES(?, ?, ?, ?, ?, ?, ?, ?, 'Pending')", [req.body.Name, doesExist[0][0].AccountID, req.body.WorkerID, req.body.BusinessID, req.body.Date+" "+req.body.Start, req.body.Date+" "+req.body.End, req.body.Price, req.body.Phone])
