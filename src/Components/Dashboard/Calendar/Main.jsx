@@ -9,16 +9,24 @@ function MainCalendar() {
     return ( 
     <div className='calendarMenuContainer'>
         <div className='subOptionsMenu'>               
-            <div className='option' onClick={() => {
+            <div className='option' 
+            style={{
+                width: "50%",
+            }}
+            onClick={() => {
                 navigate("./list")
             }}>
-                <div className='text'>Vállalkozásaim</div>
+                <div className='text'>Időpontok</div>
                 <div className='line left'></div>
             </div>
-            <div className='option' onClick={() => {
-                navigate("./invites")
+            <div className='option'  
+            style={{
+                width: "50%",
+            }}
+             onClick={() => {
+                navigate("./notifications")
             }}>
-                <div className='text'>Meghívások</div>
+                <div className='text'>Értesítések</div>
                 <div className='line right'></div>
             </div>
         </div>
