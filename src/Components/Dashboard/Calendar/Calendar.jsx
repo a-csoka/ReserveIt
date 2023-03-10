@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import moment from 'moment'
+import * as Moment from 'moment';
+import { extendMoment } from 'moment-range';
+
+const moment = extendMoment(Moment);
 
 const hours = [
     "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00",
@@ -38,7 +41,24 @@ function CalendarCalendar() {
         }).then((response) => response.json()).then(data => {
             if(reservationWorkerID === null){
                 setReservationWorkerID(data.workerData[0].AccountID)
-            }  
+            }
+            data.reservationData.map(function(reservation, index){
+                reservation.col = 1
+            })
+            data.reservationData.map(function(reservation, index){
+                data.reservationData.forEach(function(element){
+                    if(reservation !== element){
+                        if(reservation.col === element.col){
+                            const range  = moment.range([moment(reservation.Date+" "+reservation.Start), moment(reservation.Date+" "+reservation.End)]);
+                            const range2 = moment.range([moment(element.Date+" "+element.Start), moment(element.Date+" "+element.End)]);
+                            if(range.overlaps(range2)){
+                                element.col = element.col+1
+                            }
+                        }
+                    }
+                })
+            })
+            console.log(data.reservationData)
             setReservations(data.reservationData)
         })
     }
@@ -104,7 +124,7 @@ function CalendarCalendar() {
                                 <div className='reservationContainer' style={{
                                     top: "calc(1.5vh + "+minutes/60*15+"vh)",
                                     height: (reservation.Length/0.6/24)+"%",
-                                    left: "5%",
+                                    left: "calc(5% + "+(reservation.col-1)*20+"%",
                                     backgroundColor: (getColorFromStatus(reservation.Status, reservation.Date, reservation.End))
                                 }} key={reservation.ReservationID} onClick={() => {
                                     setReservationEditID(reservation.ReservationID)
