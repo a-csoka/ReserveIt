@@ -97,11 +97,13 @@ function Calendar() {
                     </div>
             </div>
             <div className='calendarContainer'>
-                {workers.map(function(worker, index){
-                    return(
-                        <div className='worker' key={worker.AccountID}><span>{worker.FirstName+" "+worker.LastName}</span></div>
-                    )})
-                }
+                <div className='workerContainer'>
+                    {workers.map(function(worker, index){
+                        return(
+                            <div className='worker' key={worker.AccountID}><span>{worker.FirstName+" "+worker.LastName}</span></div>
+                        )})
+                    }
+                </div>
                 <div className='calendar' onClick={() => {
                     setCreatorLeft("-100%")
                     setReservationDate(moment(selDate).format('YYYY-MM-DD'))

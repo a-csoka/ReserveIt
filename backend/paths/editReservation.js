@@ -39,11 +39,13 @@ module.exports = (app, sql_con, jwt, isFieldEmpty, moment) => {
                         res.send({errorMsg: "Ebben az intervallumban már van egy időpont!"})
                         return false
                     }
+                    /*
                     const doesOverlap2 = await sql_con.promise().query("SELECT * FROM ReserveIt_Reservations WHERE ? < End AND ? > StartAND ReserverID=? LIMIT 1", [req.body.Date+" "+req.body.Start, req.body.Date+" "+req.body.End, doesExist[0][0].AccountID])
                     if(doesOverlap2[0].length > 0){
                         res.send({errorMsg: "Ebben az intervallumban már van egy időpontja az ügyfélnek!"})
                         return false
                     }
+                    */
                     const editReservation =  await sql_con.promise().query("UPDATE ReserveIt_Reservations SET Name=?, WorkerID=?, BusinessID=?, Start=?, End=?, Price=?, Phone=?, Status=? WHERE ReservationID=?", [req.body.Name, req.body.WorkerID, req.body.BusinessID, req.body.Date+" "+req.body.Start, req.body.Date+" "+req.body.End, req.body.Price, req.body.Phone, req.body.State, req.body.ReservationID])
                     res.send({errorMsg: "Foglalás szerkesztve!"})
                 }

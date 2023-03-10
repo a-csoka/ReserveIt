@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment'
 
-import trash from "../images/trash-solid.svg"
-
 const hours = [
     "00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00",
     "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"
@@ -30,22 +28,19 @@ function CalendarCalendar() {
     const [reservationPhone, setReservationPhone] = useState("")
 
     function updateDate(date){
-        /*
-        fetch("http://127.0.0.1:5000/getReservations",{
+        fetch("http://127.0.0.1:5000/getUserReservations",{
             method: "POST",
             credentials: 'include',
             headers: {
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify({BusinessID: BusinessID, Time: moment(date).format('YYYY-MM-DD')})
+            body: JSON.stringify({Time: moment(date).format('YYYY-MM-DD')})
         }).then((response) => response.json()).then(data => {
-            setWorkers(data.workerData)
             if(reservationWorkerID === null){
                 setReservationWorkerID(data.workerData[0].AccountID)
-            }     
+            }  
             setReservations(data.reservationData)
         })
-        */
     }
 
     useEffect(() => {
@@ -109,6 +104,7 @@ function CalendarCalendar() {
                                 <div className='reservationContainer' style={{
                                     top: "calc(1.5vh + "+minutes/60*15+"vh)",
                                     height: (reservation.Length/0.6/24)+"%",
+                                    left: "5%",
                                     backgroundColor: (getColorFromStatus(reservation.Status, reservation.Date, reservation.End))
                                 }} key={reservation.ReservationID} onClick={() => {
                                     setReservationEditID(reservation.ReservationID)
@@ -172,7 +168,7 @@ function CalendarCalendar() {
 
                         updateDate(new Date(selDate))
                     })
-                }}><img className="under" src={trash}/><img className="effect" src={trash}/></div>
+                }}></div>
                 <div className='close' onClick={() => {
                     setCreatorLeft("0")
                     setReservationEditID(false)
@@ -193,14 +189,14 @@ function CalendarCalendar() {
 
                 <div className='bigAsstTitle'>Foglalás{(reservationEditID !== false ? " - Szerkesztés" : "")}</div>
                 <div className='title centered'>Foglalás neve</div>
-                <input className='full' type="text" value={reservationName} onChange={(event) => {setReservationName(event.target.value)}}></input>
+                <input readOnly className='full' type="text" value={reservationName} onChange={(event) => {setReservationName(event.target.value)}}></input>
 
                 <div className='title halfTitle'>Dolgozó</div>
                 <div className='title halfTitle right'>Állapot</div>
-                <input className='half' value={reservationWorkerID} onChange={(event) => setReservationWorkerID(event.target.value)}/>
+                <input readOnly className='half' value={reservationWorkerID} onChange={(event) => setReservationWorkerID(event.target.value)}/>
 
 
-                <select list="statuslist" className='half' value={reservationState} onChange={(event) => setReservationState(event.target.value)}>
+                <select disabled list="statuslist" className='half' value={reservationState} onChange={(event) => setReservationState(event.target.value)}>
                     <option value="Pending">Feljegyezve</option>
                     <option value="Arrived">Megjelent</option>
                     <option value="Not arrived">Nem jelent meg</option>
@@ -208,15 +204,15 @@ function CalendarCalendar() {
                 </select>
 
                 <div className='title centered'>Dátum</div>
-                <input className='full' type="date" min={moment(new Date()).format('YYYY-MM-DD')} value={reservationDate} onChange={(event) => {setReservationDate(event.target.value)}}/>
+                <input readOnly className='full' type="date" min={moment(new Date()).format('YYYY-MM-DD')} value={reservationDate} onChange={(event) => {setReservationDate(event.target.value)}}/>
 
                 <div className='title halfTitle'>Kezdés</div>
                 <div className='title halfTitle right'>Vége</div>
-                <input type="time" className='half' value={reservationStart} onChange={(event) => setReservationStart(event.target.value)}/>
-                <input type="time" className='half' value={reservationEnd} onChange={(event) => setReservationEnd(event.target.value)}/>
+                <input readOnly type="time" className='half' value={reservationStart} onChange={(event) => setReservationStart(event.target.value)}/>
+                <input readOnly type="time" className='half' value={reservationEnd} onChange={(event) => setReservationEnd(event.target.value)}/>
 
                 <div className='title centered'>Ár</div>
-                <input className='full' type="number" min="0" value={reservationPrice} onChange={(event) => setReservationPrice(event.target.value)}/>
+                <input readOnly className='full' type="number" min="0" value={reservationPrice} onChange={(event) => setReservationPrice(event.target.value)}/>
 
                 <div className='bigAsstTitle'>Vendég</div>
 
@@ -237,7 +233,7 @@ function CalendarCalendar() {
                             setReservationLastName(data.LastName)
                         })
                     }, 250)
-                }} readOnly={(reservationEditID === false ? false : true)}></input>
+                }} readOnly></input>
 
                 <div className='title halfTitle'>Vezetéknév</div>
                 <div className='title halfTitle right'>Keresztnév</div>
@@ -245,7 +241,7 @@ function CalendarCalendar() {
                 <input type="text" className='half right' placeholder='Keresés...' value={reservationLastName} readOnly/>
 
                 <div className='title centered'>Elérhetőség - Telefonszám</div>
-                <input className='full' type="tel" value={reservationPhone} onChange={(event) => setReservationPhone(event.target.value)}></input>
+                <input readOnly className='full' type="tel" value={reservationPhone} onChange={(event) => setReservationPhone(event.target.value)}></input>
 
                 <div className='errorMessage' style={{color: ((reservationError === "Foglalás létrehozva!" || reservationError === "Foglalás szerkesztve!") ? "#228B22" : "#8b2722")}}>{reservationError}</div>
             </div>        
