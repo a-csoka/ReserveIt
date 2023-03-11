@@ -162,33 +162,7 @@ function CalendarCalendar() {
             <div className='reservationCreator' style={{
                 transform: "translateX("+creatorLeft+")"
             }}>
-                <div className='moreOptions' style={{display: (reservationEditID !== false ? "" : "none")}} onClick={() => {
-                    fetch("http://127.0.0.1:5000/removeReservation",{
-                        method: "DELETE",
-                        credentials: 'include',
-                        headers: {
-                            'Content-type': 'application/json',
-                        },
-                        body: JSON.stringify({ReservationID: reservationEditID})
-                    }).then((response) => response.json()).then(data => {
-                        setCreatorLeft("0")
-                        setReservationEditID(false)
-                        setReservationName("")
-                        setReservationWorkerID(0) //todo
-                        setReservationState("Pending")
-                        setReservationDate(moment(selDate).format('YYYY-MM-DD'))
-                        setReservationStart(moment(selDate).format('HH:mm'))
-                        setReservationEnd("23:59")
-                        setReservationPrice(0)
-                        setReservationEmail("")
-                        setReservationPhone("")
-                        setReservationFirstName("")
-                        setReservationLastName("")
-                        setReservationError("")
 
-                        updateDate(new Date(selDate))
-                    })
-                }}></div>
                 <div className='close' onClick={() => {
                     setCreatorLeft("0")
                     setReservationEditID(false)
@@ -207,7 +181,7 @@ function CalendarCalendar() {
 
                     }}><span>Bezárás</span></div>
 
-                <div className='bigAsstTitle'>Foglalás{(reservationEditID !== false ? " - Szerkesztés" : "")}</div>
+                <div className='bigAsstTitle'>Foglalás</div>
                 <div className='title centered'>Foglalás neve</div>
                 <input readOnly className='full' type="text" value={reservationName} onChange={(event) => {setReservationName(event.target.value)}}></input>
 
