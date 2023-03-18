@@ -58,7 +58,6 @@ function CalendarCalendar() {
                     }
                 })
             })
-            console.log(data.reservationData)
             setReservations(data.reservationData)
         })
     }
