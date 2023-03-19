@@ -13,6 +13,7 @@
 
     width: 25%;
     height: 100%;
+    min-height: fit-content;
     
 }
 
@@ -31,22 +32,21 @@
 
 @media screen and (max-width: 980px) {
     .dashboardContainer .menuDashContainer{
-        position: absolute;
+        position: relative;
     
         left: 0;
         top: 0;
     
         width: 100%;
         min-height: fit-content;
-        height: 50%;
+        height: 65%;
         
     }
     
     .dashboardContainer .contentContainer{
-        position: absolute;
+        position: relative;
     
         left: 0%;
-        top: 50%;
     
         height: 72%;
         width: 100%;
