@@ -37,7 +37,7 @@
     transform: translateY(-50%);
 
     font-family: LEMONMILK-Regular;
-    font-size: 2.5vh;
+    font-size: 1.1vw;
 }
 
 .myBusinessContent .corpContainer .dataContainer .makeBeauty{
@@ -51,4 +51,10 @@
 
 .myBusinessContent .corpContainer .right{
     right: 5%;
+}
+
+@media screen and (max-width: 980px) {
+    .myBusinessContent .corpContainer .dataContainer{
+        font-size: 1.1vh;
+    }
 }

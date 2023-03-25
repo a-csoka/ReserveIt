@@ -55,7 +55,6 @@
     min-width: fit-content;
     width: 15%;
 
-    min-height: fit-content !important;
     height: 4%;
 
     text-align: center;
@@ -84,6 +83,15 @@
     box-shadow: 0 0px 20px rgba(0, 197, 240, 1);
 }
 
+.SettingsDiv button{
+    min-height: 25px;
+}
+
+.SettingsDiv input{
+    min-width: 250px;
+    min-height: 25px;
+}
+
 .SettingsDiv .errorText{
     position: relative;
 
@@ -107,9 +115,9 @@
     display: block;
 
     min-width: fit-content;
+
     width: 15%;
 
-    min-height: fit-content !important;
     height: 4%;
 
     text-align: center;

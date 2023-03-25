@@ -19,6 +19,9 @@
 .myBusinessContent input{
     position: relative;
 
+    min-width: 250px;
+    min-height: 25px;
+
     width: 80%;
     height: 5%;
 
@@ -36,6 +39,7 @@
 
     outline: none;
 }
+
 
 .myBusinessContent .createBtn{
     position: relative;

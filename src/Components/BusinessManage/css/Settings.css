@@ -1,11 +1,11 @@
-.SettingsDiv{
+.OrgSettingsDiv{
     position: relative;
 
     width: 100%;
     height: 100%;
 }
 
-.SettingsDiv .BigTitle{
+.OrgSettingsDiv .BigTitle{
     position: relative;
 
     color: #C8C8C8;
@@ -20,7 +20,7 @@
     margin-bottom: 2%;
 }
 
-.SettingsDiv .SmollTitle{
+.OrgSettingsDiv .SmollTitle{
     color: #C8C8C8;
 
     text-align: center;
@@ -29,7 +29,7 @@
     font-family: LEMONMILK-Regular;
 }
 
-.SettingsDiv input{
+.OrgSettingsDiv input{
     position: relative;
 
     width: 40%;
@@ -48,7 +48,7 @@
     outline: none;
 }
 
-.SettingsDiv .changeBtn{
+.OrgSettingsDiv .changeBtn{
     position: relative;
     display: block;
 
@@ -79,12 +79,12 @@
 }
 
 
-.SettingsDiv .changeBtn:hover{
+.OrgSettingsDiv .changeBtn:hover{
     background-color: rgb(0, 197, 240);
     box-shadow: 0 0px 20px rgba(0, 197, 240, 1);
 }
 
-.SettingsDiv .errorText{
+.OrgSettingsDiv .errorText{
     position: relative;
 
     width: 80%;
@@ -100,41 +100,6 @@
 
     margin-bottom: 2%;
     text-align: center;
-}
-
-.SettingsDiv .logoutBtn{
-    position: relative;
-    display: block;
-
-    min-width: fit-content;
-    width: 15%;
-
-    min-height: fit-content !important;
-    height: 4%;
-
-    text-align: center;
-  
-    border: none;
-    padding: 0;
-    outline: none;
-
-    left: 50%;
-    transform: translateX(-50%);
-
-    border-radius: 1.5vw;
-
-    font-family: LEMONMILK-Regular;
-
-    background-color: #8b2722;
-
-    margin-bottom: 3%;
-
-    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.SettingsDiv .logoutBtn:hover{
-    background-color: #bd5954;
-    box-shadow: 0 0px 20px #bd5954;
 }
 
 .noAccess{

@@ -33,7 +33,7 @@ function Settings() {
 
     if(showSettings){
         return ( 
-            <div className='SettingsDiv'>
+            <div className='OrgSettingsDiv'>
             <div className='BigTitle'>Beállítások</div>
     
             <div className='SmollTitle'>Jelszavad</div>

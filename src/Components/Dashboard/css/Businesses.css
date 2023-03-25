@@ -32,6 +32,7 @@
     padding: 0;
     outline: none;
 
+    min-height: 25px;
     width: 80%;
     height: 5%;
 
@@ -79,7 +80,7 @@
     transform: translateY(-50%);
 
     font-family: LEMONMILK-Regular;
-    font-size: 2.5vh;
+    font-size: 1vw;
 }
 
 .businessesDiv .corpContainer .dataContainer .makeBeauty{
@@ -93,4 +94,12 @@
 
 .businessesDiv .corpContainer .right{
     right: 5%;
+}
+
+@media screen and (max-width: 980px) {
+
+
+    .businessesDiv .corpContainer .dataContainer{
+        font-size: 1.1vh;
+    }
 }
