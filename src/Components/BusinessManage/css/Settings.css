@@ -116,3 +116,47 @@
     font-family: LEMONMILK-Regular;
     color: white;
 }
+
+.OrgSettingsDiv .logoutBtn{
+    position: relative;
+    display: block;
+
+    min-width: fit-content;
+    width: 15%;
+
+    min-height: fit-content !important;
+    height: 4%;
+
+    text-align: center;
+
+    border: none;
+    padding: 0;
+    outline: none;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    border-radius: 1.5vw;
+
+    font-family: LEMONMILK-Regular;
+
+    background-color: #8b2722;
+
+    margin-bottom: 3%;
+
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.OrgSettingsDiv .logoutBtn:hover{
+    background-color: #bd5954;
+    box-shadow: 0 0px 20px #bd5954;
+}
+
+.OrgSettingsDiv button{
+    min-height: 25px;
+}
+
+.OrgSettingsDiv input{
+    min-width: 250px;
+    min-height: 25px;
+}

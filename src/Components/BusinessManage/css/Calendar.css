@@ -261,7 +261,14 @@
     font-size: 2vh;
 
     transition: transform 0.5s ease-in-out;
-    min-width: 400px;
+    min-width: 320px;
+    z-index: 5;
+}
+
+@media screen and (max-width: 980px) {
+    .reservationCreator{
+        min-width: 100vw;
+    }
 }
 
 .reservationCreator .close{
