@@ -17,7 +17,7 @@ function CalendarCalendar() {
     const [creatorLeft, setCreatorLeft] = useState("100%")
 
     const [reservationError, setReservationError] = useState("")
-    const [reservationEditID, setReservationEditID] = useState(false)
+    //const [reservationEditID, setReservationEditID] = useState(false)
     const [reservationName, setReservationName] = useState("")
     const [reservationWorkerID, setReservationWorkerID] = useState()
     const [reservationState, setReservationState] = useState("Pending")
@@ -44,6 +44,7 @@ function CalendarCalendar() {
             }
             data.reservationData.map(function(reservation, index){
                 reservation.col = 1
+                return true
             })
             data.reservationData.map(function(reservation, index){
                 data.reservationData.forEach(function(element){
@@ -57,6 +58,7 @@ function CalendarCalendar() {
                         }
                     }
                 })
+                return true
             })
             setReservations(data.reservationData)
         })
@@ -126,7 +128,7 @@ function CalendarCalendar() {
                                     left: "calc(5% + "+(reservation.col-1)*20+"%",
                                     backgroundColor: (getColorFromStatus(reservation.Status, reservation.Date, reservation.End))
                                 }} key={reservation.ReservationID} onClick={() => {
-                                    setReservationEditID(reservation.ReservationID)
+                                    //setReservationEditID(reservation.ReservationID)
                                     setReservationName(reservation.Name)
                                     setReservationWorkerID(reservation.WorkerID)
                                     setReservationState(reservation.Status)
@@ -164,7 +166,7 @@ function CalendarCalendar() {
 
                 <div className='close' onClick={() => {
                     setCreatorLeft("0")
-                    setReservationEditID(false)
+                    //setReservationEditID(false)
                     setReservationName("")
                     setReservationWorkerID(0) //todo
                     setReservationState("Pending")
