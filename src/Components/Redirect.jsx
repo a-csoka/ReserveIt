@@ -21,7 +21,7 @@ function Redirect(props) {
             if(data.tokenState === true){
                 if((link[3] !== "dashboard" && link[3] !== "BusinessManage") || props.onlyCheckWrongLink){
                     setRedirect(true)
-                    toRedirect = "/dashboard/mycalendar"
+                    toRedirect = "/dashboard/mycalendar/calendar"
                 }  
             }else{
                 if(link[3] !== "loginPage"){  

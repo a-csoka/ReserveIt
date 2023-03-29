@@ -59,7 +59,7 @@ export default function LoginForm(){
                             body: JSON.stringify(dict)
                         }).then((response) => response.json()).then((data) => {
                             if(Cookies.get('userToken') != null){
-                                navigate("../dashboard")
+                                navigate("../dashboard/mycalendar/calendar")
                             }else{
                                 setErrors({...data})
                             }                           
