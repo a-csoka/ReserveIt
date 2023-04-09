@@ -52,6 +52,7 @@ module.exports = (app, sql_con, jwt, isFieldEmpty, moment) => {
                         return false
                     }
                     */
+                    await sql_con.promise().query("INSERT INTO ReserveIt_Notifications(AccountID, BusinessID, Text) VALUES(?, ?, ?)", [doesExist[0][0].AccountID, req.body.BusinessID, "Hozzá lett adva egy időpont a naptáradhoz! ("+(req.body.Date).replaceAll("-", ". ")+". "+req.body.Start+"-"+req.body.End+")"])
                     const createReservation =  await sql_con.promise().query("INSERT INTO ReserveIt_Reservations(Name, ReserverID, WorkerID, BusinessID, Start, End, Price, Phone, Status) VALUES(?, ?, ?, ?, ?, ?, ?, ?, 'Pending')", [req.body.Name, doesExist[0][0].AccountID, req.body.WorkerID, req.body.BusinessID, req.body.Date+" "+req.body.Start, req.body.Date+" "+req.body.End, req.body.Price, req.body.Phone])
                     res.send({errorMsg: "Foglalás létrehozva!"})
                 }

@@ -46,6 +46,7 @@ module.exports = (app, sql_con, jwt, isFieldEmpty, moment) => {
                         return false
                     }
                     */
+                    await sql_con.promise().query("INSERT INTO ReserveIt_Notifications(AccountID, BusinessID, Text) VALUES(?, ?, ?)", [doesExist[0][0].AccountID, req.body.BusinessID, "Egy időpontodat szerkesztették! ("+req.body.Name+")"])
                     const editReservation =  await sql_con.promise().query("UPDATE ReserveIt_Reservations SET Name=?, WorkerID=?, BusinessID=?, Start=?, End=?, Price=?, Phone=?, Status=? WHERE ReservationID=?", [req.body.Name, req.body.WorkerID, req.body.BusinessID, req.body.Date+" "+req.body.Start, req.body.Date+" "+req.body.End, req.body.Price, req.body.Phone, req.body.State, req.body.ReservationID])
                     res.send({errorMsg: "Foglalás szerkesztve!"})
                 }

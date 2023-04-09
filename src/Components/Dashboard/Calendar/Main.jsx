@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import "../css/Calendar.css"
 
 function MainCalendar() {
     const navigate = useNavigate()
+    const [notiCount, setNotiCount] = useState(0)
+
+    useEffect(() => {
+        fetch("http://127.0.0.1:5000/getNotificationsCount", {
+            method: "GET",
+            credentials: 'include',
+            headers: {
+                'Content-type': 'application/json',
+            }
+        }).then((response) => response.json()).then(data => {
+            setNotiCount(data.payload)
+        })
+    }, [setNotiCount])
+
+    const updateNoti = (value) => {
+        setNotiCount(value);
+    };
 
     return ( 
     <div className='calendarMenuContainer'>
@@ -26,13 +43,13 @@ function MainCalendar() {
              onClick={() => {
                 navigate("./notifications")
             }}>
-                <div className='text'>Értesítések</div>
+                {(notiCount > 0 ? <div className='text'>Értesítések<div className='notificationCount'>{notiCount}</div></div> : <div className='text'>Értesítések</div>)}
                 <div className='line right'></div>
             </div>
         </div>
 
 
-        <Outlet/>
+        <Outlet context={[notiCount, updateNoti]}/>
     </div> 
     );
 }
