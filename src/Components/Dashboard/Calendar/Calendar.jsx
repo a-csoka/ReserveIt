@@ -40,7 +40,7 @@ function CalendarCalendar() {
             body: JSON.stringify({Time: moment(date).format('YYYY-MM-DD')})
         }).then((response) => response.json()).then(data => {
             if(reservationWorkerID === null){
-                setReservationWorkerID(data.workerData[0].AccountID)
+                setReservationWorkerID(data.workerData[0].WorkerName)
             }
             data.reservationData.map(function(reservation, index){
                 reservation.col = 1
@@ -130,7 +130,7 @@ function CalendarCalendar() {
                                 }} key={reservation.ReservationID} onClick={() => {
                                     //setReservationEditID(reservation.ReservationID)
                                     setReservationName(reservation.Name)
-                                    setReservationWorkerID(reservation.WorkerID)
+                                    setReservationWorkerID(reservation.WorkerName)
                                     setReservationState(reservation.Status)
                                     setReservationDate(reservation.Date)
                                     setReservationStart(reservation.Start)
@@ -168,7 +168,7 @@ function CalendarCalendar() {
                     setCreatorLeft("0")
                     //setReservationEditID(false)
                     setReservationName("")
-                    setReservationWorkerID(0) //todo
+                    setReservationWorkerID("")
                     setReservationState("Pending")
                     setReservationDate(moment(selDate).format('YYYY-MM-DD'))
                     setReservationStart(moment(selDate).format('HH:mm'))
@@ -188,7 +188,7 @@ function CalendarCalendar() {
 
                 <div className='title halfTitle'>Dolgozó</div>
                 <div className='title halfTitle right'>Állapot</div>
-                <input readOnly className='half' value={reservationWorkerID} onChange={(event) => setReservationWorkerID(event.target.value)}/>
+                <input readOnly className='half' value={reservationWorkerID}/>
 
 
                 <select disabled list="statuslist" className='half' value={reservationState} onChange={(event) => setReservationState(event.target.value)}>

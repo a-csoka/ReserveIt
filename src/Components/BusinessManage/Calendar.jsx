@@ -46,7 +46,7 @@ function Calendar() {
             body: JSON.stringify({BusinessID: BusinessID, Time: moment(date).format('YYYY-MM-DD')})
         }).then((response) => response.json()).then(data => {
             setWorkers(data.workerData)
-            if(reservationWorkerID === null){
+            if(reservationWorkerID === undefined){
                 setReservationWorkerID(data.workerData[0].AccountID)
             }     
             setReservations(data.reservationData)

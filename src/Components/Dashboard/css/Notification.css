@@ -1,0 +1,56 @@
+.notificationContainer{
+    position: relative;
+
+    top: 6%;
+
+    width: 100%;
+    height: fit-content;
+}
+
+.notificationContainer .notification{
+    position: relative;
+
+    background-color: #C8C8C8;
+
+    border-radius: 5vw;
+
+    margin-top: 0.5%;
+
+    width: 95%;
+    min-height: fit-content;
+    height: 4vh;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 0.8vw;
+
+    font-family: LEMONMILK-Regular;
+}
+
+@media screen and (max-width: 980px) {
+    .notificationContainer .notification{
+        font-size: 0.8vh;
+    }
+}
+
+.notificationContainer .notification .textContainer .companyname{
+    position: relative;
+    
+    border-left: 10px solid #00c5f0;
+    border-right: 10px solid #00c5f0;
+    float: left;
+
+    background-color: #00c5f0;
+    border-radius: 5vw;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.notificationContainer .notification .textContainer{
+    position: absolute;
+
+    width: 100%;
+
+    top: 50%;
+    transform: translateY(-50%);
+}
