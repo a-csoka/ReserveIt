@@ -40,8 +40,9 @@ const sql_con = mysql.createConnection({
 
 
 sql_con.connect(function(err) {
+    /* istanbul ignore next */
     if (err) {
-      return console.error('[Adatbázis]: ' + err.message);
+        return console.error('[Adatbázis]: ' + err.message);
     }
     console.log('[Adatbázis]: A kapcsolat sikeresen létrejött!');
 })
@@ -60,7 +61,7 @@ require("./paths/loginUser.js")(app, isFieldEmpty, sql_con, bcrypt, emailValidat
 require("./paths/registerUser.js")(app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto, mail_con);
 require("./paths/verifyAccount.js")(app, sql_con);
 require("./paths/recaptcha.js")(app, sql_con, crypto, mail_con);
-require("./paths/forgottenpassword.js")(app, sql_con, crypto, mail_con);
+require("./paths/forgottenPassword.js")(app, sql_con, crypto, mail_con);
 require("./paths/checkNewPasswordKey.js")(app, sql_con);
 require("./paths/changePassword.js")(app, isFieldEmpty, sql_con, bcrypt, jwt);
 require("./paths/verifyToken.js")(app, jwt, sql_con);
@@ -85,6 +86,9 @@ require("./paths/getUserReservations.js")(app, sql_con, jwt);
 require("./paths/getNotifications.js")(app, sql_con, jwt);
 require("./paths/getNotificationsCount.js")(app, sql_con, jwt);
 
-
-app.listen(port, () => console.log(`[Backend]: A backend elérhető! [Port: ${port}]`));
+/* istanbul ignore next */
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => console.log(`[Backend]: A backend elérhető! [Port: ${port}]`)) 
+}
+module.exports = app;
 

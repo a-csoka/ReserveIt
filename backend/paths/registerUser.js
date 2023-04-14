@@ -7,23 +7,7 @@ module.exports = (app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto, ma
             "Password": "",
             "RePassword": "",
         }
-        if(isFieldEmpty(req.body.firstName)){
-            res.status(400).send()
-            return
-        }
-        if(isFieldEmpty(req.body.lastName)){
-            res.status(400).send()
-            return
-        }
-        if(isFieldEmpty(req.body.email)){
-            res.status(400).send()
-            return
-        }
-        if(isFieldEmpty(req.body.password)){
-            res.status(400).send()
-            return
-        }
-        if(isFieldEmpty(req.body.rePassword)){
+        if(isFieldEmpty(req.body.firstName) || isFieldEmpty(req.body.lastName) || isFieldEmpty(req.body.email) || isFieldEmpty(req.body.password) || isFieldEmpty(req.body.rePassword)){
             res.status(400).send()
             return
         }
@@ -33,15 +17,7 @@ module.exports = (app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto, ma
             return
         }
 
-        if(!new RegExp(".{8}").test(req.body.password)){
-            res.status(400).send()
-            return
-        }
-        if(!new RegExp("(?=.*[A-Z])").test(req.body.password)){
-            res.status(400).send()
-            return
-        }
-        if(!new RegExp("(?=.*[0-9])").test(req.body.password)){
+        if(!new RegExp(".{8}").test(req.body.password) || !new RegExp("(?=.*[A-Z])").test(req.body.password) || !new RegExp("(?=.*[0-9])").test(req.body.password)){
             res.status(400).send()
             return
         }
@@ -60,7 +36,7 @@ module.exports = (app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto, ma
         const pass = await bcrypt.hash(req.body.password, await bcrypt.genSalt(10))
         const createAcc = await sql_con.promise().query("INSERT INTO ReserveIt_Accounts(Email, Password, FirstName, LastName) VALUES(?, ?, ?, ?)", [req.body.email, pass, req.body.firstName, req.body.lastName])
                   
-        crypto.randomBytes(22, function(err, buffer) {
+        await crypto.randomBytes(22, function(err, buffer) {
             var token = createAcc[0].insertId+buffer.toString('hex');
             mail_con.sendMail({
                 from: "Team ReserveIt <helpdesk.reserveit@gmail.com>",
@@ -76,17 +52,14 @@ module.exports = (app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto, ma
                 Tisztelettel,<br>
                 Team ReserveIt
                 `,
-            }, async function(erR, info){
-                if (err) throw err
-                if(!err){
-                    await sql_con.promise().query("INSERT INTO ReserveIt_VerificationData(AccountID,VerificationID) VALUES (?,?)", [createAcc[0].insertId, token])
-                    console.log("[ReserveIt - Mail]: Megerősítő email elküldve! [Cím: "+req.body.email+"]")
-                }
+            }, async function(err, info){
+                await sql_con.promise().query("INSERT INTO ReserveIt_VerificationData(AccountID,VerificationID) VALUES (?,?)", [createAcc[0].insertId, token])
+                console.log("[ReserveIt - Mail]: Megerősítő email elküldve! [Cím: "+req.body.email+"]")
+                tempErr["Email"] = "Erősítsd meg az email címedet az arra küldött levélben!"
+                res.status(200).send(tempErr)
+                return
             })
-        })  
-        tempErr["Email"] = "Erősítsd meg az email címedet az arra küldött levélben!"
-        res.status(200).send(tempErr)
-        return   
+        })
     })
 
 }

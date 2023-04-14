@@ -5,16 +5,7 @@ module.exports = (app, isFieldEmpty, sql_con, bcrypt, emailValidator, jwt) => {
             "Password": "",
         }
     
-        if(isFieldEmpty(req.body.email)){
-            res.status(400).send()
-            return
-        }
-        if(isFieldEmpty(req.body.password)){
-            res.status(400).send()
-            return
-        }
-    
-        if(!emailValidator.validate(req.body.email)){
+        if(isFieldEmpty(req.body.email) || isFieldEmpty(req.body.password) || !emailValidator.validate(req.body.email)){
             res.status(400).send()
             return
         }
@@ -43,7 +34,7 @@ module.exports = (app, isFieldEmpty, sql_con, bcrypt, emailValidator, jwt) => {
         await sql_con.promise().query("UPDATE ReserveIt_Accounts SET LastLoginDate=DEFAULT WHERE AccountID=?", [accountData[0][0].AccountID])
 
         LoginToken = jwt.sign({AccountID: accountData[0][0].AccountID, Email: accountData[0][0].Email}, process.env.JWT_KEY);
-        res.cookie('userToken', token, {httpOnly: false, maxAge: 31556952000})
+        res.cookie('userToken', LoginToken, {httpOnly: false, maxAge: 31556952000})
         res.status(200).send(tempErr)
         return
     })

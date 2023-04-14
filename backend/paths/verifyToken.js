@@ -5,10 +5,11 @@ module.exports = (app, jwt, sql_con) => {
             try{
                 var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
                 const sqlcucc = await sql_con.promise().query("SELECT AccountID FROM ReserveIt_Accounts WHERE AccountID=? AND Email=?", [data.AccountID, data.Email])
-                if(data != null && sqlcucc[0][0].AccountID != null){
-                    decode = true
-                }
-            }catch{}
+                decode = true
+            }catch{
+                res.status(400).send()
+                return
+            }
         }
         res.status(200).json({tokenState: decode})
         return
