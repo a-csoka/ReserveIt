@@ -33,7 +33,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --coverage --forceExit",
     "eject": "react-scripts eject",
     "server": "node backend/server.js",
     "dev": "nodemon backend/server.js"
@@ -57,6 +57,8 @@
     ]
   },
   "devDependencies": {
-    "react-router-dom": "^6.4.1"
+    "jest": "^29.5.0",
+    "react-router-dom": "^6.4.1",
+    "supertest": "^6.3.3"
   }
 }
