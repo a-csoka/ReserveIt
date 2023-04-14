@@ -8,51 +8,58 @@ module.exports = (app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto, ma
             "RePassword": "",
         }
         if(isFieldEmpty(req.body.firstName)){
-            return false
+            res.status(400).send()
+            return
         }
         if(isFieldEmpty(req.body.lastName)){
-            return false
+            res.status(400).send()
+            return
         }
         if(isFieldEmpty(req.body.email)){
-            return false
+            res.status(400).send()
+            return
         }
         if(isFieldEmpty(req.body.password)){
-            return false
+            res.status(400).send()
+            return
         }
         if(isFieldEmpty(req.body.rePassword)){
-            return false
+            res.status(400).send()
+            return
         }
 
         if(req.body.password !== req.body.rePassword){
-            return false
+            res.status(400).send()
+            return
         }
 
         if(!new RegExp(".{8}").test(req.body.password)){
-            return false
+            res.status(400).send()
+            return
         }
         if(!new RegExp("(?=.*[A-Z])").test(req.body.password)){
-            return false
+            res.status(400).send()
+            return
         }
         if(!new RegExp("(?=.*[0-9])").test(req.body.password)){
-            return false
+            res.status(400).send()
+            return
         }
 
         if(!emailValidator.validate(req.body.email)){
-            return false
+            res.status(400).send()
+            return
         }
 
         const isEmailTaken = await sql_con.promise().query("SELECT email FROM ReserveIt_Accounts WHERE email=? LIMIT 1", [req.body.email])
         if(isEmailTaken[0].length > 0){
             tempErr["Email"] = "Ez az email cím már foglalt!"
-            res.send(tempErr)
-            return false
+            res.status(400).send(tempErr)
+            return
         }
         const pass = await bcrypt.hash(req.body.password, await bcrypt.genSalt(10))
         const createAcc = await sql_con.promise().query("INSERT INTO ReserveIt_Accounts(Email, Password, FirstName, LastName) VALUES(?, ?, ?, ?)", [req.body.email, pass, req.body.firstName, req.body.lastName])
                   
-        tempErr["Email"] = "Erősítsd meg az email címedet az arra küldött levélben!"
-        res.send(tempErr)
-
         crypto.randomBytes(22, function(err, buffer) {
             var token = createAcc[0].insertId+buffer.toString('hex');
             mail_con.sendMail({
@@ -76,10 +83,10 @@ module.exports = (app, isFieldEmpty, sql_con, bcrypt, emailValidator, crypto, ma
                     console.log("[ReserveIt - Mail]: Megerősítő email elküldve! [Cím: "+req.body.email+"]")
                 }
             })
-        })
-    
-        return true
-    
+        })  
+        tempErr["Email"] = "Erősítsd meg az email címedet az arra küldött levélben!"
+        res.status(200).send(tempErr)
+        return   
     })
 
 }

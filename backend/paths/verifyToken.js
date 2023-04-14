@@ -10,6 +10,7 @@ module.exports = (app, jwt, sql_con) => {
                 }
             }catch{}
         }
-        res.json({tokenState: decode})
+        res.status(200).json({tokenState: decode})
+        return
     });
 }

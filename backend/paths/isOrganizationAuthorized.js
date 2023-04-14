@@ -6,13 +6,19 @@ module.exports = (app, sql_con, jwt) => {
                 if(req.body.BusinessID){
                     const isAuthorized = await sql_con.promise().query("SELECT * FROM ReserveIt_BusinessEmployees WHERE AccountID=? AND BusinessID=? LIMIT 1", [data.AccountID, req.body.BusinessID])
                     if(isAuthorized[0].length == 0){
-                        res.send({authorized: false})
-                        return false
+                        res.status(403).send({authorized: false})
+                        return
                     }
-                    res.send({authorized: true, isOwner: isAuthorized[0][0].isOwner})
-                    return true
+                    res.status(200).send({authorized: true, isOwner: isAuthorized[0][0].isOwner})
+                    return
                 }
+                res.status(400).send()
+                return
             }
+            res.status(400).send()
+            return
         }
+        res.status(400).send()
+        return
     })
 }

@@ -4,8 +4,13 @@ module.exports = (app, jwt) => {
             var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
             if(data != null){
                 res.clearCookie("userToken")
-                res.end()
+                res.status(200).end()
+                return
             }
+            res.status(400).send()
+            return
         }
+        res.status(400).send()
+        return
     })
 }

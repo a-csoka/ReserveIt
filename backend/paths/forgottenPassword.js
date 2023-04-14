@@ -5,8 +5,8 @@ module.exports = (app, sql_con, crypto, mail_con) => {
         }
         const data = await sql_con.promise().query("SELECT AccountID,Email FROM ReserveIt_Accounts WHERE email=? LIMIT 1", [req.body.email])
         if(data[0].length === 0){
-            res.send(tempErr)
-            return false
+            res.status(400).send(tempErr)
+            return
         }
         const isFlood = await sql_con.promise().query("SELECT Time FROM ReserveIt_ForgottenPasswordData WHERE AccountID=? LIMIT 1", [data[0][0].AccountID])
         if(isFlood[0].length === 1){
@@ -15,8 +15,8 @@ module.exports = (app, sql_con, crypto, mail_con) => {
             var recordTime = new Date(isFlood[0].Time).getTime();
             if (recordTime+600000 >= nowTime) {
                 tempErr["Email"] = `Csak 10 percenként küldhetsz elfelejtett jelszó kérelmet! Következő lehetőség ${Math.ceil((recordTime+600000-nowTime)/1000/60)} perc múlva!`
-                res.send(tempErr)
-                return false
+                res.status(403).send(tempErr)
+                return
             }
         }
         await sql_con.promise().query("DELETE FROM ReserveIt_ForgottenPasswordData WHERE AccountID=?", [data[0][0].AccountID])
@@ -43,7 +43,8 @@ module.exports = (app, sql_con, crypto, mail_con) => {
                 if(!err){
                     await sql_con.promise().query("INSERT INTO ReserveIt_ForgottenPasswordData(AccountID, VerificationID) VALUES(?,?)", [data[0][0].AccountID, token])
                     console.log("[Mail]: Elfelejtett jelszó kérelem! [Cím: "+data[0][0].Email+"]")
-                    res.send(tempErr)
+                    res.status(200).send(tempErr)
+                    return
                 }
             });
         });

@@ -4,8 +4,13 @@ module.exports = (app, sql_con, jwt) => {
             var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
             if(data != null){
                 const getNotifications = await sql_con.promise().query("SELECT count(ID) AS count FROM ReserveIt_Notifications WHERE isNew=1 AND AccountID=?", [data.AccountID])
-                res.send({payload: getNotifications[0][0].count})
+                res.status(200).send({payload: getNotifications[0][0].count})
+                return
             }
+            res.status(400).send()
+            return
         }
+        res.status(400).send()
+        return
     })
 }

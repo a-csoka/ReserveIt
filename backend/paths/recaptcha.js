@@ -6,8 +6,11 @@ module.exports = (app) => {
             .then(async response => await response.json())
             .then(async google_response => {
                 if(google_response.success === true){
-                    await res.send({response: true})
+                    await res.status(200).send({response: true})
+                    return
                 }
             });
+        res.status(500).send()
+        return
     });
 }
