@@ -47,7 +47,7 @@ describe('[GET] /verifyToken', () => {
             email: "csokacsaba4@hotmail.com",
             password: "Tesztelek2",
         })
-        var token = source.header["set-cookie"][0].split(";")[0]
+        var token = await source.header["set-cookie"][0].split(";")[0]
 
         const response = await request
             .get('/verifyToken')

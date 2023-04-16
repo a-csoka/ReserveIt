@@ -1,8 +1,8 @@
 module.exports = (app, sql_con, jwt) => {
     app.post("/getUserFromEmail", async (req, res) => {
         if(req.cookies.userToken != null){
-            var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
-            if(data != null){
+            try{
+                var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
                 if(req.body.Email){
                     const user = await sql_con.promise().query("SELECT AccountID, FirstName, LastName FROM ReserveIt_Accounts WHERE Email=? LIMIT 1", [req.body.Email])
                     if(user[0].length === 1){
@@ -15,9 +15,10 @@ module.exports = (app, sql_con, jwt) => {
                 }
                 res.status(400).send()
                 return
+            }catch{
+                res.status(400).send()
+                return
             }
-            res.status(400).send()
-            return
         }
         res.status(400).send()
         return

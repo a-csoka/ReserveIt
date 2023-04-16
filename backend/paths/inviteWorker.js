@@ -1,8 +1,8 @@
 module.exports = (app, sql_con, jwt) => {
     app.post("/inviteWorker", async (req, res) => {
         if(req.cookies.userToken != null){
-            var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
-            if(data != null){
+            try{
+                var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
                 if(req.body.BusinessID && req.body.Email){
                     const canInvite = await await sql_con.promise().query("SELECT isOwner FROM ReserveIt_BusinessEmployees WHERE AccountID=? AND BusinessID=? LIMIT 1", [data.AccountID, req.body.BusinessID])
                     if(canInvite[0][0].isOwner == 0){
@@ -29,11 +29,10 @@ module.exports = (app, sql_con, jwt) => {
                     const invite = await sql_con.promise().query("INSERT INTO ReserveIt_BusinessInvites(InviterID, InvitedID, BusinessID) VALUES (?, ?, ?)", [data.AccountID, user[0][0].AccountID, req.body.BusinessID])
                     res.status(200).send({Err: "A meghívót elküldtük!"})
                 }
+            }catch{
                 res.status(400).send()
                 return
             }
-            res.status(400).send()
-            return
         }
         res.status(400).send()
         return

@@ -1,8 +1,8 @@
 module.exports = (app, sql_con, jwt) => {
     app.delete("/removeReservation", async (req, res) => {
         if(req.cookies.userToken != null){
-            var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
-            if(data != null){
+            try{
+                var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
                 if(req.body.ReservationID){
                     const doesExist = await sql_con.promise().query("SELECT BusinessID FROM ReserveIt_Reservations WHERE ReservationID=? LIMIT 1", [req.body.ReservationID])
                     if(doesExist[0].length === 0){
@@ -21,9 +21,10 @@ module.exports = (app, sql_con, jwt) => {
                 }
                 res.status(400).send()
                 return
+            }catch{
+                res.status(400).send()
+                return
             }
-            res.status(400).send()
-            return
         }
         res.status(400).send()
         return

@@ -5,7 +5,6 @@ const { createPool } = require("mysql2/promise");
 
 describe('[POST] /logout', () => {
     let connection;
-    let token;
     beforeEach(async () => {  
         connection = await createPool({
             host: process.env.SQL_HOST,
@@ -39,7 +38,7 @@ describe('[POST] /logout', () => {
             email: "csokacsaba4@hotmail.com",
             password: "Tesztelek2",
         })
-        token = source.header["set-cookie"][0].split(";")[0]
+        const token = source.header["set-cookie"][0].split(";")[0]
 
         const response = await request
         .post('/logout')

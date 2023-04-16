@@ -1,8 +1,8 @@
 module.exports = (app, sql_con, jwt) => {
     app.post("/respondToInvite", async (req, res) => {
         if(req.cookies.userToken != null){
-            var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
-            if(data != null){
+            try{
+                var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
                 if(req.body.Response && req.body.BusinessID){
                     const doesInviteExist = await sql_con.promise().query("SELECT InvitedID, BusinessID FROM ReserveIt_BusinessInvites WHERE InvitedID=? AND BusinessID=?", [data.AccountID, req.body.BusinessID])
                     if(doesInviteExist[0].length == 0){            
@@ -18,9 +18,10 @@ module.exports = (app, sql_con, jwt) => {
                 }            
                 res.status(400).send()
                 return
-            }            
-            res.status(400).send()
-            return
+            }catch{        
+                res.status(400).send()
+                return
+            }
         }            
         res.status(400).send()
         return
