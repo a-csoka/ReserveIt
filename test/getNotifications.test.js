@@ -3,7 +3,7 @@ var request = require('supertest')(app)
 const dotenv = require('dotenv').config()
 const { createPool } = require("mysql2/promise");
 
-describe('[POST] /logout', () => {
+describe('[GET] /getNotifications', () => {
     let connection;
     let token;
     beforeEach(async () => {  
@@ -14,35 +14,35 @@ describe('[POST] /logout', () => {
             database: process.env.SQL_DATABASE,
             port: parseInt(process.env.SQL_PORT),
         });  
-        await connection.query("DELETE FROM ReserveIt_Accounts WHERE email='csokacsaba4@hotmail.com'");
-        await connection.query("INSERT INTO ReserveIt_Accounts(Email, Password, FirstName, LastName, isEmailValidated) VALUES('csokacsaba4@hotmail.com', '$2b$10$vL9vIEOaaSC6YV4f5J8T.eqbUAwMI8KfIAQREgZ/CtnvwU3uP0Kte', 'Teszt', 'Elek', 1)");
+        await connection.query("DELETE FROM ReserveIt_Accounts WHERE email='getNotifications@reserveit.hu'");
+        await connection.query("INSERT INTO ReserveIt_Accounts(Email, Password, FirstName, LastName, isEmailValidated) VALUES('getNotifications@reserveit.hu', '$2b$10$vL9vIEOaaSC6YV4f5J8T.eqbUAwMI8KfIAQREgZ/CtnvwU3uP0Kte', 'Teszt', 'Elek', 1)");
     });
 
    
     it('Ha nincs bejelentkezve', async () => {
         const response = await request
-        .post('/logout')
+        .get('/getNotifications')
         .expect(400)
     })
 
     it('Ha a token hibás', async () => {
         const response = await request
-        .post('/logout')
+        .get('/getNotifications')
         .set('Cookie', ["userToken=ezegyhibástokenhaló"])
         .expect(400)
     })
 
-    it('Ez működik', async() => {
+    it('Ha minden rendben van', async () => {
         const source = await request
         .post('/loginUser')
         .send({
-            email: "csokacsaba4@hotmail.com",
+            email: "getNotifications@reserveit.hu",
             password: "Tesztelek2",
         })
         token = source.header["set-cookie"][0].split(";")[0]
 
         const response = await request
-        .post('/logout')
+        .get('/getNotifications')
         .set('Cookie', [token])
         .expect(200)
     })

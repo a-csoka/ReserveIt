@@ -1,14 +1,9 @@
 module.exports = (app, sql_con, jwt, isFieldEmpty, bcrypt) => {
     app.post("/updateOrganizationName", async (req, res) => {
         if(req.cookies.userToken != null){
-            var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
-            if(data != null){
-                if(req.body.newName !== null && req.body.Password !== null && req.body.BusinessID !== null){
-                    if(isFieldEmpty(req.body.Password)){            
-                        res.status(400).send()
-                        return
-                    }
-                    if(isFieldEmpty(req.body.newName)){            
+            try{
+                var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
+                    if(isFieldEmpty(req.body.Password) || isFieldEmpty(req.body.newName)){            
                         res.status(400).send()
                         return
                     }
@@ -40,13 +35,11 @@ module.exports = (app, sql_con, jwt, isFieldEmpty, bcrypt) => {
                     const changeName = await sql_con.promise().query("UPDATE ReserveIt_Businesses SET Name=? WHERE BusinessID=?", [req.body.newName, req.body.BusinessID])
                     tempErr["OrgName"] = "A vállalkozásod nevét sikeresen megváltoztattuk!"
                     res.status(200).send({Errors: tempErr})
-                    return
-                }            
+                    return        
+            }catch{        
                 res.status(400).send()
                 return
-            }            
-            res.status(400).send()
-            return
+            }
         }            
         res.status(400).send()
         return

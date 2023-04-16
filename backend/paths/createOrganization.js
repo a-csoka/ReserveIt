@@ -11,36 +11,12 @@ module.exports = (app, isFieldEmpty, sql_con, emailValidator, jwt) => {
             OwnerPhone: "",
         }
 
-        if(isFieldEmpty(req.body.OrgName)){
-            res.status(400).send()
-            return
-        }
-        if(isFieldEmpty(req.body.OrgLocation)){
-            res.status(400).send()
-            return
-        }
-        if(isFieldEmpty(req.body.OrgEmail)){
-            res.status(400).send()
-            return
-        }
-        if(isFieldEmpty(req.body.OwnerName)){
-            res.status(400).send()
-            return
-        }
-        if(isFieldEmpty(req.body.OwnerMail)){
-            res.status(400).send()
-            return
-        }
-        if(isFieldEmpty(req.body.OwnerPhone)){
+        if(isFieldEmpty(req.body.OrgName) || isFieldEmpty(req.body.OrgLocation) || isFieldEmpty(req.body.OrgEmail) || isFieldEmpty(req.body.OwnerName) || isFieldEmpty(req.body.OwnerMail) || isFieldEmpty(req.body.OwnerPhone)){
             res.status(400).send()
             return
         }
 
-        if(!emailValidator.validate(req.body.OrgEmail)){
-            res.status(400).send()
-            return
-        }
-        if(!emailValidator.validate(req.body.OwnerMail)){
+        if(!emailValidator.validate(req.body.OrgEmail) || !emailValidator.validate(req.body.OwnerMail)){
             res.status(400).send()
             return
         }
@@ -49,9 +25,9 @@ module.exports = (app, isFieldEmpty, sql_con, emailValidator, jwt) => {
             res.status(401).send()
             return
         }
-        var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
+        try{
+            var data = jwt.verify(req.cookies.userToken, process.env.JWT_KEY)
 
-        if(data != null){
             const takenNameCheck = await sql_con.promise().query("SELECT Name FROM ReserveIt_Businesses WHERE Name=? LIMIT 1", [req.body.OrgName])
             if(takenNameCheck[0].length > 0){
                 tempErr.OrgName = "Ez a név már foglalt!"
@@ -62,7 +38,9 @@ module.exports = (app, isFieldEmpty, sql_con, emailValidator, jwt) => {
             const addOwner = await sql_con.promise().query("INSERT INTO ReserveIt_BusinessEmployees(AccountID, BusinessID, isOwner) VALUES(?, ?, 1)", [data.AccountID, createOrg[0].insertId])
             res.status(200).send({redirect: true})
             return
+        }catch{
+            res.status(401).send()
+            return
         }
-        res.status(401).send()
     })
 }

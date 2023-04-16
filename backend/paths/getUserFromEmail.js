@@ -9,7 +9,7 @@ module.exports = (app, sql_con, jwt) => {
                         res.status(200).send({FirstName: user[0][0].FirstName, LastName: user[0][0].LastName, AccountID: user[0][0].AccountID})
                         return
                     }else{
-                        res.status(200).send({FirstName: "", LastName: "", AccountID: ""})
+                        res.status(400).send({FirstName: "", LastName: "", AccountID: ""})
                         return
                     }
                 }

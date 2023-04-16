@@ -3,7 +3,7 @@ var request = require('supertest')(app)
 const dotenv = require('dotenv').config()
 const { createPool } = require("mysql2/promise");
 
-describe('[POST] /getOrganizations', () => {
+describe('[GET] /getOrganizations', () => {
     let connection;
     beforeEach(async () => {  
         connection = await createPool({
