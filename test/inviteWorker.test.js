@@ -88,7 +88,7 @@ describe('[POST] /inviteWorker', () => {
         .post('/inviteWorker')
         .send({
             BusinessID: BusinessID,
-            Email: "teszt@teszt.hu"
+            Email: "nemtalalhatoemail@inviteWorker.hu"
         })
         .set('Cookie', [token])
         .expect(400)

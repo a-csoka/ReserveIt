@@ -5,7 +5,6 @@ const { createPool } = require("mysql2/promise");
 
 describe('[DELETE] /removeWorker', () => {
     let connection;
-    let token;
     let BusinessID;
     let KickID;
     beforeEach(async () => {  
@@ -50,7 +49,7 @@ describe('[DELETE] /removeWorker', () => {
             email: "removeWorker@hotmail.com",
             password: "Tesztelek2",
         })
-        token = source.header["set-cookie"][0].split(";")[0]
+        const token = source.header["set-cookie"][0].split(";")[0]
 
         const response = await request
         .delete('/removeWorker')
@@ -65,7 +64,7 @@ describe('[DELETE] /removeWorker', () => {
             email: "removeWorker@hotmail.com",
             password: "Tesztelek2",
         })
-        token = source.header["set-cookie"][0].split(";")[0]
+        const token = source.header["set-cookie"][0].split(";")[0]
 
         const response = await request
         .delete('/removeWorker')
@@ -84,7 +83,7 @@ describe('[DELETE] /removeWorker', () => {
             email: "removeWorker2@hotmail.com",
             password: "Tesztelek2",
         })
-        token = source.header["set-cookie"][0].split(";")[0]
+        const token = source.header["set-cookie"][0].split(";")[0]
 
         const response = await request
         .delete('/removeWorker')

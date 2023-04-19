@@ -24,6 +24,7 @@ module.exports = (app, sql_con, jwt, isFieldEmpty, bcrypt) => {
                 }
                 await sql_con.promise().query("DELETE FROM ReserveIt_Businesses WHERE BusinessID=?", [req.body.BusinessID])
                 await sql_con.promise().query("DELETE FROM ReserveIt_BusinessInvites WHERE BusinessID=?", [req.body.BusinessID])
+                await sql_con.promise().query("DELETE FROM ReserveIt_Reservations WHERE BusinessID=?", [req.body.BusinessID])
                 res.status(200).send({Redirect: true})
                 return
             }catch{

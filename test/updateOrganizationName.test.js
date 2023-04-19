@@ -45,7 +45,7 @@ describe('[POST] /updateOrganizationName', () => {
             email: "updateOrganizationName@hotmail.com",
             password: "Tesztelek2",
         })
-        token = source.header["set-cookie"][0].split(";")[0]
+        const token = source.header["set-cookie"][0].split(";")[0]
 
         const response = await request
         .post('/updateOrganizationName')
@@ -60,7 +60,7 @@ describe('[POST] /updateOrganizationName', () => {
             email: "updateOrganizationName@hotmail.com",
             password: "Tesztelek2",
         })
-        token = source.header["set-cookie"][0].split(";")[0]
+        const token = source.header["set-cookie"][0].split(";")[0]
 
         const response = await request
         .post('/updateOrganizationName')
@@ -80,7 +80,7 @@ describe('[POST] /updateOrganizationName', () => {
             email: "updateOrganizationName2@hotmail.com",
             password: "Tesztelek2",
         })
-        token = source.header["set-cookie"][0].split(";")[0]
+        const token = source.header["set-cookie"][0].split(";")[0]
 
         const response = await request
         .post('/updateOrganizationName')
@@ -101,7 +101,7 @@ describe('[POST] /updateOrganizationName', () => {
             email: "updateOrganizationName2@hotmail.com",
             password: "Tesztelek2",
         })
-        token = source.header["set-cookie"][0].split(";")[0]
+        const token = source.header["set-cookie"][0].split(";")[0]
 
         const response = await request
         .post('/updateOrganizationName')
@@ -122,7 +122,7 @@ describe('[POST] /updateOrganizationName', () => {
             email: "updateOrganizationName2@hotmail.com",
             password: "Tesztelek2",
         })
-        token = source.header["set-cookie"][0].split(";")[0]
+        const token = source.header["set-cookie"][0].split(";")[0]
 
         const response = await request
         .post('/updateOrganizationName')
@@ -143,7 +143,7 @@ describe('[POST] /updateOrganizationName', () => {
             email: "updateOrganizationName2@hotmail.com",
             password: "Tesztelek2",
         })
-        token = source.header["set-cookie"][0].split(";")[0]
+        const token = source.header["set-cookie"][0].split(";")[0]
 
         const response = await request
         .post('/updateOrganizationName')

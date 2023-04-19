@@ -84,7 +84,7 @@ describe('[POST] /deleteOrganization', () => {
         .delete('/deleteOrganization')
         .send({
             BusinessID: BusinessID,
-            Password: "Tesztelek3"
+            Password: "Tesztelek400"
         })
         .set('Cookie', [token])
         .expect(400)
