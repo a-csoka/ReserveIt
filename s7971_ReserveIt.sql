@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: mysql.srkhost.eu
--- Létrehozás ideje: 2023. Ápr 20. 23:54
+-- Létrehozás ideje: 2023. Ápr 21. 16:19
 -- Kiszolgáló verziója: 5.7.40-log
 -- PHP verzió: 7.4.33
 
@@ -226,52 +226,6 @@ ALTER TABLE `ReserveIt_Notifications`
 --
 ALTER TABLE `ReserveIt_Reservations`
   MODIFY `ReservationID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Megkötések a kiírt táblákhoz
---
-
---
--- Megkötések a táblához `ReserveIt_BusinessEmployees`
---
-ALTER TABLE `ReserveIt_BusinessEmployees`
-  ADD CONSTRAINT `Employees_AccountID` FOREIGN KEY (`AccountID`) REFERENCES `ReserveIt_Accounts` (`AccountID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `Employees_BusinessID` FOREIGN KEY (`BusinessID`) REFERENCES `ReserveIt_Businesses` (`BusinessID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Megkötések a táblához `ReserveIt_BusinessInvites`
---
-ALTER TABLE `ReserveIt_BusinessInvites`
-  ADD CONSTRAINT `BInvites_BusinessID` FOREIGN KEY (`BusinessID`) REFERENCES `ReserveIt_Businesses` (`BusinessID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `BInvites_InvitedID` FOREIGN KEY (`InvitedID`) REFERENCES `ReserveIt_Accounts` (`AccountID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `BInvites_InviterID` FOREIGN KEY (`InviterID`) REFERENCES `ReserveIt_Accounts` (`AccountID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Megkötések a táblához `ReserveIt_ForgottenPasswordData`
---
-ALTER TABLE `ReserveIt_ForgottenPasswordData`
-  ADD CONSTRAINT `ForgottenPassword_AccountID` FOREIGN KEY (`AccountID`) REFERENCES `ReserveIt_Accounts` (`AccountID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Megkötések a táblához `ReserveIt_Notifications`
---
-ALTER TABLE `ReserveIt_Notifications`
-  ADD CONSTRAINT `Noti_AccountID` FOREIGN KEY (`AccountID`) REFERENCES `ReserveIt_Accounts` (`AccountID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `Noti_BusinessID` FOREIGN KEY (`BusinessID`) REFERENCES `ReserveIt_Businesses` (`BusinessID`);
-
---
--- Megkötések a táblához `ReserveIt_Reservations`
---
-ALTER TABLE `ReserveIt_Reservations`
-  ADD CONSTRAINT `Reservations_BusinessID` FOREIGN KEY (`BusinessID`) REFERENCES `ReserveIt_Businesses` (`BusinessID`),
-  ADD CONSTRAINT `Reservations_ReserverID` FOREIGN KEY (`ReserverID`) REFERENCES `ReserveIt_Accounts` (`AccountID`),
-  ADD CONSTRAINT `Reservations_WorkerID` FOREIGN KEY (`WorkerID`) REFERENCES `ReserveIt_Accounts` (`AccountID`);
-
---
--- Megkötések a táblához `ReserveIt_VerificationData`
---
-ALTER TABLE `ReserveIt_VerificationData`
-  ADD CONSTRAINT `Verification_AccountID` FOREIGN KEY (`AccountID`) REFERENCES `ReserveIt_Accounts` (`AccountID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
